@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bon Barber Shop — Colorado Springs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET & VARIABLES ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #111111;
+      --bg2:      #161616;
+      --bg3:      #1c1c1c;
+      --green:    #2E7D32;
+      --green-lt: #43A047;
+      --gold:     #D4AF37;
+      --gold-lt:  #F0CF5F;
+      --cream:    #F5F0E8;
+      --white:    #FFFFFF;
+      --muted:    #888;
+      --border:   rgba(212,175,55,.2);
+      --ff-head:  'Playfair Display', serif;
+      --ff-body:  'Lato', sans-serif;
+      --radius:   4px;
+      --transition: .35s cubic-bezier(.4,0,.2,1);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--ff-body);
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ──────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: .025;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── TYPOGRAPHY ─────────────────────────────────────── */
+    h1, h2, h3, h4 { font-family: var(--ff-head); line-height: 1.2; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    .section-label {
+      display: inline-block;
+      font-family: var(--ff-body);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .section-label::before { content: '—  '; }
+    .section-label::after  { content: '  —'; }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--white);
+      margin-bottom: 1.25rem;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 560px;
+    }
+
+    /* ── GOLD DIVIDER ───────────────────────────────────── */
+    .gold-divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-lt));
+      margin: 1.5rem 0;
+    }
+    .gold-divider.center { margin: 1.5rem auto; }
+
+    /* ── BUTTON ─────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 2rem;
+      font-family: var(--ff-body);
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      border-radius: var(--radius);
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #111;
+    }
+    .btn-gold:hover {
+      background: var(--gold-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(212,175,55,.35);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--cream);
+      border: 1.5px solid rgba(245,240,232,.35);
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* ── CONTAINER ──────────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .section-pad { padding: 7rem 0; }
+
+    /* ═══════════════════════════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════════════════════════ */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 2rem;
+      background: rgba(17,17,17,.0);
+      transition: background .4s ease, padding .4s ease, border-bottom .4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(17,17,17,.97);
+      border-bottom: 1px solid var(--border);
+      padding: .9rem 2rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: .75rem;
+      font-family: var(--ff-head);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .nav-logo-icon {
+      width: 36px; height: 36px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 2.5rem;
+    }
+    .nav-links a {
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,.7);
+      transition: color .25s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform .3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-cta {
+      font-size: .75rem !important;
+      padding: .6rem 1.4rem;
+      background: var(--green) !important;
+      color: var(--white) !important;
+      border-radius: var(--radius);
+      letter-spacing: .1em;
+      transition: background var(--transition), transform var(--transition) !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--green-lt) !important; transform: translateY(-1px); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px;
+      background: none; border: none;
+    }
+    .hamburger span {
+      display: block; width: 26px; height: 2px;
+      background: var(--cream);
+      transition: var(--transition);
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 0; right: 0; bottom: 0;
+      width: min(85vw, 340px);
+      background: #161616;
+      border-left: 1px solid var(--border);
+      z-index: 999;
+      flex-direction: column;
+      padding: 5rem 2rem 2rem;
+      transform: translateX(100%);
+      transition: transform .4s cubic-bezier(.4,0,.2,1);
+    }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu a {
+      display: block;
+      font-family: var(--ff-head);
+      font-size: 1.5rem;
+      padding: .85rem 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--cream);
+      transition: color .25s, padding-left .25s;
+    }
+    .mobile-menu a:hover { color: var(--gold); padding-left: .5rem; }
+    .mobile-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.6);
+      z-index: 998;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════════════════ */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+
+    /* Barber pole stripe BG pattern */
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 60px,
+          rgba(46,125,50,.04) 60px,
+          rgba(46,125,50,.04) 80px
+        );
+    }
+
+    /* Radial glow */
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: -20%; left: 55%;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(46,125,50,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative; z-index: 2;
+      max-width: 800px;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: rgba(212,175,55,.1);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: .4rem 1rem;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.75rem;
+    }
+    .hero-badge-dot {
+      width: 7px; height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: .6; transform: scale(1.3); }
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.0;
+      margin-bottom: 1.25rem;
+    }
+    .hero-title .italic  { font-style: italic; color: var(--gold); }
+    .hero-title .green   { color: var(--green-lt); }
+
+    .hero-tag {
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      font-family: var(--ff-head);
+      font-style: italic;
+      color: rgba(245,240,232,.65);
+      margin-bottom: 2.5rem;
+      letter-spacing: .02em;
+    }
+
+    .hero-actions {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .hero-call-btn {
+      display: inline-flex; align-items: center; gap: .6rem;
+      padding: 1rem 2.25rem;
+      background: var(--green);
+      color: var(--white);
+      font-family: var(--ff-body);
+      font-size: .9rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      box-shadow: 0 4px 20px rgba(46,125,50,.4);
+    }
+    .hero-call-btn:hover {
+      background: var(--green-lt);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(46,125,50,.5);
+    }
+    .hero-call-btn svg { flex-shrink: 0; }
+
+    .hero-stats {
+      display: flex; gap: 3rem;
+    }
+    .hero-stat-num {
+      display: block;
+      font-family: var(--ff-head);
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Decorative barber pole */
+    .barber-pole {
+      position: absolute;
+      right: 8%; top: 50%;
+      transform: translateY(-50%);
+      width: 50px; height: 280px;
+      border-radius: 25px;
+      background: #222;
+      border: 3px solid #333;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,0,0,.6);
+    }
+    .barber-pole::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        #cc1111 0px, #cc1111 12px,
+        #fff    12px, #fff    24px,
+        var(--green) 24px, var(--green) 36px,
+        #fff    36px, #fff    48px
+      );
+      background-size: 200% 200%;
+      animation: pole-spin 4s linear infinite;
+    }
+    @keyframes pole-spin {
+      0%   { background-position: 0 0; }
+      100% { background-position: 0 200px; }
+    }
+    .barber-pole-cap {
+      position: absolute; left: -3px; right: -3px; height: 20px;
+      background: #888;
+      border-radius: 6px;
+      z-index: 2;
+    }
+    .barber-pole-cap.top { top: -3px; }
+    .barber-pole-cap.bot { bottom: -3px; }
+
+    /* ═══════════════════════════════════════════════════════
+       ABOUT
+    ═══════════════════════════════════════════════════════ */
+    #about {
+      background: var(--bg2);
+      position: relative;
+      overflow: hidden;
+    }
+    #about::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(212,175,55,.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-frame {
+      width: 100%; aspect-ratio: 4/5;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    /* SVG illustration placeholder */
+    .about-illustration {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(160deg, #1a2a1a 0%, #111 100%);
+    }
+    .about-img-frame::after {
+      content: 'Est. 1980s';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem;
+      background: linear-gradient(transparent, rgba(0,0,0,.8));
+      font-family: var(--ff-head);
+      font-style: italic;
+      color: var(--gold);
+      font-size: 1.1rem;
+      text-align: center;
+    }
+    .about-badge-wrap {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      width: 100px; height: 100px;
+    }
+    .about-badge-circle {
+      width: 100px; height: 100px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      font-family: var(--ff-head);
+      color: var(--white);
+      box-shadow: 0 8px 24px rgba(0,0,0,.5);
+      border: 3px solid var(--gold);
+    }
+    .about-badge-num  { font-size: 1.75rem; font-weight: 900; line-height: 1; }
+    .about-badge-text { font-size: .5rem; letter-spacing: .1em; text-transform: uppercase; }
+
+    .about-quote {
+      margin: 2rem 0;
+      padding-left: 1.5rem;
+      border-left: 3px solid var(--green);
+      font-family: var(--ff-head);
+      font-style: italic;
+      font-size: 1.2rem;
+      color: rgba(245,240,232,.8);
+      line-height: 1.6;
+    }
+
+    .about-features {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      margin-top: 2rem;
+    }
+    .about-feature {
+      display: flex; align-items: flex-start; gap: .75rem;
+    }
+    .about-feature-icon {
+      width: 32px; height: 32px; flex-shrink: 0;
+      background: rgba(46,125,50,.15);
+      border: 1px solid rgba(46,125,50,.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .85rem;
+      color: var(--green-lt);
+    }
+    .about-feature-text {
+      font-size: .85rem; color: var(--muted); line-height: 1.5;
+    }
+    .about-feature-text strong { color: var(--cream); display: block; margin-bottom: .1rem; }
+
+    /* ═══════════════════════════════════════════════════════
+       SERVICES
+    ═══════════════════════════════════════════════════════ */
+    #services {
+      position: relative;
+      overflow: hidden;
+    }
+    #services::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 119px,
+          rgba(255,255,255,.012) 119px,
+          rgba(255,255,255,.012) 120px
+        );
+    }
+
+    .services-header { text-align: center; margin-bottom: 4rem; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .service-card {
+      background: var(--bg2);
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: background var(--transition);
+      cursor: default;
+    }
+    .service-card:hover { background: #1e2a1e; }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--green), transparent);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .service-card:hover::before { opacity: 1; }
+
+    .service-icon {
+      width: 48px; height: 48px;
+      background: rgba(46,125,50,.12);
+      border: 1px solid rgba(46,125,50,.25);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.3rem;
+      transition: var(--transition);
+    }
+    .service-card:hover .service-icon {
+      background: rgba(46,125,50,.25);
+      border-color: var(--green);
+    }
+
+    .service-name {
+      font-family: var(--ff-head);
+      font-size: 1.25rem;
+      color: var(--white);
+      margin-bottom: .5rem;
+    }
+    .service-desc {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .service-price {
+      font-family: var(--ff-head);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .service-price span {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    /* "The Works" card highlight */
+    .service-card.featured {
+      background: linear-gradient(160deg, #1a2e1a, #111);
+      border: 1px solid rgba(46,125,50,.4);
+    }
+    .service-card.featured .service-name { color: var(--gold); }
+    .service-featured-tag {
+      display: inline-block;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      background: var(--green);
+      color: var(--white);
+      padding: .2rem .6rem;
+      border-radius: 2px;
+      margin-bottom: .75rem;
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       WHY CHOOSE US
+    ═══════════════════════════════════════════════════════ */
+    #why {
+      background: var(--bg2);
+      overflow: hidden;
+      position: relative;
+    }
+    #why::after {
+      content: '';
+      position: absolute;
+      bottom: -150px; left: -150px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(46,125,50,.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .why-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .why-stat {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .why-stat::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform .4s;
+    }
+    .why-stat:hover::before { transform: scaleX(1); }
+    .why-stat:hover { border-color: rgba(212,175,55,.3); transform: translateY(-3px); }
+    .why-stat-num {
+      font-family: var(--ff-head);
+      font-size: 2.75rem;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: .35rem;
+    }
+    .why-stat-label {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .why-reasons { margin-top: 2rem; }
+    .why-reason {
+      display: flex; gap: 1.25rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .why-reason:last-child { border-bottom: none; }
+    .why-reason-num {
+      font-family: var(--ff-head);
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: rgba(212,175,55,.25);
+      line-height: 1;
+      min-width: 2rem;
+    }
+    .why-reason h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: .25rem;
+    }
+    .why-reason p { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ═══════════════════════════════════════════════════════
+       TESTIMONIALS
+    ═══════════════════════════════════════════════════════ */
+    #testimonials {
+      position: relative; overflow: hidden;
+    }
+    #testimonials::before {
+      content: '\201C';
+      position: absolute;
+      top: -2rem; left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--ff-head);
+      font-size: 20rem;
+      color: rgba(212,175,55,.04);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .testimonials-header { text-align: center; margin-bottom: 4rem; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .testimonial-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: var(--transition);
+    }
+    .testimonial-card:hover {
+      border-color: rgba(212,175,55,.35);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.4);
+    }
+    .testimonial-card::before {
+      content: '\201C';
+      position: absolute;
+      top: 1.25rem; right: 1.5rem;
+      font-family: var(--ff-head);
+      font-size: 4rem;
+      color: rgba(212,175,55,.12);
+      line-height: 1;
+    }
+
+    .stars {
+      display: flex; gap: 3px;
+      margin-bottom: 1.25rem;
+    }
+    .stars span {
+      color: var(--gold);
+      font-size: 1rem;
+    }
+    .testimonial-text {
+      font-family: var(--ff-head);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: rgba(245,240,232,.85);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .testimonial-author {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .author-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--green);
+      border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--ff-head);
+      font-weight: 700;
+      color: var(--white);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .author-name {
+      font-weight: 700;
+      color: var(--white);
+      font-size: .9rem;
+    }
+    .author-tag {
+      font-size: .75rem;
+      color: var(--muted);
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       FAQ
+    ═══════════════════════════════════════════════════════ */
+    #faq {
+      background: var(--bg2);
+    }
+    .faq-header { text-align: center; margin-bottom: 3.5rem; }
+    .faq-list { max-width: 760px; margin: 0 auto; }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-question {
+      width: 100%;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.6rem 0;
+      background: none; border: none; cursor: pointer;
+      text-align: left;
+      gap: 1rem;
+    }
+    .faq-question-text {
+      font-family: var(--ff-head);
+      font-size: 1.1rem;
+      color: var(--white);
+      transition: color .25s;
+    }
+    .faq-question:hover .faq-question-text { color: var(--gold); }
+    .faq-icon {
+      width: 28px; height: 28px; flex-shrink: 0;
+      background: rgba(212,175,55,.1);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold);
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+    .faq-item.open .faq-icon {
+      background: var(--gold);
+      color: #111;
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s cubic-bezier(.4,0,.2,1), padding .3s;
+    }
+    .faq-answer-inner {
+      padding-bottom: 1.5rem;
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; }
+
+    /* ═══════════════════════════════════════════════════════
+       CONTACT
+    ═══════════════════════════════════════════════════════ */
+    #contact {
+      position: relative; overflow: hidden;
+    }
+    #contact::after {
+      content: '';
+      position: absolute; top: 0; right: -200px;
+      width: 600px; height: 100%;
+      background: radial-gradient(ellipse, rgba(46,125,50,.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info-block { margin-bottom: 2rem; }
+    .contact-info-block + .contact-info-block { border-top: 1px solid var(--border); padding-top: 2rem; }
+
+    .contact-info-label {
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--green-lt); margin-bottom: .75rem;
+    }
+    .contact-address {
+      font-family: var(--ff-head);
+      font-size: 1.1rem;
+      color: var(--cream);
+      line-height: 1.6;
+    }
+    .contact-phone {
+      font-family: var(--ff-head);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      transition: color .25s;
+    }
+    .contact-phone:hover { color: var(--gold-lt); }
+
+    .hours-table { width: 100%; border-collapse: collapse; }
+    .hours-table tr td {
+      padding: .4rem 0;
+      font-size: .88rem;
+      color: var(--muted);
+    }
+    .hours-table tr td:last-child { text-align: right; color: var(--cream); }
+    .hours-table tr.today td { color: var(--gold); font-weight: 700; }
+
+    /* Contact form */
+    .contact-form {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+    }
+    .form-title {
+      font-family: var(--ff-head);
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 1.75rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+    .form-group label {
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--bg3);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: .85rem 1rem;
+      color: var(--cream);
+      font-family: var(--ff-body);
+      font-size: .9rem;
+      transition: border-color .25s;
+      outline: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(136,136,136,.6); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--green); }
+    .form-group select { appearance: none; cursor: pointer; }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group select option { background: #222; color: var(--cream); }
+
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--green);
+      color: var(--white);
+      font-family: var(--ff-body);
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      border: none; border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .form-submit:hover {
+      background: var(--green-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(46,125,50,.4);
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       TRUST BADGES
+    ═══════════════════════════════════════════════════════ */
+    #trust {
+      background: var(--bg3);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 3.5rem 0;
+    }
+    .trust-inner {
+      display: flex; flex-wrap: wrap;
+      align-items: center; justify-content: center;
+      gap: 2.5rem 4rem;
+    }
+    .trust-badge {
+      display: flex; align-items: center; gap: 1rem;
+      opacity: .6;
+      transition: opacity .3s;
+    }
+    .trust-badge:hover { opacity: 1; }
+    .trust-badge-icon {
+      width: 44px; height: 44px;
+      background: rgba(212,175,55,.1);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .trust-badge-text strong {
+      display: block;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .04em;
+    }
+    .trust-badge-text span {
+      font-size: .72rem;
+      color: var(--muted);
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════════════════ */
+    footer {
+      background: #0d0d0d;
+      border-top: 1px solid var(--border);
+      padding: 3rem 0 2rem;
+    }
+    .footer-inner {
+      display: flex; flex-wrap: wrap;
+      align-items: center; justify-content: space-between;
+      gap: 2rem;
+    }
+    .footer-logo {
+      font-family: var(--ff-head);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-copy {
+      font-size: .8rem;
+      color: var(--muted);
+    }
+    .footer-copy a {
+      color: var(--green-lt);
+      font-weight: 700;
+      transition: color .25s;
+    }
+    .footer-copy a:hover { color: var(--green); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color .25s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ═══════════════════════════════════════════════════════
+       SCROLL ANIMATIONS
+    ═══════════════════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s cubic-bezier(.4,0,.2,1),
+                  transform .7s cubic-bezier(.4,0,.2,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity .7s ease, transform .7s ease; }
+    .reveal-left.visible,
+    .reveal-right.visible { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: .1s; }
+    .delay-2 { transition-delay: .2s; }
+    .delay-3 { transition-delay: .3s; }
+    .delay-4 { transition-delay: .4s; }
+    .delay-5 { transition-delay: .5s; }
+
+    /* ═══════════════════════════════════════════════════════
+       SCROLL TO TOP
+    ═══════════════════════════════════════════════════════ */
+    #scroll-top {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 500;
+      width: 44px; height: 44px;
+      background: var(--green);
+      border: none; border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-size: 1.1rem;
+      opacity: 0; transform: translateY(20px);
+      transition: var(--transition);
+      box-shadow: 0 4px 16px rgba(0,0,0,.4);
+    }
+    #scroll-top.visible { opacity: 1; transform: none; }
+    #scroll-top:hover { background: var(--green-lt); transform: translateY(-3px); }
+
+    /* ═══════════════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .about-grid,
+      .why-grid,
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-img-wrap { display: none; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: flex; }
+
+      .hero-title { font-size: clamp(2.5rem, 10vw, 4rem); }
+      .hero-stats { gap: 1.5rem; }
+      .barber-pole { display: none; }
+
+      .services-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .why-stats { grid-template-columns: 1fr 1fr; }
+      .about-features { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+
+      .section-pad { padding: 5rem 0; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; }
+      .hero-stats { flex-direction: column; gap: 1rem; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <div class="nav-logo-icon">✂</div>
+    <div>Bon <span>Barber</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact" class="nav-cta">📞 Call Now</a></li>
+  </ul>
+  <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#about"        onclick="closeMenu()">About</a>
+  <a href="#services"     onclick="closeMenu()">Services</a>
+  <a href="#why"          onclick="closeMenu()">Why Us</a>
+  <a href="#testimonials" onclick="closeMenu()">Reviews</a>
+  <a href="#faq"          onclick="closeMenu()">FAQ</a>
+  <a href="#contact"      onclick="closeMenu()" style="color:var(--gold);margin-top:1rem;">📞 Call Now</a>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Colorado Springs · Est. Since the 1980s
+      </div>
+
+      <h1 class="hero-title">
+        Bon<br>
+        <span class="italic">Barber</span><br>
+        <span class="green">Shop.</span>
+      </h1>
+
+      <p class="hero-tag">Where Every Gentleman Deserves a Masterful Cut.</p>
+
+      <div class="hero-actions">
+        <a href="tel:+17194719070" class="hero-call-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.07 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/>
+          </svg>
+          (719) 471-9070
+        </a>
+        <a href="#services" class="btn btn-outline">View Services & Pricing</a>
+      </div>
+
+      <div class="hero-stats">
+        <div>
+          <span class="hero-stat-num">40+</span>
+          <span class="hero-stat-label">Years Serving COS</span>
+        </div>
+        <div>
+          <span class="hero-stat-num">5★</span>
+          <span class="hero-stat-label">Rated by Locals</span>
+        </div>
+        <div>
+          <span class="hero-stat-num">$20</span>
+          <span class="hero-stat-label">Starting Price</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decorative barber pole -->
+  <div class="barber-pole">
+    <div class="barber-pole-cap top"></div>
+    <div class="barber-pole-cap bot"></div>
+  </div>
+</section>
+
+<!-- ══════════ ABOUT ══════════ -->
+<section id="about" class="section-pad">
+  <div class="container">
+    <div class="about-grid">
+      <!-- Left: illustration -->
+      <div class="about-img-wrap reveal-left">
+        <div class="about-img-frame">
+          <div class="about-illustration">
+            <svg viewBox="0 0 300 380" width="260" height="340" xmlns="http://www.w3.org/2000/svg">
+              <!-- Barber chair silhouette -->
+              <rect x="60" y="240" width="180" height="14" rx="7" fill="#2E7D32" opacity=".8"/>
+              <rect x="100" y="254" width="100" height="90" rx="4" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+              <rect x="80" y="320" width="20" height="50" rx="4" fill="#333"/>
+              <rect x="200" y="320" width="20" height="50" rx="4" fill="#333"/>
+              <rect x="70" y="365" width="160" height="10" rx="5" fill="#222"/>
+              <rect x="85" y="180" width="130" height="70" rx="8" fill="#222" stroke="#2E7D32" stroke-width="1.5"/>
+              <rect x="70" y="220" width="20" height="60" rx="6" fill="#222" stroke="#333" stroke-width="1"/>
+              <rect x="210" y="220" width="20" height="60" rx="6" fill="#222" stroke="#333" stroke-width="1"/>
+              <!-- Scissors decoration -->
+              <g transform="translate(110,60) rotate(-30)" opacity=".7">
+                <circle cx="0" cy="0" r="14" fill="none" stroke="#D4AF37" stroke-width="2"/>
+                <circle cx="36" cy="0" r="14" fill="none" stroke="#D4AF37" stroke-width="2"/>
+                <line x1="10" y1="8" x2="60" y2="40" stroke="#D4AF37" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="26" y1="8" x2="-24" y2="40" stroke="#D4AF37" stroke-width="2.5" stroke-linecap="round"/>
+              </g>
+              <!-- Text -->
+              <text x="150" y="150" text-anchor="middle" fill="#D4AF37" font-family="Georgia,serif" font-size="13" font-style="italic">The Classic Gentleman</text>
+            </svg>
+          </div>
+        </div>
+        <div class="about-badge-wrap">
+          <div class="about-badge-circle">
+            <span class="about-badge-num">40+</span>
+            <span class="about-badge-text">Yrs. of Trust</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: content -->
+      <div class="reveal-right">
+        <span class="section-label">Our Story</span>
+        <h2 class="section-title">A <em>Neighborhood</em> Institution</h2>
+        <div class="gold-divider"></div>
+
+        <blockquote class="about-quote">
+          "A great haircut isn't just about looking good — it's about feeling like yourself again."
+        </blockquote>
+
+        <p style="color:var(--muted);margin-bottom:1rem;font-size:.9rem;line-height:1.8;">
+          Nestled on North Wahsatch Avenue in the heart of Colorado Springs, Bon Barber Shop has been a trusted gathering place for men of all ages for decades. We believe in the art of the traditional barbershop — where skilled hands, good conversation, and honest prices come together.
+        </p>
+        <p style="color:var(--muted);font-size:.9rem;line-height:1.8;">
+          Whether you're a longtime regular or stepping through our door for the first time, you'll receive the same unhurried, attentive service that has kept Colorado Springs coming back year after year.
+        </p>
+
+        <div class="about-features">
+          <div class="about-feature">
+            <div class="about-feature-icon">✂</div>
+            <div class="about-feature-text">
+              <strong>Master Barbers</strong>
+              Decades of hands-on craft
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">🪒</div>
+            <div class="about-feature-text">
+              <strong>Classic Techniques</strong>
+              Straight razor & hot towel
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">💰</div>
+            <div class="about-feature-text">
+              <strong>Honest Pricing</strong>
+              Fair rates, no surprises
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">🌟</div>
+            <div class="about-feature-text">
+              <strong>Community Roots</strong>
+              Proudly serving Colorado Springs
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SERVICES ══════════ -->
+<section id="services" class="section-pad">
+  <div class="container">
+    <div class="services-header">
+      <span class="section-label reveal">Our Craft</span>
+      <h2 class="section-title reveal delay-1">Services <em>&amp; Pricing</em></h2>
+      <div class="gold-divider center reveal delay-2"></div>
+      <p class="section-sub reveal delay-3" style="margin:0 auto;text-align:center;">
+        Straightforward, honest prices. No hidden fees. Just quality barbering the way it's meant to be done.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card reveal delay-1">
+        <div class="service-icon">✂</div>
+        <div class="service-name">Men's Haircut</div>
+        <p class="service-desc">Classic cut tailored to your style. Includes consultation, wash, cut, and style.</p>
+        <div class="service-price">$20 <span>/ cut</span></div>
+      </div>
+
+      <div class="service-card reveal delay-2">
+        <div class="service-icon">🪒</div>
+        <div class="service-name">Beard Trim</div>
+        <p class="service-desc">Shape, define, and clean up your beard for a polished, distinguished look.</p>
+        <div class="service-price">$12 <span>/ trim</span></div>
+      </div>
+
+      <div class="service-card reveal delay-3">
+        <div class="service-icon">💈</div>
+        <div class="service-name">Straight Razor Shave</div>
+        <p class="service-desc">The ultimate grooming experience — hot lather, straight razor, hot towel finish.</p>
+        <div class="service-price">$25 <span>/ shave</span></div>
+      </div>
+
+      <div class="service-card reveal delay-1">
+        <div class="service-icon">👦</div>
+        <div class="service-name">Kids Cut</div>
+        <p class="service-desc">Gentle, patient service for boys 12 and under. A stress-free first barbershop experience.</p>
+        <div class="service-price">$15 <span>/ cut</span></div>
+      </div>
+
+      <div class="service-card reveal delay-2">
+        <div class="service-icon">🎖</div>
+        <div class="service-name">Senior Cut</div>
+        <p class="service-desc">Respectful, unhurried service for our senior gentlemen. You've earned it.</p>
+        <div class="service-price">$17 <span>/ cut</span></div>
+      </div>
+
+      <div class="service-card featured reveal delay-3">
+        <span class="service-featured-tag">Best Value</span>
+        <div class="service-icon">⭐</div>
+        <div class="service-name">The Works</div>
+        <p class="service-desc">Full haircut + beard trim + straight razor shave + hot towel — the complete gentleman's package.</p>
+        <div class="service-price">$42 <span>/ full service</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WHY CHOOSE US ══════════ -->
+<section id="why" class="section-pad">
+  <div class="container">
+    <div class="why-grid">
+      <!-- Left: Stats -->
+      <div>
+        <span class="section-label reveal">The Numbers</span>
+        <h2 class="section-title reveal delay-1">By the <em>Numbers</em></h2>
+        <div class="gold-divider reveal delay-2"></div>
+        <div class="why-stats">
+          <div class="why-stat reveal delay-1">
+            <div class="why-stat-num">40+</div>
+            <div class="why-stat-label">Years in Business</div>
+          </div>
+          <div class="why-stat reveal delay-2">
+            <div class="why-stat-num">10K+</div>
+            <div class="why-stat-label">Happy Clients</div>
+          </div>
+          <div class="why-stat reveal delay-3">
+            <div class="why-stat-num">100%</div>
+            <div class="why-stat-label">Satisfaction Goal</div>
+          </div>
+          <div class="why-stat reveal delay-4">
+            <div class="why-stat-num">5★</div>
+            <div class="why-stat-label">Community Rating</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Reasons -->
+      <div>
+        <div class="why-reasons">
+          <div class="why-reason reveal delay-1">
+            <div class="why-reason-num">01</div>
+            <div>
+              <h4>Old-School Craft, Modern Standards</h4>
+              <p>We've maintained the art of traditional barbering while keeping our shop clean, welcoming, and up-to-date.</p>
+            </div>
+          </div>
+          <div class="why-reason reveal delay-2">
+            <div class="why-reason-num">02</div>
+            <div>
+              <h4>No Appointments Needed</h4>
+              <p>Walk in any time during our hours. No apps, no waiting lists — just come as you are.</p>
+            </div>
+          </div>
+          <div class="why-reason reveal delay-3">
+            <div class="why-reason-num">03</div>
+            <div>
+              <h4>Prices That Respect Your Wallet</h4>
+              <p>Fair, transparent pricing that hasn't lost touch with the neighborhood we serve.</p>
+            </div>
+          </div>
+          <div class="why-reason reveal delay-4">
+            <div class="why-reason-num">04</div>
+            <div>
+              <h4>Three Generations of Regulars</h4>
+              <p>We've cut the hair of fathers, sons, and grandsons. That kind of trust doesn't happen by accident.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TESTIMONIALS ══════════ -->
+<section id="testimonials" class="section-pad">
+  <div class="container">
+    <div class="testimonials-header">
+      <span class="section-label reveal">Client Words</span>
+      <h2 class="section-title reveal delay-1">What Our <em>Regulars</em> Say</h2>
+      <div class="gold-divider center reveal delay-2"></div>
+    </div>
+
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card reveal delay-1">
+        <div class="stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="testimonial-text">
+          "I've been coming to Bon Barber for over 15 years. The prices are fair, the barbers know exactly what I want without me having to say much, and the atmosphere is just right. It's the real deal."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">M</div>
+          <div>
+            <div class="author-name">Marcus T.</div>
+            <div class="author-tag">Regular since 2008 · Colorado Springs</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal delay-2">
+        <div class="stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="testimonial-text">
+          "Took my son in for his first proper haircut. The barber was so patient and gentle with him. He walked out grinning ear to ear. This is the only place we'll go from now on."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">D</div>
+          <div>
+            <div class="author-name">Daniel R.</div>
+            <div class="author-tag">Local Dad · Fountain, CO</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal delay-3">
+        <div class="stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="testimonial-text">
+          "Got The Works package for a job interview. The straight razor shave was unbelievable — smooth, close, and relaxing. Best $42 I've ever spent. Got the job too, so maybe they deserve some credit."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">J</div>
+          <div>
+            <div class="author-name">James K.</div>
+            <div class="author-tag">New Regular · Colorado Springs</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════ -->
+<section id="faq" class="section-pad">
+  <div class="container">
+    <div class="faq-header">
+      <span class="section-label reveal">Got Questions</span>
+      <h2 class="section-title reveal delay-1">Frequently <em>Asked</em></h2>
+      <div class="gold-divider center reveal delay-2"></div>
+    </div>
+
+    <div class="faq-list">
+
+      <div class="faq-item reveal delay-1">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">Do I need an appointment?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">
+            No appointment needed! Bon Barber Shop operates on a walk-in basis. Simply come in during our business hours (Monday–Saturday, 9AM–6PM) and we'll take care of you in the order you arrive. For large groups or special occasions, feel free to call ahead.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal delay-2">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">What forms of payment do you accept?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">
+            We accept cash and all major credit/debit cards. While we appreciate tips — and our barbers certainly do too — they are always at your discretion.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal delay-3">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">How long does a typical haircut take?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">
+            A standard Men's Haircut takes about 20–30 minutes. The Works package (haircut + beard + shave) typically takes 45–60 minutes. We never rush — quality takes the time it takes.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal delay-4">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">Do you cut children's hair?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">
+            Absolutely. Our Kids Cut ($15) is designed for boys 12 and under. Our barbers are patient, kind, and experienced with kids who might be nervous about getting their hair cut. First haircuts are always a special event here.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal delay-5">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span class="faq-question-text">Where exactly are you located?</span>
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">
+            We're located at 2316 N Wahsatch Ave, Colorado Springs, CO 80907. We're easy to find with ample street parking nearby. If you get lost, just give us a call at (719) 471-9070 and we'll guide you in.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONTACT ══════════ -->
+<section id="contact" class="section-pad">
+  <div class="container">
+    <div class="contact-grid">
+      <!-- Left: Info -->
+      <div>
+        <span class="section-label reveal">Find Us</span>
+        <h2 class="section-title reveal delay-1">Visit <em>the Shop</em></h2>
+        <div class="gold-divider reveal delay-2"></div>
+
+        <div class="contact-info-block reveal delay-2">
+          <div class="contact-info-label">📍 Address</div>
+          <div class="contact-address">
+            2316 N Wahsatch Ave<br>
+            Colorado Springs, CO 80907
+          </div>
+          <a href="https://maps.google.com/?q=2316+N+Wahsatch+Ave+Colorado+Springs+CO" target="_blank" style="display:inline-block;margin-top:.75rem;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green-lt);">Get Directions →</a>
+        </div>
+
+        <div class="contact-info-block reveal delay-3">
+          <div class="contact-info-label">📞 Phone</div>
+          <a href="tel:+17194719070" class="contact-phone">(719) 471-9070</a>
+        </div>
+
+        <div class="contact-info-block reveal delay-4">
+          <div class="contact-info-label">🕐 Hours</div>
+          <table class="hours-table">
+            <tr>
+              <td>Monday</td>
+              <td>9:00 AM – 6:00 PM</td>
+            </tr>
+            <tr>
+              <td>Tuesday</td>
+              <td>9:00 AM – 6:00 PM</td>
+            </tr>
+            <tr>
+              <td>Wednesday</td>
+              <td>9:00 AM – 6:00 PM</td>
+            </tr>
+            <tr>
+              <td>Thursday</td>
+              <td>9:00 AM – 6:00 PM</td>
+            </tr>
+            <tr>
+              <td>Friday</td>
+              <td>9:00 AM – 6:00 PM</td>
+            </tr>
+            <tr>
+              <td>Saturday</td>
+              <td>9:00 AM – 6:00 PM</td>
+            </tr>
+            <tr>
+              <td>Sunday</td>
+              <td style="color:#c0392b;">Closed</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="contact-form reveal delay-2">
+        <div class="form-title">Send Us a Message</div>
+        <form onsubmit="submitForm(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" placeholder="John" required />
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" placeholder="Smith" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="john@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="(719) 555-0000" />
+          </div>
+          <div class="form-group">
+            <label for="service">Service Interest</label>
+            <select id="service">
+              <option value="">Select a service…</option>
+              <option>Men's Haircut — $20</option>
+              <option>Beard Trim — $12</option>
+              <option>Straight Razor Shave — $25</option>
+              <option>Kids Cut — $15</option>
+              <option>Senior Cut — $17</option>
+              <option>The Works — $42</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Any questions or special requests…"></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TRUST BADGES ══════════ -->
+<section id="trust">
+  <div class="container">
+    <div class="trust-inner">
+      <div class="trust-badge reveal delay-1">
+        <div class="trust-badge-icon">🏆</div>
+        <div class="trust-badge-text">
+          <strong>40+ Years in Business</strong>
+          <span>Established neighborhood institution</span>
+        </div>
+      </div>
+      <div class="trust-badge reveal delay-2">
+        <div class="trust-badge-icon">✂</div>
+        <div class="trust-badge-text">
+          <strong>Master Barbers</strong>
+          <span>Trained in classic techniques</span>
+        </div>
+      </div>
+      <div class="trust-badge reveal delay-3">
+        <div class="trust-badge-icon">💰</div>
+        <div class="trust-badge-text">
+          <strong>Fair, Honest Prices</strong>
+          <span>No hidden fees, ever</span>
+        </div>
+      </div>
+      <div class="trust-badge reveal delay-4">
+        <div class="trust-badge-icon">🚶</div>
+        <div class="trust-badge-text">
+          <strong>Walk-Ins Welcome</strong>
+          <span>No appointment necessary</span>
+        </div>
+      </div>
+      <div class="trust-badge reveal delay-5">
+        <div class="trust-badge-icon">🌍</div>
+        <div class="trust-badge-text">
+          <strong>Community-Rooted</strong>
+          <span>Proudly serving Colorado Springs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">Bon <span>Barber</span> Shop</div>
+      <div class="footer-copy">
+        © 2024 Bon Barber Shop · 2316 N Wahsatch Ave, Colorado Springs, CO 80907 ·
+        <a href="tel:+17194719070">(719) 471-9070</a>
+        <br style="display:none;" />
+        &nbsp;· Website by <a href="#" style="color:var(--gold);">Kinetic Digital</a>
+      </div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to top -->
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">↑</button>
+
+<!-- ══════════ JS ══════════ -->
+<script>
+  /* ── NAV SCROLL ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+    document.getElementById('scroll-top').classList.toggle('visible', window.scrollY > 400);
+  });
+
+  /* ── HAMBURGER ── */
+  const btn     = document.getElementById('hamburgerBtn');
+  const menu    = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('mobileOverlay');
+
+  function closeMenu() {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+    overlay.style.display = 'none';
+  }
+
+  btn.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    overlay.style.display = isOpen ? 'block' : 'none';
+  });
+  overlay.addEventListener('click', closeMenu);
+
+  /* ── FAQ ACCORDION ── */
+  function toggleFaq(btn) {
+    const item   = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    // close all
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  /* ── SCROLL REVEAL ── */
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const observer  = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  /* ── FORM SUBMIT ── */
+  function submitForm(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = '✓ Message Sent!';
+    btn.style.background = 'var(--green-lt)';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+      btn.disabled = false;
+      e.target.reset();
+    }, 3000);
+  }
+
+  /* ── COUNTER ANIMATION ── */
+  function animateCount(el, target, prefix='', suffix='') {
+    const duration = 1800;
+    const step = 16;
+    const steps = duration / step;
+    let cur = 0;
+    const inc = target / steps;
+    const timer = setInterval(() => {
+      cur = Math.min(cur + inc, target);
+      el.textContent = prefix + Math.floor(cur) + suffix;
+      if (cur >= target) clearInterval(timer);
+    }, step);
+  }
+
+  // Trigger counters when why-section enters view
+  let countsDone = false;
+  const whySection = document.getElementById('why');
+  const countsObs = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !countsDone) {
+      countsDone = true;
+      const stats = whySection.querySelectorAll('.why-stat-num');
+      const data  = [['40','+'],['10','K+'],['100','%'],['5','★']];
+      stats.forEach((el, i) => {
+        const [num, suf] = data[i];
+        animateCount(el, parseInt(num), '', suf);
+      });
+    }
+  }, { threshold: 0.3 });
+  countsObs.observe(whySection);
+</script>
+</body>
+</html>

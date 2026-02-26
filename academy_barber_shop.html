@@ -1,0 +1,2437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academy Barber Shop | Colorado Springs, CO</title>
+  <meta name="description" content="Academy Barber Shop — Premium cuts & grooming at 6541 N Academy Blvd, Colorado Springs. Haircuts, beard trims, hot towel shaves & more." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES
+    ============================================================ */
+    :root {
+      --bg:        #0f0f0f;
+      --bg2:       #161616;
+      --bg3:       #1e1e1e;
+      --charcoal:  #1a1a1a;
+      --surface:   #242424;
+      --border:    #2e2e2e;
+      --blue:      #2979FF;
+      --blue-dim:  #1a5fd4;
+      --blue-glow: rgba(41, 121, 255, 0.18);
+      --white:     #ffffff;
+      --off-white: #e8e8e8;
+      --muted:     #999999;
+      --light:     #c8c8c8;
+      --font-head: 'Bebas Neue', 'Oswald', sans-serif;
+      --font-sub:  'Oswald', sans-serif;
+      --font-body: 'Source Sans 3', sans-serif;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --radius:    6px;
+      --nav-h:     68px;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--bg);
+      color: var(--off-white);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ============================================================
+       SCROLL ANIMATIONS
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(38px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-48px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(48px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.88);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    /* Stagger delays */
+    .d1 { transition-delay: 0.05s; }
+    .d2 { transition-delay: 0.15s; }
+    .d3 { transition-delay: 0.25s; }
+    .d4 { transition-delay: 0.35s; }
+    .d5 { transition-delay: 0.45s; }
+    .d6 { transition-delay: 0.55s; }
+
+    /* ============================================================
+       LAYOUT HELPERS
+    ============================================================ */
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section {
+      padding: 100px 0;
+    }
+    .section-label {
+      font-family: var(--font-sub);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 14px;
+      display: block;
+    }
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: 1.0;
+      color: var(--white);
+      letter-spacing: 0.01em;
+      margin-bottom: 18px;
+    }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.7;
+    }
+    .blue-line {
+      width: 48px;
+      height: 3px;
+      background: var(--blue);
+      margin-bottom: 36px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 34px;
+      background: var(--blue);
+      color: var(--white);
+      font-family: var(--font-sub);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.08);
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .btn-primary:hover { background: var(--blue-dim); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(41,121,255,0.35); }
+    .btn-primary:hover::after { opacity: 1; }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border: 1.5px solid var(--blue);
+      color: var(--blue);
+      font-family: var(--font-sub);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+    .btn-outline:hover { background: var(--blue); color: var(--white); transform: translateY(-2px); }
+
+    /* ============================================================
+       NOISE TEXTURE OVERLAY
+    ============================================================ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 1000;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+    #nav.scrolled {
+      background: rgba(15,15,15,0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-inner {
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-logo-icon {
+      width: 38px; height: 38px;
+      background: var(--blue);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-logo-icon svg { width: 22px; height: 22px; fill: white; }
+    .nav-logo-text {
+      display: flex; flex-direction: column;
+      line-height: 1;
+    }
+    .nav-logo-text strong {
+      font-family: var(--font-head);
+      font-size: 1.25rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+    }
+    .nav-logo-text span {
+      font-family: var(--font-sub);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+    .nav-links a {
+      font-family: var(--font-sub);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--light);
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--blue);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      padding: 9px 20px !important;
+      background: var(--blue);
+      border-radius: var(--radius);
+      color: white !important;
+    }
+    .nav-cta:hover { background: var(--blue-dim); }
+    .nav-cta::after { display: none !important; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--white);
+      transition: var(--transition);
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-h); left: 0; right: 0;
+      background: rgba(15,15,15,0.98);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px 36px;
+      flex-direction: column;
+      gap: 0;
+      z-index: 999;
+      transform: translateY(-10px);
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .mobile-menu.open {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .mobile-menu a {
+      font-family: var(--font-sub);
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--off-white);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color var(--transition), padding-left var(--transition);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--blue); padding-left: 8px; }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(41,121,255,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 80% at 5% 80%, rgba(41,121,255,0.05) 0%, transparent 50%);
+    }
+    /* Grid lines background */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+    }
+    .hero-bar {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, transparent, var(--blue) 30%, var(--blue) 70%, transparent);
+      opacity: 0.6;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border: 1px solid var(--border);
+      background: rgba(41,121,255,0.08);
+      border-radius: 100px;
+      font-family: var(--font-sub);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 28px;
+      animation: fadeDown 0.8s ease forwards;
+    }
+    .hero-badge-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--blue);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(4.5rem, 11vw, 9rem);
+      line-height: 0.92;
+      color: var(--white);
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
+      animation: fadeUp 0.9s 0.1s ease both;
+    }
+    .hero-title .accent { color: var(--blue); }
+    .hero-tagline {
+      font-family: var(--font-sub);
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      font-weight: 300;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+      animation: fadeUp 0.9s 0.25s ease both;
+    }
+    .hero-divider {
+      width: 64px; height: 3px;
+      background: var(--blue);
+      margin-bottom: 32px;
+      animation: fadeUp 0.9s 0.35s ease both;
+    }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--light);
+      max-width: 460px;
+      line-height: 1.75;
+      margin-bottom: 44px;
+      animation: fadeUp 0.9s 0.45s ease both;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 60px;
+      animation: fadeUp 0.9s 0.55s ease both;
+    }
+    .hero-call-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 36px;
+      background: var(--blue);
+      color: var(--white);
+      font-family: var(--font-sub);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      box-shadow: 0 4px 24px rgba(41,121,255,0.3);
+    }
+    .hero-call-btn:hover { background: var(--blue-dim); transform: translateY(-3px); box-shadow: 0 10px 40px rgba(41,121,255,0.45); }
+    .hero-call-btn svg { width: 20px; height: 20px; fill: white; }
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.9s 0.65s ease both;
+    }
+    .hero-stat-num {
+      font-family: var(--font-head);
+      font-size: 2.6rem;
+      color: var(--white);
+      line-height: 1;
+    }
+    .hero-stat-num span { color: var(--blue); }
+    .hero-stat-label {
+      font-family: var(--font-sub);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    /* scissors decorative */
+    .hero-scissors {
+      position: absolute;
+      right: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.045;
+      pointer-events: none;
+    }
+    .hero-scissors svg {
+      width: min(420px, 35vw);
+      height: auto;
+      fill: white;
+    }
+
+    /* ============================================================
+       TRUST BADGES BAR
+    ============================================================ */
+    #trust-bar {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 22px 0;
+      overflow: hidden;
+    }
+    .trust-track {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      animation: ticker 28s linear infinite;
+      width: max-content;
+    }
+    .trust-track:hover { animation-play-state: paused; }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 48px;
+      white-space: nowrap;
+      border-right: 1px solid var(--border);
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-item svg { width: 20px; height: 20px; fill: var(--blue); flex-shrink: 0; }
+    .trust-item span {
+      font-family: var(--font-sub);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--light);
+    }
+
+    /* ============================================================
+       ABOUT
+    ============================================================ */
+    #about {
+      background: var(--bg);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-img-wrap {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .about-img-placeholder {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: linear-gradient(145deg, var(--bg3) 0%, var(--surface) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-img-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 50%, rgba(41,121,255,0.06), transparent),
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 38px,
+          rgba(255,255,255,0.01) 38px,
+          rgba(255,255,255,0.01) 40px
+        );
+    }
+    .about-icon {
+      font-size: 5rem;
+      opacity: 0.18;
+      position: relative;
+      z-index: 1;
+    }
+    .about-img-label {
+      font-family: var(--font-sub);
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+    }
+    .about-tag {
+      position: absolute;
+      bottom: 24px;
+      left: -28px;
+      background: var(--blue);
+      padding: 16px 24px;
+      border-radius: var(--radius);
+      box-shadow: 0 12px 40px rgba(41,121,255,0.4);
+    }
+    .about-tag-num {
+      font-family: var(--font-head);
+      font-size: 2.4rem;
+      color: white;
+      line-height: 1;
+    }
+    .about-tag-text {
+      font-family: var(--font-sub);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      margin-top: 4px;
+    }
+    .about-corner {
+      position: absolute;
+      top: -16px;
+      right: -16px;
+      width: 72px; height: 72px;
+      border: 2px solid var(--blue);
+      border-radius: 4px;
+      opacity: 0.5;
+    }
+    .about-text .section-sub {
+      max-width: 100%;
+      margin-bottom: 28px;
+    }
+    .about-features {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .about-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .about-feature-icon {
+      width: 36px; height: 36px;
+      border-radius: 6px;
+      background: var(--blue-glow);
+      border: 1px solid rgba(41,121,255,0.25);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .about-feature-icon svg { width: 18px; height: 18px; fill: var(--blue); }
+    .about-feature-title {
+      font-family: var(--font-sub);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+    .about-feature-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       SERVICES
+    ============================================================ */
+    #services {
+      background: var(--bg2);
+      position: relative;
+      overflow: hidden;
+    }
+    #services::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue), transparent);
+    }
+    .services-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .service-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+      cursor: default;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--blue);
+      transform: scaleX(0);
+      transition: transform var(--transition);
+    }
+    .service-card:hover {
+      border-color: rgba(41,121,255,0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(41,121,255,0.1);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card.featured {
+      background: linear-gradient(145deg, rgba(41,121,255,0.12), rgba(41,121,255,0.04));
+      border-color: rgba(41,121,255,0.4);
+    }
+    .service-card.featured::before { transform: scaleX(1); }
+    .service-badge {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: var(--blue);
+      color: white;
+      font-family: var(--font-sub);
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+    .service-num {
+      font-family: var(--font-head);
+      font-size: 3.5rem;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+      margin-bottom: -10px;
+      letter-spacing: -0.02em;
+    }
+    .service-icon {
+      width: 48px; height: 48px;
+      background: var(--blue-glow);
+      border: 1px solid rgba(41,121,255,0.2);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 18px;
+    }
+    .service-icon svg { width: 24px; height: 24px; fill: var(--blue); }
+    .service-name {
+      font-family: var(--font-sub);
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+    .service-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+    .service-price {
+      font-family: var(--font-head);
+      font-size: 2rem;
+      color: var(--blue);
+      line-height: 1;
+    }
+    .service-duration {
+      font-family: var(--font-sub);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ============================================================
+       WHY CHOOSE US / STATS
+    ============================================================ */
+    #why {
+      background: var(--bg);
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .why-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .stat-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), transparent);
+    }
+    .stat-card:hover {
+      border-color: rgba(41,121,255,0.3);
+      transform: translateY(-3px);
+    }
+    .stat-number {
+      font-family: var(--font-head);
+      font-size: 3rem;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-number span { color: var(--blue); }
+    .stat-label {
+      font-family: var(--font-sub);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .why-features {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 36px;
+    }
+    .why-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .why-feature:last-child { border-bottom: none; }
+    .why-feature-num {
+      font-family: var(--font-head);
+      font-size: 1.4rem;
+      color: var(--blue);
+      flex-shrink: 0;
+      line-height: 1.1;
+      margin-top: 3px;
+      min-width: 36px;
+    }
+    .why-feature-title {
+      font-family: var(--font-sub);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 5px;
+    }
+    .why-feature-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ============================================================
+       TESTIMONIALS
+    ============================================================ */
+    #testimonials {
+      background: var(--bg2);
+      position: relative;
+      overflow: hidden;
+    }
+    #testimonials::after {
+      content: '"';
+      position: absolute;
+      right: -30px;
+      top: 40px;
+      font-family: var(--font-head);
+      font-size: 28rem;
+      color: rgba(41,121,255,0.03);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .testimonials-header .section-sub { margin: 0 auto; }
+    .testimonials-header .blue-line { margin: 0 auto 36px; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 36px 30px;
+      position: relative;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    .testimonial-card:hover {
+      border-color: rgba(41,121,255,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+    .testimonial-quote {
+      position: absolute;
+      top: 20px; right: 24px;
+      font-family: var(--font-head);
+      font-size: 4rem;
+      color: var(--blue);
+      opacity: 0.2;
+      line-height: 1;
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 18px;
+    }
+    .testimonial-stars svg {
+      width: 16px; height: 16px;
+      fill: #FFB800;
+    }
+    .testimonial-text {
+      font-size: 0.97rem;
+      color: var(--light);
+      line-height: 1.75;
+      font-style: italic;
+      margin-bottom: 28px;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+    .testimonial-avatar {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-dim), var(--blue));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      color: white;
+      flex-shrink: 0;
+      letter-spacing: 0.05em;
+    }
+    .testimonial-name {
+      font-family: var(--font-sub);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.5px;
+    }
+    .testimonial-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ============================================================
+       FAQ
+    ============================================================ */
+    #faq {
+      background: var(--bg);
+    }
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .faq-sticky {
+      position: sticky;
+      top: calc(var(--nav-h) + 40px);
+    }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px 0;
+      text-align: left;
+      font-family: var(--font-sub);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--white);
+      transition: color var(--transition);
+    }
+    .faq-q:hover { color: var(--blue); }
+    .faq-q.active { color: var(--blue); }
+    .faq-icon {
+      width: 28px; height: 28px;
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+    .faq-icon svg {
+      width: 14px; height: 14px;
+      fill: var(--muted);
+      transition: transform var(--transition), fill var(--transition);
+    }
+    .faq-q.active .faq-icon {
+      border-color: var(--blue);
+      background: var(--blue-glow);
+    }
+    .faq-q.active .faq-icon svg { fill: var(--blue); transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s ease;
+    }
+    .faq-a.open { max-height: 300px; }
+    .faq-a-inner {
+      padding-bottom: 22px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ============================================================
+       CONTACT
+    ============================================================ */
+    #contact {
+      background: var(--bg2);
+      position: relative;
+    }
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-item:first-child { padding-top: 0; }
+    .contact-item-icon {
+      width: 44px; height: 44px;
+      background: var(--blue-glow);
+      border: 1px solid rgba(41,121,255,0.25);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-item-icon svg { width: 20px; height: 20px; fill: var(--blue); }
+    .contact-item-label {
+      font-family: var(--font-sub);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+    .contact-item-value {
+      font-size: 1rem;
+      color: var(--white);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .contact-item-value a { color: var(--blue); transition: opacity var(--transition); }
+    .contact-item-value a:hover { opacity: 0.8; }
+    .hours-table {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.92rem;
+      color: var(--light);
+    }
+    .hours-row .day { color: var(--muted); font-weight: 400; }
+    .hours-row .time { font-weight: 600; }
+    .hours-row.closed .time { color: var(--muted); font-style: italic; }
+    /* Form */
+    .contact-form {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 40px 36px;
+    }
+    .form-title {
+      font-family: var(--font-sub);
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .form-sub {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      font-family: var(--font-sub);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      -webkit-appearance: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--muted); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(41,121,255,0.12);
+    }
+    .form-group select { cursor: pointer; }
+    .form-group select option { background: var(--surface); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-submit {
+      width: 100%;
+      padding: 15px;
+      background: var(--blue);
+      color: white;
+      font-family: var(--font-sub);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .form-submit:hover { background: var(--blue-dim); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(41,121,255,0.35); }
+    .form-note {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    #footer {
+      background: var(--charcoal);
+      border-top: 1px solid var(--border);
+      padding: 56px 0 32px;
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 60px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+    .footer-brand .nav-logo { margin-bottom: 18px; }
+    .footer-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 24px;
+      max-width: 280px;
+    }
+    .footer-contact-inline {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-contact-inline a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--light);
+      transition: color var(--transition);
+    }
+    .footer-contact-inline a:hover { color: var(--blue); }
+    .footer-contact-inline svg { width: 16px; height: 16px; fill: var(--blue); flex-shrink: 0; }
+    .footer-col-title {
+      font-family: var(--font-sub);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+    .footer-links a {
+      font-size: 0.9rem;
+      color: var(--muted);
+      transition: color var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-links a::before {
+      content: '';
+      width: 16px; height: 1.5px;
+      background: var(--blue);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .footer-links a:hover { color: var(--blue); }
+    .footer-links a:hover::before { opacity: 1; }
+    .footer-hours {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .footer-hour-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .footer-hour-row strong { color: var(--light); font-weight: 600; }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .footer-credit {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .footer-credit a {
+      color: var(--blue);
+      font-weight: 600;
+      transition: opacity var(--transition);
+    }
+    .footer-credit a:hover { opacity: 0.8; }
+    .footer-stripe {
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-dim), transparent);
+      margin-bottom: 0;
+      border-radius: 0 0 0 0;
+      position: absolute;
+      left: 0; right: 0;
+      top: 0;
+    }
+
+    /* ============================================================
+       BACK TO TOP
+    ============================================================ */
+    #btt {
+      position: fixed;
+      bottom: 32px; right: 32px;
+      width: 46px; height: 46px;
+      background: var(--blue);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 900;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s;
+      pointer-events: none;
+    }
+    #btt.visible { opacity: 1; transform: translateY(0); pointer-events: all; }
+    #btt:hover { background: var(--blue-dim); }
+    #btt svg { width: 20px; height: 20px; fill: white; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .about-grid,
+      .why-grid,
+      .contact-layout { grid-template-columns: 1fr; gap: 48px; }
+      .services-grid,
+      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+      .faq-layout { grid-template-columns: 1fr; }
+      .faq-sticky { position: static; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .about-tag { left: -10px; }
+      .about-corner { display: none; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .section { padding: 72px 0; }
+      .services-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .why-stats { grid-template-columns: 1fr 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+      .hero-stats { gap: 28px; }
+      .hero-title { font-size: clamp(3.5rem, 14vw, 5.5rem); }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .container { padding: 0 16px; }
+      .hero-stats { flex-wrap: wrap; gap: 20px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .contact-form { padding: 28px 20px; }
+      .services-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================
+       NAVIGATION
+  ======================================================== -->
+  <nav id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <!-- Logo -->
+        <a href="#" class="nav-logo">
+          <div class="nav-logo-icon">
+            <!-- Scissors icon -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.64 7.64c.23-.5.36-1.05.36-1.64 0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.59 0 1.14-.13 1.64-.36L10 12l-2.36 2.36C7.14 14.13 6.59 14 6 14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c0-.59-.13-1.14-.36-1.64L12 14l7 7h3v-1L9.64 7.64zM6 8c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm0 12c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm6-7.5c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5zM19 3l-6 6 2 2 7-7V3z"/>
+            </svg>
+          </div>
+          <div class="nav-logo-text">
+            <strong>Academy Barber</strong>
+            <span>Colorado Springs</span>
+          </div>
+        </a>
+
+        <!-- Desktop links -->
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="tel:+17195940011" class="nav-cta">Call Now</a></li>
+        </ul>
+
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about" onclick="closeMobile()">About</a>
+      <a href="#services" onclick="closeMobile()">Services</a>
+      <a href="#why" onclick="closeMobile()">Why Us</a>
+      <a href="#testimonials" onclick="closeMobile()">Reviews</a>
+      <a href="#faq" onclick="closeMobile()">FAQ</a>
+      <a href="#contact" onclick="closeMobile()">Contact</a>
+      <a href="tel:+17195940011" style="color:var(--blue)">📞 (719) 594-0011</a>
+    </div>
+  </nav>
+
+  <!-- ========================================================
+       HERO
+  ======================================================== -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-bar"></div>
+
+    <!-- Decorative scissors -->
+    <div class="hero-scissors" aria-hidden="true">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.64 7.64c.23-.5.36-1.05.36-1.64 0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.59 0 1.14-.13 1.64-.36L10 12l-2.36 2.36C7.14 14.13 6.59 14 6 14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c0-.59-.13-1.14-.36-1.64L12 14l7 7h3v-1L9.64 7.64zM6 8c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm0 12c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm6-7.5c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5zM19 3l-6 6 2 2 7-7V3z"/>
+      </svg>
+    </div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          Now Accepting Walk-Ins · Colorado Springs
+        </div>
+
+        <h1 class="hero-title">
+          ACADEMY<br>
+          <span class="accent">BARBER</span><br>
+          SHOP
+        </h1>
+
+        <p class="hero-tagline">Sharp Cuts · Clean Lines · Confident Style</p>
+
+        <div class="hero-divider"></div>
+
+        <p class="hero-desc">
+          Colorado Springs' go-to destination for precision haircuts, hot towel shaves, and
+          expert grooming. Walk in looking good. Walk out feeling unstoppable.
+        </p>
+
+        <div class="hero-actions">
+          <a href="tel:+17195940011" class="hero-call-btn">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            (719) 594-0011
+          </a>
+          <a href="#services" class="btn-outline">View Services</a>
+        </div>
+
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num">10<span>+</span></div>
+            <div class="hero-stat-label">Years in Business</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">5K<span>+</span></div>
+            <div class="hero-stat-label">Happy Clients</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">5<span>★</span></div>
+            <div class="hero-stat-label">Avg. Rating</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       TRUST BADGES
+  ======================================================== -->
+  <div id="trust-bar" aria-label="Trust badges">
+    <div class="trust-track">
+      <!-- Original set -->
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+        <span>Licensed & Insured Professionals</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+        <span>Walk-Ins Welcome</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        <span>5-Star Rated</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
+        <span>Community Trusted Since 2014</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+        <span>Mon–Sat Appointments</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        <span>6541 N Academy Blvd, CO Springs</span>
+      </div>
+      <!-- Duplicate for seamless loop -->
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+        <span>Licensed & Insured Professionals</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+        <span>Walk-Ins Welcome</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        <span>5-Star Rated</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
+        <span>Community Trusted Since 2014</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+        <span>Mon–Sat Appointments</span>
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        <span>6541 N Academy Blvd, CO Springs</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       ABOUT
+  ======================================================== -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-grid">
+        <!-- Visual -->
+        <div class="about-visual reveal-left">
+          <div class="about-img-wrap">
+            <div class="about-img-placeholder">
+              <div class="about-icon">✂️</div>
+              <span class="about-img-label">Academy Barber Shop</span>
+            </div>
+          </div>
+          <div class="about-tag">
+            <div class="about-tag-num">10+</div>
+            <div class="about-tag-text">Years of Excellence</div>
+          </div>
+          <div class="about-corner"></div>
+        </div>
+
+        <!-- Text -->
+        <div class="about-text reveal-right">
+          <span class="section-label">Our Story</span>
+          <h2 class="section-title">CRAFTED WITH SKILL.<br>BUILT ON TRUST.</h2>
+          <div class="blue-line"></div>
+          <p class="section-sub">
+            Nestled in the heart of north Colorado Springs, Academy Barber Shop has been the
+            neighborhood's trusted grooming destination for over a decade. We believe every
+            man deserves a sharp, confident look — and we're here to deliver it every single time.
+          </p>
+          <p class="section-sub" style="margin-top:16px;">
+            From classic cuts to modern fades, our experienced barbers combine old-school
+            craftsmanship with fresh technique. Whether you're prepping for a big interview or
+            just maintaining your style, we've got you covered.
+          </p>
+
+          <div class="about-features">
+            <div class="about-feature reveal d1">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M9.64 7.64c.23-.5.36-1.05.36-1.64 0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.59 0 1.14-.13 1.64-.36L10 12l-2.36 2.36C7.14 14.13 6.59 14 6 14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c0-.59-.13-1.14-.36-1.64L12 14l7 7h3v-1L9.64 7.64zM6 8c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm0 12c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm6-7.5c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5zM19 3l-6 6 2 2 7-7V3z"/></svg>
+              </div>
+              <div>
+                <div class="about-feature-title">Precision Cuts Every Time</div>
+                <div class="about-feature-desc">Each cut is tailored to your face shape, hair type, and personal style — no cookie-cutter results.</div>
+              </div>
+            </div>
+            <div class="about-feature reveal d2">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+              </div>
+              <div>
+                <div class="about-feature-title">Clean, Sanitary Environment</div>
+                <div class="about-feature-desc">We maintain the highest hygiene standards. Every tool is sterilized between clients, every time.</div>
+              </div>
+            </div>
+            <div class="about-feature reveal d3">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+              </div>
+              <div>
+                <div class="about-feature-title">Friendly, Professional Staff</div>
+                <div class="about-feature-desc">Our barbers are passionate, knowledgeable, and always ready to chat or give advice.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SERVICES
+  ======================================================== -->
+  <section id="services" class="section">
+    <div class="container">
+      <div class="services-header">
+        <div>
+          <span class="section-label">What We Offer</span>
+          <h2 class="section-title">OUR SERVICES<br>& PRICING</h2>
+          <div class="blue-line"></div>
+        </div>
+        <p class="section-sub" style="max-width:360px; margin-bottom:0;">
+          Honest pricing, no surprises. Every service includes a hot towel neck cleanup and
+          a finished look you'll be proud of.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Haircut -->
+        <div class="service-card reveal d1">
+          <div class="service-num">01</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M9.64 7.64c.23-.5.36-1.05.36-1.64 0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.59 0 1.14-.13 1.64-.36L10 12l-2.36 2.36C7.14 14.13 6.59 14 6 14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c0-.59-.13-1.14-.36-1.64L12 14l7 7h3v-1L9.64 7.64z"/></svg>
+          </div>
+          <div class="service-name">Haircut</div>
+          <div class="service-desc">
+            Classic or modern — fade, taper, scissor cut, or textured crop. Our signature
+            cut delivers a sharp, clean finish that lasts.
+          </div>
+          <div class="service-footer">
+            <div class="service-price">$22</div>
+            <div class="service-duration">30–45 Min</div>
+          </div>
+        </div>
+
+        <!-- Beard Trim -->
+        <div class="service-card reveal d2">
+          <div class="service-num">02</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+          </div>
+          <div class="service-name">Beard Trim</div>
+          <div class="service-desc">
+            Shape, define, and clean up your beard with precision. We'll work with your natural
+            growth to craft the perfect profile.
+          </div>
+          <div class="service-footer">
+            <div class="service-price">$15</div>
+            <div class="service-duration">15–20 Min</div>
+          </div>
+        </div>
+
+        <!-- Hot Towel Shave -->
+        <div class="service-card featured reveal d3">
+          <div class="service-badge">Popular</div>
+          <div class="service-num">03</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+          </div>
+          <div class="service-name">Hot Towel Shave</div>
+          <div class="service-desc">
+            The ultimate grooming experience. Steamed hot towels, premium shave cream, and a
+            straight razor finish — smooth and refreshed.
+          </div>
+          <div class="service-footer">
+            <div class="service-price">$28</div>
+            <div class="service-duration">30–40 Min</div>
+          </div>
+        </div>
+
+        <!-- Kids Cut -->
+        <div class="service-card reveal d4">
+          <div class="service-num">04</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+          </div>
+          <div class="service-name">Kids Cut</div>
+          <div class="service-desc">
+            Patient, friendly barbers who know how to keep young ones comfortable. Clean results
+            for kids 12 and under.
+          </div>
+          <div class="service-footer">
+            <div class="service-price">$16</div>
+            <div class="service-duration">20–30 Min</div>
+          </div>
+        </div>
+
+        <!-- Line Up -->
+        <div class="service-card reveal d5">
+          <div class="service-num">05</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"/></svg>
+          </div>
+          <div class="service-name">Line Up</div>
+          <div class="service-desc">
+            Crisp, defined edges around your hairline, beard, and temples. The finishing touch
+            that takes your look from good to sharp.
+          </div>
+          <div class="service-footer">
+            <div class="service-price">$18</div>
+            <div class="service-duration">15–20 Min</div>
+          </div>
+        </div>
+
+        <!-- Full Service -->
+        <div class="service-card featured reveal d6">
+          <div class="service-badge">Best Value</div>
+          <div class="service-num">06</div>
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <div class="service-name">Full Service</div>
+          <div class="service-desc">
+            The complete package: haircut, beard trim, hot towel treatment, line up, and a
+            scalp massage. Walk out a new man.
+          </div>
+          <div class="service-footer">
+            <div class="service-price">$45</div>
+            <div class="service-duration">60–75 Min</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA below services -->
+      <div style="text-align:center; margin-top:52px;" class="reveal">
+        <p style="color:var(--muted); margin-bottom:20px; font-size:0.95rem;">
+          Ready to book? Give us a call — walk-ins are always welcome!
+        </p>
+        <a href="tel:+17195940011" class="btn-primary">
+          <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:white;flex-shrink:0"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          Book Your Appointment
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       WHY CHOOSE US
+  ======================================================== -->
+  <section id="why" class="section">
+    <div class="container">
+      <div class="why-grid">
+        <!-- Text side -->
+        <div class="reveal-left">
+          <span class="section-label">Why Academy Barber</span>
+          <h2 class="section-title">MORE THAN JUST<br>A HAIRCUT.</h2>
+          <div class="blue-line"></div>
+          <p class="section-sub">
+            We don't just cut hair — we craft confidence. Here's what sets us apart from every
+            other shop on the block.
+          </p>
+
+          <div class="why-features">
+            <div class="why-feature reveal d1">
+              <div class="why-feature-num">01</div>
+              <div>
+                <div class="why-feature-title">Experienced, Certified Barbers</div>
+                <div class="why-feature-desc">Every barber on our team holds a Colorado barbering license and has years of hands-on experience across all hair types and styles.</div>
+              </div>
+            </div>
+            <div class="why-feature reveal d2">
+              <div class="why-feature-num">02</div>
+              <div>
+                <div class="why-feature-title">No Rush, No Compromises</div>
+                <div class="why-feature-desc">We take the time to listen and understand your vision. You won't be rushed through the chair — your look matters to us.</div>
+              </div>
+            </div>
+            <div class="why-feature reveal d3">
+              <div class="why-feature-num">03</div>
+              <div>
+                <div class="why-feature-title">Convenient Location & Hours</div>
+                <div class="why-feature-desc">Right on N Academy Blvd with easy parking. Open Monday through Saturday so you can fit a fresh cut into your busy schedule.</div>
+              </div>
+            </div>
+            <div class="why-feature reveal d4">
+              <div class="why-feature-num">04</div>
+              <div>
+                <div class="why-feature-title">Honest, Transparent Pricing</div>
+                <div class="why-feature-desc">No hidden fees. No upselling. What you see on the menu is exactly what you pay — fair pricing, every visit.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats side -->
+        <div class="reveal-right">
+          <div class="why-stats">
+            <div class="stat-card reveal-scale d1">
+              <div class="stat-number">5K<span>+</span></div>
+              <div class="stat-label">Clients Served</div>
+            </div>
+            <div class="stat-card reveal-scale d2">
+              <div class="stat-number">10<span>+</span></div>
+              <div class="stat-label">Years Open</div>
+            </div>
+            <div class="stat-card reveal-scale d3">
+              <div class="stat-number">6<span>+</span></div>
+              <div class="stat-label">Services Offered</div>
+            </div>
+            <div class="stat-card reveal-scale d4">
+              <div class="stat-number">4.9<span>★</span></div>
+              <div class="stat-label">Google Rating</div>
+            </div>
+          </div>
+
+          <!-- Quote box -->
+          <div style="margin-top:28px; padding:28px 28px; background:var(--bg2); border:1px solid var(--border); border-left:3px solid var(--blue); border-radius:var(--radius);" class="reveal d5">
+            <p style="font-size:1.05rem; color:var(--light); font-style:italic; line-height:1.75; margin-bottom:16px;">
+              "Every man deserves to look his best and feel his most confident. That's not a luxury —
+              that's our standard."
+            </p>
+            <div style="font-family:var(--font-sub); font-size:0.72rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--blue);">
+              — Academy Barber Shop Team
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       TESTIMONIALS
+  ======================================================== -->
+  <section id="testimonials" class="section">
+    <div class="container">
+      <div class="testimonials-header reveal">
+        <span class="section-label">Client Reviews</span>
+        <h2 class="section-title">WHAT OUR CLIENTS SAY</h2>
+        <div class="blue-line"></div>
+        <p class="section-sub">
+          Don't take our word for it — hear from the guys who come back every month.
+        </p>
+      </div>
+
+      <div class="testimonials-grid">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card reveal d1">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testimonial-text">
+            "Been coming here for 3 years and I won't go anywhere else. The barbers know exactly
+            what I want without me having to explain everything from scratch. Clean shop, great
+            vibes, and the best fade in Colorado Springs — hands down."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MR</div>
+            <div>
+              <div class="testimonial-name">Marcus R.</div>
+              <div class="testimonial-sub">Regular Client · 3 Years</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card reveal d2">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testimonial-text">
+            "Took my 8-year-old son for his first real barbershop haircut and the experience
+            was incredible. The barber was patient, funny with the kid, and gave him an
+            amazing cut. We're definitely coming back — my son was excited to show his friends!"
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">DT</div>
+            <div>
+              <div class="testimonial-name">Derek T.</div>
+              <div class="testimonial-sub">Dad & Son Cut · Satisfied</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card reveal d3">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <p class="testimonial-text">
+            "Got the full service treatment before my wedding — hot towel shave, haircut,
+            the works. I've never felt more put-together in my life. The team treated me
+            like royalty. If you're special occasion-ready, this is the place to go."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JW</div>
+            <div>
+              <div class="testimonial-name">James W.</div>
+              <div class="testimonial-sub">Wedding Day Client</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       FAQ
+  ======================================================== -->
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="faq-layout">
+        <!-- Sticky left -->
+        <div class="faq-sticky reveal-left">
+          <span class="section-label">Got Questions?</span>
+          <h2 class="section-title">FREQUENTLY<br>ASKED</h2>
+          <div class="blue-line"></div>
+          <p class="section-sub" style="margin-bottom:36px;">
+            Everything you need to know before your first visit — or your hundredth.
+          </p>
+          <a href="tel:+17195940011" class="btn-primary">
+            <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:white;flex-shrink:0"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            Still Have Questions?
+          </a>
+        </div>
+
+        <!-- FAQ accordion -->
+        <div class="faq-list reveal-right">
+          <!-- Q1 -->
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Do I need an appointment or can I walk in?
+              <div class="faq-icon">
+                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              </div>
+            </button>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Walk-ins are always welcome! We keep time open for walk-in clients throughout
+                the day. If you'd prefer a guaranteed time slot — especially on busy Saturdays —
+                call us ahead at (719) 594-0011 and we'll do our best to accommodate you.
+              </div>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              How long does a standard haircut take?
+              <div class="faq-icon">
+                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              </div>
+            </button>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                A standard haircut typically takes 30–45 minutes depending on hair length,
+                style complexity, and whether you add a beard trim or line-up. The full
+                service package runs about 60–75 minutes. We never rush — quality takes the time it takes.
+              </div>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Do you cut all hair types?
+              <div class="faq-icon">
+                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              </div>
+            </button>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Absolutely. Our barbers are trained and experienced with all hair types — fine,
+                thick, curly, coily, wavy, straight, and everything in between. Whether you're
+                after a tight fade or a relaxed scissor cut, we've got the skills to make it happen.
+              </div>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              What payment methods do you accept?
+              <div class="faq-icon">
+                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              </div>
+            </button>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                We accept cash, all major credit and debit cards (Visa, Mastercard, Amex,
+                Discover), as well as contactless payments like Apple Pay and Google Pay.
+                Tips are always appreciated and can be added to card payments.
+              </div>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              Do you offer services for kids?
+              <div class="faq-icon">
+                <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+              </div>
+            </button>
+            <div class="faq-a">
+              <div class="faq-a-inner">
+                Yes! We offer dedicated kids' cuts for children 12 and under at just $16.
+                Our barbers are patient, friendly, and great at keeping younger clients at
+                ease — even those getting their very first barbershop cut. We want every
+                experience to be a positive one for the whole family.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       CONTACT
+  ======================================================== -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div style="margin-bottom:60px; text-align:center;" class="reveal">
+        <span class="section-label">Find Us</span>
+        <h2 class="section-title">GET IN TOUCH</h2>
+        <div class="blue-line" style="margin:0 auto 0;"></div>
+      </div>
+
+      <div class="contact-layout">
+        <!-- Info -->
+        <div class="reveal-left">
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">Address</div>
+                <div class="contact-item-value">
+                  6541 N Academy Blvd<br>
+                  Colorado Springs, CO 80918
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">Phone</div>
+                <div class="contact-item-value">
+                  <a href="tel:+17195940011">(719) 594-0011</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-item" style="border-bottom:none;">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+              </div>
+              <div>
+                <div class="contact-item-label">Hours</div>
+                <div class="contact-item-value">
+                  <div class="hours-table">
+                    <div class="hours-row">
+                      <span class="day">Monday – Friday</span>
+                      <span class="time">10:00 AM – 5:00 PM</span>
+                    </div>
+                    <div class="hours-row">
+                      <span class="day">Saturday</span>
+                      <span class="time">8:00 AM – 2:00 PM</span>
+                    </div>
+                    <div class="hours-row closed">
+                      <span class="day">Sunday</span>
+                      <span class="time">Closed</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Google Maps embed area -->
+          <div style="margin-top:32px; border-radius:8px; overflow:hidden; border:1px solid var(--border);">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3103.1580000000005!2d-104.80400000000001!3d38.929!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s6541+N+Academy+Blvd%2C+Colorado+Springs%2C+CO+80918!5e0!3m2!1sen!2sus!4v1"
+              width="100%"
+              height="220"
+              style="border:0; display:block; filter:grayscale(80%) invert(90%) hue-rotate(180deg);"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Academy Barber Shop location"
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="contact-form reveal-right">
+          <div class="form-title">Send Us a Message</div>
+          <div class="form-sub">We'll get back to you as soon as possible — or just call us!</div>
+
+          <form onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" placeholder="John" required />
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" placeholder="Smith" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="(719) 000-0000" />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="john@email.com" />
+            </div>
+
+            <div class="form-group">
+              <label for="service">Service Interested In</label>
+              <select id="service">
+                <option value="">Select a service...</option>
+                <option value="haircut">Haircut – $22</option>
+                <option value="beard">Beard Trim – $15</option>
+                <option value="shave">Hot Towel Shave – $28</option>
+                <option value="kids">Kids Cut – $16</option>
+                <option value="lineup">Line Up – $18</option>
+                <option value="full">Full Service – $45</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message (Optional)</label>
+              <textarea id="message" placeholder="Any notes, questions, or special requests..."></textarea>
+            </div>
+
+            <button type="submit" class="form-submit">Send Message</button>
+            <p class="form-note">We typically respond within 1 business day.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       FOOTER
+  ======================================================== -->
+  <footer id="footer">
+    <div class="footer-stripe"></div>
+    <div class="container">
+      <div class="footer-inner">
+        <!-- Brand -->
+        <div class="footer-brand">
+          <a href="#" class="nav-logo" style="display:inline-flex;">
+            <div class="nav-logo-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.64 7.64c.23-.5.36-1.05.36-1.64 0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.59 0 1.14-.13 1.64-.36L10 12l-2.36 2.36C7.14 14.13 6.59 14 6 14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c0-.59-.13-1.14-.36-1.64L12 14l7 7h3v-1L9.64 7.64zM6 8c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm0 12c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm6-7.5c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5zM19 3l-6 6 2 2 7-7V3z"/>
+              </svg>
+            </div>
+            <div class="nav-logo-text">
+              <strong>Academy Barber</strong>
+              <span>Colorado Springs</span>
+            </div>
+          </a>
+          <p class="footer-desc">
+            Colorado Springs' trusted neighborhood barbershop — where precision meets
+            craft and every client walks out confident.
+          </p>
+          <div class="footer-contact-inline">
+            <a href="tel:+17195940011">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              (719) 594-0011
+            </a>
+            <a href="#">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              6541 N Academy Blvd, CO Springs
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick links -->
+        <div>
+          <div class="footer-col-title">Quick Links</div>
+          <div class="footer-links">
+            <a href="#about">About Us</a>
+            <a href="#services">Services & Pricing</a>
+            <a href="#why">Why Choose Us</a>
+            <a href="#testimonials">Client Reviews</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contact">Contact Us</a>
+          </div>
+        </div>
+
+        <!-- Hours -->
+        <div>
+          <div class="footer-col-title">Hours</div>
+          <div class="footer-hours">
+            <div class="footer-hour-row">
+              <span>Mon – Fri</span>
+              <strong>10AM – 5PM</strong>
+            </div>
+            <div class="footer-hour-row">
+              <span>Saturday</span>
+              <strong>8AM – 2PM</strong>
+            </div>
+            <div class="footer-hour-row" style="color:var(--muted);">
+              <span>Sunday</span>
+              <span style="font-style:italic;">Closed</span>
+            </div>
+          </div>
+
+          <div style="margin-top:32px; padding:18px; background:var(--bg3); border:1px solid var(--border); border-radius:var(--radius);">
+            <div style="font-family:var(--font-sub); font-size:0.7rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--blue); margin-bottom:10px;">Walk-Ins Welcome</div>
+            <a href="tel:+17195940011" style="font-family:var(--font-head); font-size:1.4rem; color:var(--white); letter-spacing:0.05em; display:block; transition:color var(--transition);" onmouseover="this.style.color='var(--blue)'" onmouseout="this.style.color='var(--white)'">(719) 594-0011</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer bottom -->
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          &copy; 2026 Academy Barber Shop. All rights reserved.
+        </div>
+        <div class="footer-credit">
+          Website by <a href="#" rel="noopener">Kinetic Digital</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <a href="#" id="btt" aria-label="Back to top">
+    <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+  </a>
+
+  <!-- ========================================================
+       JAVASCRIPT
+  ======================================================== -->
+  <script>
+    // ─── NAV scroll effect ─────────────────────────────────────
+    const nav = document.getElementById('nav');
+    const btt = document.getElementById('btt');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        nav.classList.add('scrolled');
+        btt.classList.add('visible');
+      } else {
+        nav.classList.remove('scrolled');
+        btt.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    // ─── Hamburger ─────────────────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+
+    function closeMobile() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Close mobile menu on outside click
+    document.addEventListener('click', (e) => {
+      if (!nav.contains(e.target)) closeMobile();
+    });
+
+    // ─── Intersection Observer scroll animations ────────────────
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -60px 0px',
+      threshold: 0.1
+    });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // ─── FAQ Accordion ─────────────────────────────────────────
+    function toggleFaq(btn) {
+      const answer = btn.nextElementSibling;
+      const isOpen = answer.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+      document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('active'));
+
+      // Open clicked (if it was closed)
+      if (!isOpen) {
+        answer.classList.add('open');
+        btn.classList.add('active');
+      }
+    }
+
+    // ─── Form submit ───────────────────────────────────────────
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      const original = btn.textContent;
+      btn.textContent = '✓ Message Sent!';
+      btn.style.background = '#1a7a4a';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3500);
+    }
+
+    // ─── Counter animation ─────────────────────────────────────
+    function animateCounter(el, target, suffix = '') {
+      let start = 0;
+      const duration = 1800;
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.floor(eased * target);
+        el.textContent = value + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const numbers = entry.target.querySelectorAll('.stat-number');
+          numbers.forEach(num => {
+            const text = num.textContent;
+            if (text.includes('5K')) {
+              num.innerHTML = '<span id="c1">0</span><span style="color:var(--blue)">+</span>';
+              animateCounter(document.getElementById('c1'), 5000, 'K');
+              setTimeout(() => { document.getElementById('c1').textContent = '5K'; }, 1900);
+            }
+          });
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const whySection = document.querySelector('#why .why-stats');
+    if (whySection) statsObserver.observe(whySection);
+
+    // ─── Smooth nav highlight on scroll ───────────────────────
+    const sections = document.querySelectorAll('section[id]');
+    const navAnchors = document.querySelectorAll('.nav-links a');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navAnchors.forEach(a => {
+            a.style.color = '';
+            if (a.getAttribute('href') === '#' + entry.target.id) {
+              a.style.color = 'var(--blue)';
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -40% 0px' });
+
+    sections.forEach(s => sectionObserver.observe(s));
+  </script>
+</body>
+</html>

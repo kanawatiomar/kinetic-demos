@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blossom Nail Spa | Colorado Springs</title>
+  <meta name="description" content="Blossom Nail Spa – luxury nail & lash services in Colorado Springs, CO. Relax. Refresh. Renew." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── CSS Variables ─────────────────────────────────────────── */
+    :root {
+      --bg:        #FFFAF5;
+      --lavender:  #9C89B8;
+      --lavender-light: #C8BBDC;
+      --lavender-dark:  #7A6699;
+      --gold:      #C5A880;
+      --gold-light:#E2CBA8;
+      --gold-dark: #A6865E;
+      --text:      #3A3040;
+      --text-soft: #6E6080;
+      --text-muted:#9B90A8;
+      --white:     #FFFFFF;
+      --card-bg:   #FFF7F0;
+      --border:    rgba(156,137,184,0.18);
+      --shadow:    0 8px 40px rgba(60,40,80,0.10);
+      --shadow-sm: 0 2px 16px rgba(60,40,80,0.07);
+      --radius:    18px;
+      --radius-sm: 10px;
+      --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ─── Reset & Base ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Bodoni Moda', serif;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ─── Decorative Petals / SVG Helpers ───────────────────────── */
+    .petal-bg {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.13;
+      fill: var(--lavender);
+    }
+
+    /* ─── Scroll Reveal ─────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ─── Navbar ────────────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0 5vw;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,250,245,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    #navbar.scrolled {
+      border-color: var(--border);
+      box-shadow: 0 2px 24px rgba(60,40,80,0.08);
+    }
+
+    .nav-logo {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--lavender-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-logo span {
+      color: var(--gold-dark);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--lavender-dark); }
+
+    .nav-cta {
+      background: var(--lavender);
+      color: var(--white) !important;
+      padding: 9px 22px;
+      border-radius: 50px;
+      transition: background var(--transition) !important;
+    }
+    .nav-cta:hover { background: var(--lavender-dark) !important; color: var(--white) !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--lavender-dark);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px; left: 0; right: 0;
+      background: rgba(255,250,245,0.97);
+      backdrop-filter: blur(20px);
+      padding: 24px 5vw 32px;
+      z-index: 999;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 8px 32px rgba(60,40,80,0.1);
+      flex-direction: column;
+      gap: 18px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--text);
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu .mob-cta {
+      display: inline-block;
+      margin-top: 8px;
+      background: var(--lavender);
+      color: var(--white);
+      text-align: center;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-size: 1rem;
+    }
+
+    /* ─── Section Wrapper ───────────────────────────────────────── */
+    section { position: relative; overflow: hidden; }
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 5vw;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--lavender-dark);
+    }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 12px 0 40px;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--lavender-light), transparent);
+    }
+    .divider-icon {
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+
+    /* ─── Hero ──────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 5vw 80px;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(156,137,184,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(197,168,128,0.10) 0%, transparent 60%),
+        var(--bg);
+      position: relative;
+    }
+
+    /* Floating petal shapes */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 12%;
+      left: -60px;
+      width: 320px;
+      height: 320px;
+      border-radius: 50% 50% 30% 70% / 50% 30% 70% 50%;
+      background: radial-gradient(circle, rgba(156,137,184,0.12), transparent 70%);
+      pointer-events: none;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: 10%;
+      right: -80px;
+      width: 380px;
+      height: 380px;
+      border-radius: 70% 30% 50% 50% / 30% 70% 50% 50%;
+      background: radial-gradient(circle, rgba(197,168,128,0.10), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(156,137,184,0.12);
+      border: 1px solid rgba(156,137,184,0.3);
+      color: var(--lavender-dark);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 50px;
+      margin-bottom: 28px;
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.05;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .hero-title-script {
+      font-style: italic;
+      color: var(--lavender-dark);
+    }
+    .hero-title-accent {
+      color: var(--gold-dark);
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+      margin: 20px 0 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--lavender);
+      color: var(--white);
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 20px rgba(156,137,184,0.35);
+    }
+    .btn-primary:hover {
+      background: var(--lavender-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(156,137,184,0.45);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--gold-dark);
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 15px 32px;
+      border-radius: 50px;
+      border: 2px solid var(--gold-light);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .btn-secondary:hover {
+      background: var(--gold-light);
+      color: var(--gold-dark);
+      transform: translateY(-2px);
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .scroll-dot {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--lavender-light), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(0.8); }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* Floating floral SVG petals */
+    .hero-floral {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    /* ─── About ─────────────────────────────────────────────────── */
+    #about {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-img-frame {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, rgba(156,137,184,0.15) 0%, rgba(197,168,128,0.12) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-img-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(156,137,184,0.18) 0%, transparent 50%),
+        linear-gradient(315deg, rgba(197,168,128,0.14) 0%, transparent 50%);
+    }
+    .about-art {
+      font-size: 7rem;
+      line-height: 1;
+      filter: drop-shadow(0 8px 24px rgba(156,137,184,0.3));
+    }
+    .about-badge-float {
+      position: absolute;
+      bottom: -16px;
+      right: -16px;
+      background: var(--lavender);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 18px 24px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .about-badge-float .num { font-family: 'Bodoni Moda', serif; font-size: 2rem; font-weight: 700; display: block; }
+    .about-badge-float .lbl { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; opacity: 0.85; }
+
+    .about-corner-deco {
+      position: absolute;
+      top: -16px;
+      left: -16px;
+      width: 80px;
+      height: 80px;
+      border-top: 3px solid var(--gold-light);
+      border-left: 3px solid var(--gold-light);
+      border-radius: 4px 0 0 0;
+    }
+
+    .about-text p {
+      color: var(--text-soft);
+      margin-bottom: 18px;
+      font-size: 1.02rem;
+    }
+    .about-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .about-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(156,137,184,0.10);
+      border: 1px solid rgba(156,137,184,0.22);
+      color: var(--lavender-dark);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 7px 16px;
+      border-radius: 50px;
+    }
+
+    /* ─── Services ──────────────────────────────────────────────── */
+    #services {
+      padding: 100px 0;
+      background: var(--bg);
+    }
+    .services-header { text-align: center; margin-bottom: 56px; }
+    .services-header .section-sub { margin: 0 auto; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: default;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--lavender), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      font-size: 2.2rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .service-name {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .service-desc {
+      font-size: 0.875rem;
+      color: var(--text-soft);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .service-price {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+    .price-from {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .price-num {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold-dark);
+    }
+    .price-plus {
+      font-size: 0.9rem;
+      color: var(--gold-dark);
+      font-weight: 600;
+    }
+
+    /* ─── Why Choose Us ─────────────────────────────────────────── */
+    #why {
+      padding: 100px 0;
+      background: var(--lavender);
+      background: linear-gradient(135deg, var(--lavender-dark) 0%, var(--lavender) 100%);
+      position: relative;
+    }
+    #why::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 20% 50%, rgba(255,255,255,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 80% 20%, rgba(197,168,128,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .why-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+    }
+    .why-text .section-label { color: var(--gold-light); }
+    .why-text .section-title { color: var(--white); }
+    .why-text .section-title em { color: var(--gold-light); }
+    .why-text p { color: rgba(255,255,255,0.78); font-size: 1.02rem; margin-bottom: 32px; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: var(--radius-sm);
+      padding: 24px 20px;
+      backdrop-filter: blur(8px);
+      text-align: center;
+    }
+    .stat-number {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--white);
+      display: block;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 6px;
+      display: block;
+    }
+
+    .why-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .why-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: rgba(255,255,255,0.85);
+      font-size: 0.96rem;
+    }
+    .why-features li::before {
+      content: '✦';
+      color: var(--gold-light);
+      font-size: 0.8rem;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    /* ─── Testimonials ──────────────────────────────────────────── */
+    #testimonials {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .testimonials-header { text-align: center; margin-bottom: 56px; }
+    .testimonials-header .section-sub { margin: 0 auto; }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .testi-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      position: relative;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .testi-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+    .testi-quote-mark {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 5rem;
+      line-height: 0.8;
+      color: var(--lavender-light);
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      user-select: none;
+    }
+    .testi-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 16px;
+    }
+    .testi-stars span { color: var(--gold); font-size: 0.95rem; }
+    .testi-text {
+      font-size: 0.96rem;
+      color: var(--text-soft);
+      line-height: 1.8;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .testi-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--lavender-light), var(--gold-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--lavender-dark);
+      flex-shrink: 0;
+    }
+    .testi-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text);
+      display: block;
+    }
+    .testi-role {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── FAQ ───────────────────────────────────────────────────── */
+    #faq {
+      padding: 100px 0;
+      background: var(--bg);
+    }
+    .faq-inner {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .faq-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 20px 24px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--text);
+      transition: color var(--transition);
+    }
+    .faq-question:hover { color: var(--lavender-dark); }
+    .faq-question.open { color: var(--lavender-dark); }
+    .faq-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--lavender-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--lavender);
+      font-size: 1.1rem;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .faq-question.open .faq-icon {
+      background: var(--lavender);
+      color: var(--white);
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.3s;
+    }
+    .faq-answer.open {
+      max-height: 300px;
+    }
+    .faq-answer-inner {
+      padding: 0 24px 20px;
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      line-height: 1.75;
+    }
+
+    /* ─── Contact ───────────────────────────────────────────────── */
+    #contact {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .contact-header { text-align: center; margin-bottom: 56px; }
+    .contact-header .section-sub { margin: 0 auto; }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 28px; }
+    .info-block {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .info-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: rgba(156,137,184,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .info-title {
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--lavender-dark);
+      margin-bottom: 4px;
+    }
+    .info-body {
+      font-size: 0.96rem;
+      color: var(--text-soft);
+      line-height: 1.65;
+    }
+    .info-body a {
+      color: var(--lavender-dark);
+      font-weight: 600;
+      transition: color var(--transition);
+    }
+    .info-body a:hover { color: var(--gold-dark); }
+
+    .hours-table {
+      margin-top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      color: var(--text-soft);
+    }
+    .hours-row .day { font-weight: 600; color: var(--text); }
+
+    .contact-form {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+    }
+    .form-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 28px;
+      color: var(--text);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .form-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      appearance: none;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--lavender);
+      box-shadow: 0 0 0 3px rgba(156,137,184,0.15);
+    }
+    .form-textarea { min-height: 110px; resize: vertical; }
+    .form-submit {
+      width: 100%;
+      background: var(--lavender);
+      color: var(--white);
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 16px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+      margin-top: 8px;
+    }
+    .form-submit:hover {
+      background: var(--lavender-dark);
+      transform: translateY(-2px);
+    }
+
+    /* ─── Trust Badges ──────────────────────────────────────────── */
+    #trust {
+      padding: 60px 0;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .trust-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      align-items: center;
+      justify-content: center;
+    }
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 24px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+    }
+    .trust-badge-icon { font-size: 1.6rem; }
+    .trust-badge-text strong {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .trust-badge-text span {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── Footer ────────────────────────────────────────────────── */
+    #footer {
+      background: var(--text);
+      padding: 60px 0 32px;
+      color: rgba(255,255,255,0.65);
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 32px;
+    }
+    .footer-brand .nav-logo { color: var(--lavender-light); margin-bottom: 12px; }
+    .footer-brand .nav-logo span { color: var(--gold-light); }
+    .footer-brand p { font-size: 0.88rem; line-height: 1.75; max-width: 260px; }
+    .footer-col h4 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul li a {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      transition: color var(--transition);
+    }
+    .footer-col ul li a:hover { color: var(--gold-light); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p { font-size: 0.82rem; }
+    .footer-credit {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-credit a {
+      color: var(--gold-light);
+      font-weight: 600;
+      transition: color var(--transition);
+    }
+    .footer-credit a:hover { color: var(--gold); }
+
+    /* ─── Responsive ────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .about-inner, .why-inner, .faq-inner, .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+      .about-visual { display: none; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: span 2; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-title { font-size: clamp(2.6rem, 10vw, 4rem); }
+      .services-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-brand { grid-column: span 1; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ─── Utilities ─────────────────────────────────────────────── */
+    .text-center { text-align: center; }
+    .mt-4 { margin-top: 16px; }
+    .mt-8 { margin-top: 32px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  NAVBAR                                                        -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    🌸 Blossom <span>Nail Spa</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="tel:+17195320131" class="nav-cta">📞 Call Us</a></li>
+  </ul>
+
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <a href="#about" class="mob-link">About Us</a>
+  <a href="#services" class="mob-link">Services & Pricing</a>
+  <a href="#testimonials" class="mob-link">Reviews</a>
+  <a href="#faq" class="mob-link">FAQ</a>
+  <a href="#contact" class="mob-link">Contact & Hours</a>
+  <a href="tel:+17195320131" class="mob-cta">📞 Call (719) 532-0131</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  HERO                                                          -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="hero">
+
+  <!-- Decorative floral SVGs -->
+  <svg class="hero-floral" style="top:8%;left:4%;width:160px;opacity:0.08;" viewBox="0 0 160 160" fill="none">
+    <circle cx="80" cy="80" r="16" fill="#9C89B8"/>
+    <ellipse cx="80" cy="50" rx="12" ry="26" fill="#9C89B8" transform="rotate(0 80 80)"/>
+    <ellipse cx="80" cy="50" rx="12" ry="26" fill="#9C89B8" transform="rotate(45 80 80)"/>
+    <ellipse cx="80" cy="50" rx="12" ry="26" fill="#9C89B8" transform="rotate(90 80 80)"/>
+    <ellipse cx="80" cy="50" rx="12" ry="26" fill="#9C89B8" transform="rotate(135 80 80)"/>
+    <ellipse cx="80" cy="50" rx="12" ry="26" fill="#C5A880" transform="rotate(22.5 80 80)"/>
+    <ellipse cx="80" cy="50" rx="12" ry="26" fill="#C5A880" transform="rotate(67.5 80 80)"/>
+    <ellipse cx="80" cy="50" rx="12" ry="26" fill="#C5A880" transform="rotate(112.5 80 80)"/>
+    <ellipse cx="80" cy="50" rx="12" ry="26" fill="#C5A880" transform="rotate(157.5 80 80)"/>
+  </svg>
+  <svg class="hero-floral" style="bottom:15%;right:5%;width:120px;opacity:0.07;" viewBox="0 0 160 160" fill="none">
+    <circle cx="80" cy="80" r="14" fill="#C5A880"/>
+    <ellipse cx="80" cy="52" rx="10" ry="24" fill="#C5A880" transform="rotate(0 80 80)"/>
+    <ellipse cx="80" cy="52" rx="10" ry="24" fill="#C5A880" transform="rotate(60 80 80)"/>
+    <ellipse cx="80" cy="52" rx="10" ry="24" fill="#C5A880" transform="rotate(120 80 80)"/>
+    <ellipse cx="80" cy="52" rx="10" ry="24" fill="#9C89B8" transform="rotate(30 80 80)"/>
+    <ellipse cx="80" cy="52" rx="10" ry="24" fill="#9C89B8" transform="rotate(90 80 80)"/>
+    <ellipse cx="80" cy="52" rx="10" ry="24" fill="#9C89B8" transform="rotate(150 80 80)"/>
+  </svg>
+
+  <div class="hero-badge reveal">
+    <span>✦</span> Colorado Springs' Sanctuary of Beauty <span>✦</span>
+  </div>
+
+  <h1 class="hero-title reveal reveal-delay-1">
+    <span class="hero-title-script">Blossom</span><br>
+    <span class="hero-title-accent">Nail Spa</span>
+  </h1>
+
+  <p class="hero-tagline reveal reveal-delay-2">
+    Relax &nbsp;·&nbsp; Refresh &nbsp;·&nbsp; Renew
+  </p>
+
+  <div class="hero-actions reveal reveal-delay-3">
+    <a href="tel:+17195320131" class="btn-primary">
+      📞 Call to Book &nbsp; (719) 532-0131
+    </a>
+    <a href="#services" class="btn-secondary">
+      View Services
+    </a>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <span>Scroll to explore</span>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  ABOUT                                                         -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-inner">
+
+      <div class="about-visual reveal">
+        <div class="about-corner-deco"></div>
+        <div class="about-img-frame">
+          <div class="about-art">🌸</div>
+        </div>
+        <div class="about-badge-float">
+          <span class="num">10+</span>
+          <span class="lbl">Years of Beauty</span>
+        </div>
+      </div>
+
+      <div class="about-text reveal reveal-delay-2">
+        <span class="section-label">Our Story</span>
+        <h2 class="section-title">A Sanctuary <em>Crafted</em><br>Just for You</h2>
+        <div class="divider"><span class="divider-icon">✦</span></div>
+        <p>
+          At Blossom Nail Spa, we believe that beauty rituals are moments of restoration — not just grooming. Nestled in the heart of Colorado Springs, we've built a calm, fragrant haven where every detail is designed with your comfort in mind.
+        </p>
+        <p>
+          Our skilled technicians bring years of expertise and genuine artistry to every appointment. From classic manicures to intricate nail art and luxurious lash extensions, we offer a full menu of services tailored to celebrate your unique beauty.
+        </p>
+        <p>
+          We use only premium, non-toxic products and maintain the highest standards of cleanliness and care — because you deserve nothing less.
+        </p>
+
+        <div class="about-pills">
+          <span class="about-pill">🌿 Non-Toxic Products</span>
+          <span class="about-pill">✨ Expert Technicians</span>
+          <span class="about-pill">🛡️ Hygienic Practices</span>
+          <span class="about-pill">💆 Relaxing Atmosphere</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  SERVICES                                                      -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <span class="section-label">What We Offer</span>
+      <h2 class="section-title">Our <em>Signature</em> Services</h2>
+      <div class="divider"><span class="divider-icon">✦</span></div>
+      <p class="section-sub">From everyday elegance to special occasion artistry — every service is performed with precision and care.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card reveal reveal-delay-1">
+        <span class="service-icon">💅</span>
+        <div class="service-name">Classic Manicure</div>
+        <p class="service-desc">Shape, buff, cuticle care, hand massage, and your choice of polish. The timeless essential.</p>
+        <div class="service-price">
+          <span class="price-num">$25</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <span class="service-icon">✨</span>
+        <div class="service-name">Gel Manicure</div>
+        <p class="service-desc">Long-lasting gel polish with a flawless finish that stays chip-free for up to 3 weeks.</p>
+        <div class="service-price">
+          <span class="price-num">$40</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-3">
+        <span class="service-icon">🦶</span>
+        <div class="service-name">Classic Pedicure</div>
+        <p class="service-desc">Soak, exfoliation, cuticle care, relaxing foot massage, and polish of your choice.</p>
+        <div class="service-price">
+          <span class="price-num">$35</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-4">
+        <span class="service-icon">💎</span>
+        <div class="service-name">Gel Pedicure</div>
+        <p class="service-desc">All the luxury of a classic pedicure with long-wearing, luminous gel polish.</p>
+        <div class="service-price">
+          <span class="price-num">$55</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <span class="service-icon">🎨</span>
+        <div class="service-name">Nail Art</div>
+        <p class="service-desc">Custom designs, florals, gradients, gems — your nails as wearable art. Endless creativity.</p>
+        <div class="service-price">
+          <span class="price-from">From</span>
+          <span class="price-num">$10</span>
+          <span class="price-plus">+</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <span class="service-icon">🔮</span>
+        <div class="service-name">Acrylic Full Set</div>
+        <p class="service-desc">Strong, sculpted acrylic extensions with impeccable shape and your preferred finish.</p>
+        <div class="service-price">
+          <span class="price-num">$50</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-3">
+        <span class="service-icon">🌿</span>
+        <div class="service-name">Dip Powder</div>
+        <p class="service-desc">A lightweight, odor-free alternative that delivers vibrant color and exceptional strength.</p>
+        <div class="service-price">
+          <span class="price-num">$45</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-4">
+        <span class="service-icon">👁️</span>
+        <div class="service-name">Lash Extensions</div>
+        <p class="service-desc">Volume, natural, or hybrid lashes applied with care for effortlessly beautiful eyes.</p>
+        <div class="service-price">
+          <span class="price-num">$80</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-8 reveal">
+      <a href="tel:+17195320131" class="btn-primary">
+        📞 Book Your Appointment
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  WHY CHOOSE US                                                 -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="why">
+  <div class="container">
+    <div class="why-inner">
+
+      <div class="why-text reveal">
+        <span class="section-label">Why Blossom</span>
+        <h2 class="section-title">More Than a Salon.<br><em>A Ritual.</em></h2>
+        <div class="divider" style="--lavender-light:rgba(255,255,255,0.2);"><span class="divider-icon" style="color:var(--gold-light);">✦</span></div>
+        <p>We don't just do nails — we create an experience that lingers long after you leave. Every visit is a small celebration of you.</p>
+        <ul class="why-features">
+          <li>Certified, experienced nail technicians with a passion for artistry</li>
+          <li>Hospital-grade sterilization and disposable tools for every client</li>
+          <li>Premium, cruelty-free, and non-toxic polish brands</li>
+          <li>Calm, fragrant spa atmosphere designed for total relaxation</li>
+          <li>Honest pricing — no hidden fees, ever</li>
+          <li>Walk-ins welcome · Appointments prioritized</li>
+        </ul>
+      </div>
+
+      <div class="stats-grid reveal reveal-delay-2">
+        <div class="stat-card">
+          <span class="stat-number">5,000+</span>
+          <span class="stat-label">Happy Clients</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">10+</span>
+          <span class="stat-label">Years of Excellence</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">4.9★</span>
+          <span class="stat-label">Average Rating</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Satisfaction Goal</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  TESTIMONIALS                                                  -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="testimonials-header reveal">
+      <span class="section-label">Client Love</span>
+      <h2 class="section-title">What Our <em>Guests</em> Say</h2>
+      <div class="divider"><span class="divider-icon">✦</span></div>
+      <p class="section-sub">Real experiences from real clients who found their happy place at Blossom.</p>
+    </div>
+
+    <div class="testimonials-grid">
+
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-quote-mark">&ldquo;</div>
+        <div class="testi-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="testi-text">
+          "I've tried so many nail salons in Colorado Springs, but Blossom is genuinely different. The atmosphere is so calming and the technicians are incredibly attentive. My gel manicure lasted nearly four weeks without a single chip!"
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div>
+            <span class="testi-name">Sarah M.</span>
+            <span class="testi-role">Regular client since 2021</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-quote-mark">&ldquo;</div>
+        <div class="testi-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="testi-text">
+          "The lash extensions I got here are the most natural-looking I've ever had. I've had friends ask if I was just born with beautiful lashes! The whole experience was luxurious from start to finish. I won't go anywhere else."
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">J</div>
+          <div>
+            <span class="testi-name">Jessica L.</span>
+            <span class="testi-role">Lash extension lover</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal reveal-delay-3">
+        <div class="testi-quote-mark">&ldquo;</div>
+        <div class="testi-stars">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <p class="testi-text">
+          "Brought my mom here for her birthday and we both got pedicures. We were treated like royalty! The spa is immaculate, the staff is warm and professional, and the prices are more than fair for the quality. Absolute gem of a place."
+        </p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div>
+            <span class="testi-name">Amanda R.</span>
+            <span class="testi-role">Mother-daughter regular</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  FAQ                                                           -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-inner">
+
+      <div class="reveal">
+        <span class="section-label">Questions</span>
+        <h2 class="section-title">Frequently<br><em>Asked</em></h2>
+        <div class="divider"><span class="divider-icon">✦</span></div>
+        <p class="section-sub" style="font-size:0.95rem;">Have more questions? Don't hesitate to give us a call — we're always happy to help.</p>
+        <div class="mt-8">
+          <a href="tel:+17195320131" class="btn-secondary" style="font-size:0.85rem; padding:12px 24px;">
+            📞 (719) 532-0131
+          </a>
+        </div>
+      </div>
+
+      <div class="faq-list reveal reveal-delay-2">
+
+        <div class="faq-item">
+          <button class="faq-question" data-faq="0">
+            Do I need an appointment or do you accept walk-ins?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              We welcome both! Walk-ins are always welcome based on availability. However, booking an appointment is recommended — especially on weekends — to guarantee your preferred time slot and technician. You can call us at (719) 532-0131 to schedule.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" data-faq="1">
+            How long does a typical nail appointment take?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Service times vary: a Classic Manicure takes about 30–45 minutes, a Gel Manicure around 45–60 minutes, and a Pedicure 45–75 minutes. Nail art and more complex services may take longer. We'll always give you an accurate time estimate when you book.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" data-faq="2">
+            What nail polish brands do you use?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              We use only premium, reputable brands — including OPI, Essie, and CND Shellac for gel services. All our products are non-toxic, cruelty-free, and free from harmful chemicals like formaldehyde, toluene, and DBP. Your health and safety are our priority.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" data-faq="3">
+            How do you maintain cleanliness and hygiene?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Hygiene is paramount to us. All metal implements are sterilized in a hospital-grade autoclave after each use. Pedicure basins are fully cleaned and disinfected between clients. We use single-use files, buffers, and liners. You're always welcome to bring your own tools if you prefer.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" data-faq="4">
+            Do you offer gift cards or group bookings?
+            <div class="faq-icon">+</div>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Absolutely! Gift cards make a perfect present for any occasion and are available in any amount. We also love hosting group events — bridal parties, birthdays, girls' days out. Call us at (719) 532-0131 to arrange a group booking and we'll make sure everyone is pampered.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  CONTACT                                                       -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-header reveal">
+      <span class="section-label">Find Us</span>
+      <h2 class="section-title">Visit <em>Blossom</em> Nail Spa</h2>
+      <div class="divider"><span class="divider-icon">✦</span></div>
+      <p class="section-sub">We'd love to see you. Walk in, call ahead, or send us a message below.</p>
+    </div>
+
+    <div class="contact-inner">
+
+      <div class="contact-info reveal">
+
+        <div class="info-block">
+          <div class="info-icon">📍</div>
+          <div>
+            <div class="info-title">Address</div>
+            <div class="info-body">
+              4417 Centennial Blvd<br>
+              Colorado Springs, CO 80907
+            </div>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-icon">📞</div>
+          <div>
+            <div class="info-title">Phone</div>
+            <div class="info-body">
+              <a href="tel:+17195320131">(719) 532-0131</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-icon">🕐</div>
+          <div>
+            <div class="info-title">Hours</div>
+            <div class="info-body">
+              <div class="hours-table">
+                <div class="hours-row">
+                  <span class="day">Monday – Saturday</span>
+                  <span>9:30 AM – 7:00 PM</span>
+                </div>
+                <div class="hours-row">
+                  <span class="day">Sunday</span>
+                  <span>11:00 AM – 5:00 PM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <div class="info-icon">🅿️</div>
+          <div>
+            <div class="info-title">Parking</div>
+            <div class="info-body">Free parking available directly in front of the salon.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="contact-form reveal reveal-delay-2">
+        <h3 class="form-title">Send Us a Message</h3>
+        <form id="contact-form" novalidate onsubmit="handleFormSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="f-name">First Name</label>
+              <input class="form-input" type="text" id="f-name" placeholder="Jane" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-lastname">Last Name</label>
+              <input class="form-input" type="text" id="f-lastname" placeholder="Doe" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f-phone">Phone Number</label>
+            <input class="form-input" type="tel" id="f-phone" placeholder="(719) 000-0000" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f-service">Service of Interest</label>
+            <select class="form-select" id="f-service">
+              <option value="">Select a service…</option>
+              <option>Classic Manicure – $25</option>
+              <option>Gel Manicure – $40</option>
+              <option>Classic Pedicure – $35</option>
+              <option>Gel Pedicure – $55</option>
+              <option>Nail Art – $10+</option>
+              <option>Acrylic Full Set – $50</option>
+              <option>Dip Powder – $45</option>
+              <option>Lash Extensions – $80</option>
+              <option>Multiple Services</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="f-msg">Message</label>
+            <textarea class="form-textarea" id="f-msg" placeholder="Tell us what you'd like, preferred day/time, any questions…"></textarea>
+          </div>
+          <button type="submit" class="form-submit">
+            🌸 Send Message
+          </button>
+          <div id="form-success" style="display:none;margin-top:16px;padding:14px 18px;background:rgba(156,137,184,0.12);border:1px solid rgba(156,137,184,0.3);border-radius:var(--radius-sm);color:var(--lavender-dark);font-size:0.9rem;font-weight:600;text-align:center;">
+            ✨ Thank you! We'll be in touch shortly.
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  TRUST BADGES                                                  -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section id="trust">
+  <div class="container">
+    <div class="trust-inner reveal">
+
+      <div class="trust-badge">
+        <div class="trust-badge-icon">🏆</div>
+        <div class="trust-badge-text">
+          <strong>Top Rated</strong>
+          <span>Colorado Springs</span>
+        </div>
+      </div>
+
+      <div class="trust-badge">
+        <div class="trust-badge-icon">🛡️</div>
+        <div class="trust-badge-text">
+          <strong>Fully Sanitized</strong>
+          <span>Hospital-grade sterilization</span>
+        </div>
+      </div>
+
+      <div class="trust-badge">
+        <div class="trust-badge-icon">🌿</div>
+        <div class="trust-badge-text">
+          <strong>Non-Toxic Products</strong>
+          <span>Safe & cruelty-free</span>
+        </div>
+      </div>
+
+      <div class="trust-badge">
+        <div class="trust-badge-icon">⭐</div>
+        <div class="trust-badge-text">
+          <strong>4.9 Star Rating</strong>
+          <span>Verified client reviews</span>
+        </div>
+      </div>
+
+      <div class="trust-badge">
+        <div class="trust-badge-icon">💳</div>
+        <div class="trust-badge-text">
+          <strong>Cards Accepted</strong>
+          <span>Visa · MC · AmEx · Discover</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  FOOTER                                                        -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <div class="nav-logo">🌸 Blossom <span>Nail Spa</span></div>
+        <p>A sanctuary of beauty and relaxation in the heart of Colorado Springs. We believe every visit should leave you glowing — inside and out.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Manicures</a></li>
+          <li><a href="#services">Pedicures</a></li>
+          <li><a href="#services">Gel & Acrylic</a></li>
+          <li><a href="#services">Dip Powder</a></li>
+          <li><a href="#services">Nail Art</a></li>
+          <li><a href="#services">Lash Extensions</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Visit Us</h4>
+        <ul>
+          <li><a href="#">4417 Centennial Blvd</a></li>
+          <li><a href="#">Colorado Springs, CO 80907</a></li>
+          <li><a href="tel:+17195320131">(719) 532-0131</a></li>
+          <li><a href="#">Mon–Sat: 9:30AM–7PM</a></li>
+          <li><a href="#">Sun: 11AM–5PM</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2024 Blossom Nail Spa · All rights reserved</p>
+      <p class="footer-credit">Website by <a href="#">Kinetic Digital</a></p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!--  JAVASCRIPT                                                    -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<script>
+  // ── Navbar scroll state
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // ── Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen);
+    mobileMenu.setAttribute('aria-hidden', !isOpen);
+  });
+
+  // Close mobile menu when a link is clicked
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+    });
+  });
+
+  // ── Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // Trigger hero reveals immediately
+  document.querySelectorAll('#hero .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), i * 120 + 200);
+  });
+
+  // ── FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const answer = btn.nextElementSibling;
+      const isOpen = btn.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-question').forEach(b => {
+        b.classList.remove('open');
+        b.nextElementSibling.classList.remove('open');
+        b.querySelector('.faq-icon').textContent = '+';
+      });
+
+      // Toggle current
+      if (!isOpen) {
+        btn.classList.add('open');
+        answer.classList.add('open');
+        btn.querySelector('.faq-icon').textContent = '+';
+      }
+    });
+  });
+
+  // ── Contact form
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = '⏳ Sending…';
+    btn.disabled = true;
+    setTimeout(() => {
+      document.getElementById('form-success').style.display = 'block';
+      btn.textContent = '✅ Sent!';
+    }, 1200);
+  }
+
+  // ── Smooth number counter for stats (runs when section enters view)
+  function animateCounters() {
+    document.querySelectorAll('.stat-number').forEach(el => {
+      const text = el.textContent.trim();
+      // Only animate if it contains a digit
+      if (!/\d/.test(text)) return;
+      el.setAttribute('data-target', text);
+    });
+  }
+  animateCounters();
+
+</script>
+</body>
+</html>
