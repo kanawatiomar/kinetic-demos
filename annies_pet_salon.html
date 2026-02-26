@@ -1,0 +1,2160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Annie's Pet Salon – Where Every Pet is Family | Colorado Springs</title>
+  <meta name="description" content="Annie's Pet Salon in Colorado Springs, CO. Professional pet grooming with love. Bath, groom, nails, and more. Call us today!" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============================================
+       CSS VARIABLES & RESET
+    ============================================= */
+    :root {
+      --sky:    #E3F2FD;
+      --coral:  #FF7043;
+      --coral-dark: #E64A19;
+      --green:  #2E7D32;
+      --green-light: #43A047;
+      --cream:  #FFFDE7;
+      --cream-dark: #FFF9C4;
+      --text:   #2C2C2C;
+      --text-soft: #5A5A5A;
+      --white:  #FFFFFF;
+      --shadow: 0 4px 24px rgba(0,0,0,0.10);
+      --shadow-lg: 0 8px 48px rgba(0,0,0,0.14);
+      --radius: 20px;
+      --radius-sm: 12px;
+      --transition: 0.3s ease;
+
+      --font-heading: 'Baloo 2', cursive;
+      --font-body: 'Nunito', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    /* =============================================
+       UTILITY CLASSES
+    ============================================= */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: var(--coral);
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 16px;
+      border-radius: 50px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      color: var(--text);
+    }
+
+    .section-title span { color: var(--coral); }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      max-width: 540px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 28px;
+      border-radius: 50px;
+      cursor: pointer;
+      border: none;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-coral  { background: var(--coral);  color: var(--white); box-shadow: 0 4px 16px rgba(255,112,67,0.35); }
+    .btn-coral:hover { background: var(--coral-dark); }
+    .btn-green  { background: var(--green);  color: var(--white); box-shadow: 0 4px 16px rgba(46,125,50,0.30); }
+    .btn-green:hover { background: var(--green-light); }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--white);
+      color: var(--white);
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.15); box-shadow: none; }
+
+    /* Scroll animation base */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* Delay helpers */
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+    .d5 { transition-delay: 0.5s; }
+
+
+    /* =============================================
+       NAV
+    ============================================= */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+      transition: background var(--transition);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--coral);
+    }
+    .nav-logo .paw { font-size: 1.6rem; display: inline-block; animation: paw-bounce 2.5s infinite; }
+    @keyframes paw-bounce {
+      0%, 100% { transform: rotate(-10deg); }
+      50% { transform: rotate(10deg) scale(1.1); }
+    }
+    .nav-logo .tagline-sm {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--text-soft);
+      font-family: var(--font-body);
+      display: block;
+      margin-top: -4px;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-links a {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--text);
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 2px;
+      background: var(--coral);
+      border-radius: 2px;
+      transform: scaleX(0);
+      transition: transform var(--transition);
+    }
+    .nav-links a:hover { color: var(--coral); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-cta { margin-left: 12px; font-size: 0.88rem !important; padding: 10px 20px !important; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background: var(--coral);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--white);
+      padding: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+    .mobile-menu.open {
+      display: flex;
+      max-height: 400px;
+      padding: 12px 0 20px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .mobile-menu a {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text);
+      padding: 12px 24px;
+      transition: background var(--transition), color var(--transition);
+    }
+    .mobile-menu a:hover { background: var(--sky); color: var(--coral); }
+    .mobile-menu .btn { margin: 8px 24px 0; width: calc(100% - 48px); justify-content: center; }
+
+
+    /* =============================================
+       HERO
+    ============================================= */
+    #hero {
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 70% 30%, rgba(255,112,67,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 10% 80%, rgba(46,125,50,0.10) 0%, transparent 50%),
+        linear-gradient(160deg, var(--sky) 0%, var(--cream) 55%, #FFF3E0 100%);
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Floating decorative blobs */
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      pointer-events: none;
+    }
+    .hero-blob-1 {
+      width: 400px; height: 400px;
+      background: rgba(255,112,67,0.15);
+      top: -80px; right: -80px;
+      animation: float1 8s ease-in-out infinite;
+    }
+    .hero-blob-2 {
+      width: 300px; height: 300px;
+      background: rgba(46,125,50,0.12);
+      bottom: 80px; left: -60px;
+      animation: float2 10s ease-in-out infinite;
+    }
+    @keyframes float1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-30px, 30px) scale(1.08); } }
+    @keyframes float2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(20px, -20px) scale(1.05); } }
+
+    /* Floating paw prints */
+    .paw-float {
+      position: absolute;
+      opacity: 0.07;
+      font-size: 3rem;
+      pointer-events: none;
+      animation: paw-drift 12s ease-in-out infinite;
+    }
+    .paw-float:nth-child(1)  { top: 15%; left: 8%;  animation-delay: 0s;   font-size: 2.5rem; }
+    .paw-float:nth-child(2)  { top: 55%; right: 6%; animation-delay: -3s;  font-size: 4rem; }
+    .paw-float:nth-child(3)  { bottom: 20%; left: 35%; animation-delay: -6s; font-size: 2rem; }
+    @keyframes paw-drift { 0%,100% { transform: translateY(0) rotate(-10deg); } 50% { transform: translateY(-18px) rotate(10deg); } }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      padding: 80px 24px;
+      max-width: 1160px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-text {}
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border: 2px solid var(--coral);
+      color: var(--coral);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 12px rgba(255,112,67,0.2);
+      animation: badge-pop 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes badge-pop { from { opacity: 0; transform: scale(0.7); } to { opacity: 1; transform: scale(1); } }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 12px;
+      animation: slide-up 0.7s ease 0.1s both;
+    }
+    .hero-title .name { color: var(--coral); display: block; }
+    .hero-title .salon { color: var(--green); }
+
+    .hero-tagline {
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      font-weight: 600;
+      color: var(--text-soft);
+      margin-bottom: 28px;
+      animation: slide-up 0.7s ease 0.2s both;
+    }
+    .hero-tagline em { color: var(--coral); font-style: normal; font-weight: 700; }
+
+    @keyframes slide-up { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 36px;
+      animation: slide-up 0.7s ease 0.3s both;
+    }
+
+    .hero-phone-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      color: var(--green);
+      border: 2px solid var(--green);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 28px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all var(--transition);
+      box-shadow: 0 4px 16px rgba(46,125,50,0.15);
+    }
+    .hero-phone-btn:hover { background: var(--green); color: var(--white); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(46,125,50,0.30); }
+    .hero-phone-btn .phone-icon { font-size: 1.2rem; }
+
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      animation: slide-up 0.7s ease 0.4s both;
+    }
+    .hero-trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(0,0,0,0.07);
+      backdrop-filter: blur(8px);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-soft);
+    }
+    .hero-trust-badge .icon { font-size: 1rem; }
+
+    /* Hero illustration side */
+    .hero-illustration {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: slide-up 0.7s ease 0.2s both;
+    }
+
+    .hero-card {
+      background: var(--white);
+      border-radius: 32px;
+      padding: 40px 36px;
+      box-shadow: var(--shadow-lg), 0 0 0 1px rgba(0,0,0,0.04);
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 36px;
+      background: linear-gradient(135deg, var(--coral), var(--green));
+      z-index: -1;
+      opacity: 0.25;
+    }
+
+    .hero-pet-emoji {
+      font-size: 6rem;
+      line-height: 1;
+      margin-bottom: 16px;
+      display: block;
+      animation: pet-wiggle 3s ease-in-out infinite;
+    }
+    @keyframes pet-wiggle {
+      0%, 100% { transform: rotate(-3deg) scale(1); }
+      25% { transform: rotate(4deg) scale(1.05); }
+      75% { transform: rotate(-4deg) scale(0.98); }
+    }
+
+    .hero-card-title {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .hero-card-sub {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      margin-bottom: 20px;
+    }
+    .hero-stars { font-size: 1.3rem; letter-spacing: 2px; }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .hero-stat {
+      background: var(--sky);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+    }
+    .hero-stat .number {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: var(--coral);
+      display: block;
+    }
+    .hero-stat .label {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      font-weight: 600;
+    }
+
+    /* Floating badge on card */
+    .floating-badge {
+      position: absolute;
+      background: var(--coral);
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 8px 14px;
+      border-radius: 50px;
+      box-shadow: var(--shadow);
+      white-space: nowrap;
+      animation: badge-float 4s ease-in-out infinite;
+    }
+    .floating-badge.top-right { top: -14px; right: -20px; animation-delay: -2s; }
+    .floating-badge.bottom-left { bottom: -14px; left: -20px; background: var(--green); }
+    @keyframes badge-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+
+    /* =============================================
+       TRUST BADGES STRIP
+    ============================================= */
+    #trust {
+      background: var(--green);
+      padding: 20px 0;
+      overflow: hidden;
+    }
+    .trust-strip {
+      display: flex;
+      gap: 60px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0 24px;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+    .trust-item .icon {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+
+    /* =============================================
+       ABOUT
+    ============================================= */
+    #about {
+      padding: 100px 0;
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+    #about::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--coral), var(--green), var(--coral));
+      background-size: 200% 100%;
+      animation: gradient-shift 4s linear infinite;
+    }
+    @keyframes gradient-shift { 0% { background-position: 0% 0%; } 100% { background-position: 200% 0%; } }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-main-card {
+      background: var(--white);
+      border-radius: 28px;
+      padding: 40px;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+      position: relative;
+    }
+    .about-emoji-big {
+      font-size: 5rem;
+      display: block;
+      margin-bottom: 16px;
+      animation: about-bob 3.5s ease-in-out infinite;
+    }
+    @keyframes about-bob { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-12px) rotate(2deg); } }
+
+    .about-card-text {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .about-card-sub { font-size: 0.88rem; color: var(--text-soft); }
+
+    .about-float-card {
+      position: absolute;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 14px 18px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+      animation: card-float 5s ease-in-out infinite;
+    }
+    .about-float-card.card-1 { top: -20px; right: -24px; animation-delay: 0s; }
+    .about-float-card.card-2 { bottom: -20px; left: -24px; animation-delay: -2.5s; }
+    .about-float-card .icon { font-size: 1.5rem; }
+    @keyframes card-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+    .about-content {}
+    .about-content .section-title { margin-bottom: 18px; }
+    .about-content p {
+      color: var(--text-soft);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .about-values {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 28px;
+    }
+    .about-value {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .about-value:hover { transform: translateX(6px); box-shadow: var(--shadow); }
+    .about-value .icon {
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      background: var(--sky);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-value-text strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .about-value-text span { font-size: 0.88rem; color: var(--text-soft); }
+
+
+    /* =============================================
+       SERVICES
+    ============================================= */
+    #services {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .services-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .services-header .section-subtitle { margin: 12px auto 0; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--cream);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: transform var(--transition), box-shadow var(--transition);
+      border: 2px solid transparent;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,112,67,0.06), rgba(46,125,50,0.06));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--coral); }
+    .service-card:hover::before { opacity: 1; }
+
+    .service-emoji {
+      font-size: 3.2rem;
+      display: block;
+      margin-bottom: 14px;
+      transition: transform var(--transition);
+    }
+    .service-card:hover .service-emoji { transform: scale(1.15) rotate(-5deg); }
+
+    .service-name {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .service-desc {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-bottom: 18px;
+      line-height: 1.55;
+    }
+
+    .service-price {
+      display: inline-block;
+      background: var(--coral);
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.2rem;
+      padding: 6px 20px;
+      border-radius: 50px;
+    }
+
+    .service-card.featured {
+      background: linear-gradient(135deg, var(--coral) 0%, #FF8A65 100%);
+      border-color: transparent;
+    }
+    .service-card.featured .service-name,
+    .service-card.featured .service-desc,
+    .service-card.featured .service-price { color: var(--white); }
+    .service-card.featured .service-price { background: rgba(255,255,255,0.25); }
+    .service-card.featured::after {
+      content: '⭐ Most Popular';
+      position: absolute;
+      top: 14px; right: 14px;
+      background: var(--white);
+      color: var(--coral);
+      font-size: 0.7rem;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+
+
+    /* =============================================
+       WHY CHOOSE US
+    ============================================= */
+    #why {
+      padding: 100px 0;
+      background: var(--sky);
+      position: relative;
+      overflow: hidden;
+    }
+    #why::after {
+      content: '🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾🐾';
+      position: absolute;
+      bottom: 0; left: 0;
+      font-size: 2rem;
+      letter-spacing: 0.5rem;
+      opacity: 0.06;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .why-content .section-title { margin-bottom: 18px; }
+    .why-content p { color: var(--text-soft); font-size: 1.05rem; line-height: 1.75; margin-bottom: 32px; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .stat-box {
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .stat-box:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .stat-number {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 2.4rem;
+      color: var(--coral);
+      display: block;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label { font-size: 0.85rem; color: var(--text-soft); font-weight: 600; }
+
+    .why-features {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .why-feature {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .why-feature:hover { transform: translateX(6px); box-shadow: var(--shadow); }
+    .why-feature .icon {
+      width: 50px; height: 50px;
+      background: var(--sky);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .why-feature-text strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .why-feature-text span { font-size: 0.88rem; color: var(--text-soft); line-height: 1.5; }
+
+
+    /* =============================================
+       TESTIMONIALS
+    ============================================= */
+    #testimonials {
+      padding: 100px 0;
+      background: linear-gradient(160deg, #FFF3E0 0%, var(--cream) 60%, var(--sky) 100%);
+    }
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      position: relative;
+      transition: transform var(--transition), box-shadow var(--transition);
+      border-top: 4px solid var(--coral);
+    }
+    .testimonial-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .testimonial-card:nth-child(2) { border-top-color: var(--green); }
+    .testimonial-card:nth-child(3) { border-top-color: #FFC107; }
+
+    .testimonial-quote {
+      font-size: 3rem;
+      color: var(--coral);
+      line-height: 1;
+      margin-bottom: 12px;
+      font-family: Georgia, serif;
+      opacity: 0.4;
+    }
+    .testimonial-card:nth-child(2) .testimonial-quote { color: var(--green); }
+    .testimonial-card:nth-child(3) .testimonial-quote { color: #FFC107; }
+
+    .testimonial-text {
+      font-size: 0.98rem;
+      color: var(--text-soft);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .testimonial-stars {
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .author-avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      background: var(--sky);
+      flex-shrink: 0;
+    }
+    .author-name {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .author-pet {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+
+    /* =============================================
+       FAQ
+    ============================================= */
+    #faq {
+      padding: 100px 0;
+      background: var(--white);
+    }
+    .faq-header {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+
+    .faq-list {
+      max-width: 740px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .faq-item {
+      background: var(--cream);
+      border-radius: var(--radius-sm);
+      border: 2px solid transparent;
+      overflow: hidden;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .faq-item.open { border-color: var(--coral); box-shadow: var(--shadow); }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      cursor: pointer;
+      text-align: left;
+      gap: 16px;
+    }
+    .faq-q-text {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      transition: color var(--transition);
+    }
+    .faq-item.open .faq-q-text { color: var(--coral); }
+    .faq-icon {
+      width: 28px; height: 28px;
+      background: var(--coral);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 1.1rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      transition: transform var(--transition), background var(--transition);
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--green); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+    .faq-answer-inner {
+      padding: 0 24px 20px;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; }
+
+
+    /* =============================================
+       CONTACT
+    ============================================= */
+    #contact {
+      padding: 100px 0;
+      background: var(--cream);
+    }
+    .contact-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .contact-info {}
+
+    .contact-info-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+    .contact-info-card h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--text);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+    }
+    .contact-detail:last-child { margin-bottom: 0; }
+    .contact-detail .icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+    .contact-detail strong { color: var(--text); display: block; font-weight: 700; }
+
+    .hours-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+    .hours-row:nth-child(odd) { background: var(--sky); }
+    .hours-row .day { font-weight: 600; color: var(--text); }
+    .hours-row .time { color: var(--text-soft); }
+    .hours-row.closed .time { color: var(--coral); font-weight: 600; }
+
+    .contact-map-placeholder {
+      background: linear-gradient(135deg, var(--sky) 0%, #BBDEFB 100%);
+      border-radius: var(--radius);
+      padding: 40px;
+      text-align: center;
+      font-size: 3rem;
+      margin-top: 4px;
+      border: 2px dashed rgba(46,125,50,0.3);
+    }
+    .contact-map-placeholder p {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-top: 12px;
+    }
+
+    /* Form */
+    .contact-form-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: var(--shadow-lg);
+      border-top: 5px solid var(--coral);
+    }
+    .contact-form-card h3 {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .contact-form-card p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 28px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text);
+      font-family: var(--font-heading);
+    }
+    .form-group label span { color: var(--coral); }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 13px 16px;
+      border-radius: var(--radius-sm);
+      border: 2px solid #E5E7EB;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--coral);
+      box-shadow: 0 0 0 4px rgba(255,112,67,0.12);
+    }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+
+    .form-submit {
+      width: 100%;
+      justify-content: center;
+      font-size: 1.05rem;
+      padding: 16px;
+      margin-top: 8px;
+    }
+    .form-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      margin-top: 12px;
+    }
+
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.85);
+      padding: 60px 0 24px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .logo {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.6rem;
+      color: var(--coral);
+      margin-bottom: 12px;
+    }
+    .footer-brand p {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 20px;
+    }
+    .footer-phone-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--coral);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: color var(--transition);
+    }
+    .footer-phone-link:hover { color: #FF8A65; }
+
+    footer h4 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--coral); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p { font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+    .footer-bottom a { color: var(--coral); font-weight: 600; }
+    .footer-bottom a:hover { text-decoration: underline; }
+    .kinetic-credit {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.35);
+    }
+    .kinetic-credit a { color: var(--coral); font-weight: 700; }
+
+
+    /* =============================================
+       SUCCESS MESSAGE
+    ============================================= */
+    .form-success {
+      display: none;
+      background: linear-gradient(135deg, var(--green), #66BB6A);
+      color: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 20px 24px;
+      text-align: center;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-top: 16px;
+    }
+    .form-success.show { display: block; animation: slide-up 0.4s ease; }
+
+
+    /* =============================================
+       RESPONSIVE
+    ============================================= */
+    @media (max-width: 900px) {
+      .hero-content  { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
+      .hero-illustration { order: -1; }
+      .hero-card { max-width: 340px; margin: 0 auto; }
+      .about-grid  { grid-template-columns: 1fr; gap: 40px; }
+      .about-visual { order: -1; }
+      .why-grid { grid-template-columns: 1fr; gap: 40px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2.2rem; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .about-float-card.card-1 { top: -10px; right: -10px; }
+      .about-float-card.card-2 { bottom: -10px; left: -10px; }
+    }
+
+    @media (max-width: 480px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .trust-strip { gap: 24px; justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding: 0 24px; }
+      .hero-actions { flex-direction: column; }
+      .hero-phone-btn, .btn-coral { width: 100%; justify-content: center; }
+    }
+
+    /* Smooth scrolling for anchor clicks */
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================
+       NAV
+  ======================== -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <span class="paw">🐾</span>
+        <div>
+          Annie's Pet Salon
+          <span class="tagline-sm">Colorado Springs, CO</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact" class="btn btn-coral nav-cta">Book Now</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about"        onclick="closeMobile()">About</a>
+      <a href="#services"     onclick="closeMobile()">Services</a>
+      <a href="#why"          onclick="closeMobile()">Why Us</a>
+      <a href="#testimonials" onclick="closeMobile()">Reviews</a>
+      <a href="#faq"          onclick="closeMobile()">FAQ</a>
+      <a href="#contact" class="btn btn-coral" onclick="closeMobile()">📅 Book Appointment</a>
+    </div>
+  </nav>
+
+  <!-- ========================
+       HERO
+  ======================== -->
+  <section id="hero">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <span class="paw-float">🐾</span>
+    <span class="paw-float">🐾</span>
+    <span class="paw-float">🐾</span>
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-badge">🐶 Trusted Pet Grooming Since Day One</div>
+
+        <h1 class="hero-title">
+          <span class="name">Annie's</span>
+          <span class="salon">Pet Salon</span>
+        </h1>
+
+        <p class="hero-tagline">
+          <em>Where Every Pet is Family</em><br />
+          Colorado Springs' most loved grooming salon — because your fur baby deserves the best.
+        </p>
+
+        <div class="hero-actions">
+          <a href="tel:+17195551234" class="hero-phone-btn">
+            <span class="phone-icon">📞</span>
+            Call to Book: (719) 555-1234
+          </a>
+          <a href="#contact" class="btn btn-coral">
+            📅 Book Online
+          </a>
+        </div>
+
+        <div class="hero-trust">
+          <span class="hero-trust-badge"><span class="icon">✅</span> Certified Groomers</span>
+          <span class="hero-trust-badge"><span class="icon">🌿</span> Pet-Safe Products</span>
+          <span class="hero-trust-badge"><span class="icon">⭐</span> 5-Star Rated</span>
+          <span class="hero-trust-badge"><span class="icon">🤝</span> Gentle Handling</span>
+        </div>
+      </div>
+
+      <div class="hero-illustration">
+        <div class="hero-card">
+          <div class="floating-badge top-right">🏆 #1 in Colorado Springs</div>
+          <div class="floating-badge bottom-left">🌿 Eco-Friendly</div>
+
+          <span class="hero-pet-emoji">🐩</span>
+          <p class="hero-card-title">Happy Pets, Happy Hearts</p>
+          <p class="hero-card-sub">Every visit is a tail-wagging experience</p>
+          <div class="hero-stars">⭐⭐⭐⭐⭐</div>
+
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="number">500+</span>
+              <span class="label">Happy Pets</span>
+            </div>
+            <div class="hero-stat">
+              <span class="number">8+</span>
+              <span class="label">Years Experience</span>
+            </div>
+            <div class="hero-stat">
+              <span class="number">100%</span>
+              <span class="label">Pet-Safe</span>
+            </div>
+            <div class="hero-stat">
+              <span class="number">5★</span>
+              <span class="label">Avg. Rating</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       TRUST BADGES STRIP
+  ======================== -->
+  <section id="trust">
+    <div class="trust-strip">
+      <div class="trust-item reveal d1">
+        <div class="icon">🎓</div>
+        Certified Groomers
+      </div>
+      <div class="trust-item reveal d2">
+        <div class="icon">🌿</div>
+        Pet-Safe Products Only
+      </div>
+      <div class="trust-item reveal d3">
+        <div class="icon">🤗</div>
+        Gentle Handling Guaranteed
+      </div>
+      <div class="trust-item reveal d4">
+        <div class="icon">⭐</div>
+        5-Star Rated Salon
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       ABOUT
+  ======================== -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+
+        <div class="about-visual reveal-left">
+          <div class="about-main-card">
+            <span class="about-emoji-big">🐕</span>
+            <p class="about-card-text">Annie & Her Team</p>
+            <p class="about-card-sub">Passionate about every paw that walks through our door</p>
+            <div style="margin-top:16px;display:flex;gap:8px;justify-content:center;font-size:2rem;">
+              🐈 🐇 🐩
+            </div>
+          </div>
+          <div class="about-float-card card-1">
+            <span class="icon">❤️</span>
+            <div>
+              <strong style="font-size:0.95rem;color:var(--text);">Animal Lovers</strong>
+              <span style="font-size:0.75rem;color:var(--text-soft);display:block;">We treat them like our own</span>
+            </div>
+          </div>
+          <div class="about-float-card card-2">
+            <span class="icon">🌟</span>
+            <div>
+              <strong style="font-size:0.95rem;color:var(--text);">Premium Care</strong>
+              <span style="font-size:0.75rem;color:var(--text-soft);display:block;">Top-tier grooming, every time</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-content reveal-right">
+          <span class="section-tag">About Us</span>
+          <h2 class="section-title">We Love Pets <span>As Much As You Do</span></h2>
+          <p>
+            Annie's Pet Salon was born from a simple belief: every pet deserves to feel loved, comfortable, and beautiful. Founded by Annie — a lifelong animal lover and certified master groomer — our salon is a place where pets don't just get groomed, they get pampered.
+          </p>
+          <p>
+            Located in the heart of Colorado Springs at 4853 Barnes Rd, we serve dogs, cats, and other furry friends with the same care and tenderness we'd give our own beloved pets. Our team of certified, compassionate groomers takes the time to understand each pet's unique needs, temperament, and coat type.
+          </p>
+
+          <div class="about-values">
+            <div class="about-value">
+              <div class="icon">💚</div>
+              <div class="about-value-text">
+                <strong>Stress-Free Environment</strong>
+                <span>Calm, gentle handling techniques to keep your pet relaxed throughout their visit.</span>
+              </div>
+            </div>
+            <div class="about-value">
+              <div class="icon">🏆</div>
+              <div class="about-value-text">
+                <strong>Certified & Experienced</strong>
+                <span>All our groomers are professionally certified with years of hands-on experience.</span>
+              </div>
+            </div>
+            <div class="about-value">
+              <div class="icon">🌿</div>
+              <div class="about-value-text">
+                <strong>Safe, Natural Products</strong>
+                <span>We only use pet-safe, eco-friendly shampoos and conditioners — gentle on skin and coat.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       SERVICES
+  ======================== -->
+  <section id="services">
+    <div class="container">
+      <div class="services-header reveal">
+        <span class="section-tag">Our Services</span>
+        <h2 class="section-title">Everything Your Pet <span>Needs</span></h2>
+        <p class="section-subtitle">From a quick nail trim to a full spa day — we have the perfect grooming package for every pet.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card reveal d1">
+          <span class="service-emoji">🛁</span>
+          <p class="service-name">Bath &amp; Brush</p>
+          <p class="service-desc">Shampoo, conditioner, blow-dry, and a thorough brush-out for a silky, fresh coat.</p>
+          <span class="service-price">Starting at $35</span>
+        </div>
+
+        <div class="service-card featured reveal d2">
+          <span class="service-emoji">✂️</span>
+          <p class="service-name">Full Groom</p>
+          <p class="service-desc">Complete grooming experience: bath, dry, haircut, nails, ears, and finishing touches.</p>
+          <span class="service-price">Starting at $55</span>
+        </div>
+
+        <div class="service-card reveal d3">
+          <span class="service-emoji">🐶</span>
+          <p class="service-name">Puppy's First Groom</p>
+          <p class="service-desc">A gentle, fun introduction to grooming for young puppies — we make it a great memory!</p>
+          <span class="service-price">$40</span>
+        </div>
+
+        <div class="service-card reveal d1">
+          <span class="service-emoji">💅</span>
+          <p class="service-name">Nail Trim</p>
+          <p class="service-desc">Safe, precise nail trimming to keep your pet comfortable and your floors scratch-free.</p>
+          <span class="service-price">$15</span>
+        </div>
+
+        <div class="service-card reveal d2">
+          <span class="service-emoji">🦷</span>
+          <p class="service-name">Teeth Brushing</p>
+          <p class="service-desc">A quick and effective teeth brushing session to support your pet's dental health.</p>
+          <span class="service-price">$10</span>
+        </div>
+
+        <div class="service-card reveal d3">
+          <span class="service-emoji">🌬️</span>
+          <p class="service-name">De-Shedding Treatment</p>
+          <p class="service-desc">Specialized treatment to remove loose undercoat and dramatically reduce shedding at home.</p>
+          <span class="service-price">Starting at $45</span>
+        </div>
+
+        <div class="service-card reveal d1">
+          <span class="service-emoji">🚿</span>
+          <p class="service-name">Flea &amp; Tick Bath</p>
+          <p class="service-desc">Medicated flea and tick shampoo treatment to protect your pet from pesky parasites.</p>
+          <span class="service-price">Starting at $50</span>
+        </div>
+
+        <div class="service-card reveal d2">
+          <span class="service-emoji">🐱</span>
+          <p class="service-name">Cat Grooming</p>
+          <p class="service-desc">Specialized cat grooming — bath, blow-dry, brush-out, nail trim, and optional lion cut.</p>
+          <span class="service-price">Starting at $65</span>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;margin-top:44px;" class="reveal">
+        <p style="color:var(--text-soft);font-size:0.9rem;margin-bottom:16px;">💡 Prices vary by breed, size, and coat condition. Call us for a personalized quote!</p>
+        <a href="tel:+17195551234" class="btn btn-coral">📞 Call for a Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       WHY CHOOSE US
+  ======================== -->
+  <section id="why">
+    <div class="container">
+      <div class="why-grid">
+
+        <div class="why-content reveal-left">
+          <span class="section-tag">Why Choose Us</span>
+          <h2 class="section-title">The Annie's <span>Difference</span></h2>
+          <p>We're not just a grooming salon — we're a second home for your pets. Every decision we make is guided by one thing: the wellbeing of the animals in our care.</p>
+
+          <div class="stats-grid">
+            <div class="stat-box">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Pets Groomed Monthly</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-number">8+</span>
+              <span class="stat-label">Years in Business</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-number">4.9★</span>
+              <span class="stat-label">Average Google Rating</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Pet-Safe Products</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-features reveal-right">
+          <div class="why-feature d1">
+            <div class="icon">😌</div>
+            <div class="why-feature-text">
+              <strong>Stress-Free Grooming</strong>
+              <span>We use fear-free techniques and a calm environment so every pet leaves happy and relaxed, not anxious.</span>
+            </div>
+          </div>
+
+          <div class="why-feature d2">
+            <div class="icon">🎓</div>
+            <div class="why-feature-text">
+              <strong>Professionally Certified Team</strong>
+              <span>All our groomers hold professional certifications and undergo continuous training on the latest techniques.</span>
+            </div>
+          </div>
+
+          <div class="why-feature d3">
+            <div class="icon">💧</div>
+            <div class="why-feature-text">
+              <strong>Premium, Safe Products</strong>
+              <span>We use only dermatologist-tested, pet-safe shampoos and conditioners. No harsh chemicals — ever.</span>
+            </div>
+          </div>
+
+          <div class="why-feature d4">
+            <div class="icon">📋</div>
+            <div class="why-feature-text">
+              <strong>Personalized Pet Plans</strong>
+              <span>We learn your pet's preferences, sensitivities, and favorite treats to make every visit perfectly tailored.</span>
+            </div>
+          </div>
+
+          <div class="why-feature d5">
+            <div class="icon">🏠</div>
+            <div class="why-feature-text">
+              <strong>Clean, Welcoming Salon</strong>
+              <span>Our salon is spotlessly clean, fully sanitized, and designed to feel warm and welcoming for pets and owners alike.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       TESTIMONIALS
+  ======================== -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="testimonials-header reveal">
+        <span class="section-tag">Happy Customers</span>
+        <h2 class="section-title">Pet Parents <span>Love Us</span></h2>
+        <p class="section-subtitle" style="margin:12px auto 0;">Don't just take our word for it — hear it straight from the happy humans (and their even happier pets).</p>
+      </div>
+
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card reveal d1">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">Annie's is hands-down the best grooming salon in Colorado Springs! My golden retriever Max always comes home looking like a show dog. The staff is so gentle and patient with him — he actually gets excited to go now! That says everything.</p>
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <div class="testimonial-author">
+            <div class="author-avatar">👩</div>
+            <div>
+              <p class="author-name">Sarah M.</p>
+              <p class="author-pet">🐕 Max's mom · Golden Retriever</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal d2">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">I was nervous bringing my anxious rescue poodle here for the first time, but Annie's team was absolutely incredible. They took their time, kept him calm, and he came out looking absolutely gorgeous. We're customers for life! Thank you so much!</p>
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <div class="testimonial-author">
+            <div class="author-avatar">👨</div>
+            <div>
+              <p class="author-name">James R.</p>
+              <p class="author-pet">🐩 Biscuit's dad · Rescue Poodle</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal d3">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">Finally a groomer who doesn't stress out my cat! Luna used to come home traumatized, but Annie's is different — they're so patient and gentle with her. The cat grooming package is worth every penny. She looks like royalty and purrs all the way home!</p>
+          <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          <div class="testimonial-author">
+            <div class="author-avatar">👩</div>
+            <div>
+              <p class="author-name">Maria T.</p>
+              <p class="author-pet">🐱 Luna's mom · Domestic Longhair</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       FAQ
+  ======================== -->
+  <section id="faq">
+    <div class="container">
+      <div class="faq-header reveal">
+        <span class="section-tag">Got Questions?</span>
+        <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+        <p class="section-subtitle" style="margin:12px auto 0;">Everything you need to know before bringing your furry friend to see us.</p>
+      </div>
+
+      <div class="faq-list">
+
+        <div class="faq-item reveal d1">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How often should I get my dog groomed?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              It depends on your dog's breed, coat type, and lifestyle. Generally, most dogs benefit from grooming every 4–8 weeks. Short-haired breeds may go longer between visits, while long-haired or curly-coated breeds (like Poodles or Doodles) typically need grooming every 4–6 weeks to prevent matting and keep their coat healthy.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal d2">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What should I do to prepare my pet for their grooming appointment?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              We recommend a short walk before the appointment to help your pet relax. Make sure your pet is up to date on vaccinations (we require proof for new clients). If your pet has any anxiety or skin sensitivities, please let us know when booking so we can prepare accordingly. No need to bathe them beforehand — that's our job!
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal d3">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Do you use safe, pet-friendly shampoos and products?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Absolutely! We exclusively use pet-safe, dermatologist-tested shampoos and conditioners that are free from harsh chemicals. We offer hypoallergenic and natural options for pets with sensitive skin, allergies, or specific coat needs. Your pet's health and safety is always our #1 priority.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal d1">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How long does a grooming appointment typically take?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Appointment duration depends on the service and your pet's size, coat type, and temperament. A basic bath & brush for a small dog may take 1–1.5 hours, while a full groom for a large dog with a complex coat might take 2–3 hours. We'll give you a time estimate when you book and notify you when your pet is ready for pickup.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal d2">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Do you groom cats, and what services are available for them?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Yes! We love our feline friends. Our cat grooming package (starting at $65) includes a bath, blow-dry, brush-out, nail trim, and ear cleaning. We also offer the popular "lion cut" for longhaired cats who overheat or have severe matting. Our groomers are specially trained in cat handling to ensure a calm, safe, and stress-minimized experience.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       CONTACT
+  ======================== -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-header reveal">
+        <span class="section-tag">Book an Appointment</span>
+        <h2 class="section-title">Come Visit <span>Our Salon</span></h2>
+        <p class="section-subtitle" style="margin:12px auto 0;">Ready to treat your pet? Drop us a message or give us a call — we'd love to meet your furry family member!</p>
+      </div>
+
+      <div class="contact-grid">
+
+        <!-- Info Column -->
+        <div class="contact-info reveal-left">
+          <div class="contact-info-card">
+            <h3>📍 Find Us</h3>
+            <div class="contact-detail">
+              <span class="icon">🗺️</span>
+              <div>
+                <strong>Address</strong>
+                4853 Barnes Rd,<br />Colorado Springs, CO 80917
+              </div>
+            </div>
+            <div class="contact-detail">
+              <span class="icon">📞</span>
+              <div>
+                <strong>Phone</strong>
+                <a href="tel:+17195551234" style="color:var(--coral);font-weight:700;">(719) 555-1234</a>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <span class="icon">✉️</span>
+              <div>
+                <strong>Email</strong>
+                hello@anniespetsalon.com
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <h3>🕐 Hours of Operation</h3>
+            <div class="hours-grid">
+              <div class="hours-row">
+                <span class="day">Monday</span>
+                <span class="time">8:00 AM – 5:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span class="day">Tuesday</span>
+                <span class="time">8:00 AM – 5:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span class="day">Wednesday</span>
+                <span class="time">8:00 AM – 5:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span class="day">Thursday</span>
+                <span class="time">8:00 AM – 5:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span class="day">Friday</span>
+                <span class="time">8:00 AM – 5:00 PM</span>
+              </div>
+              <div class="hours-row">
+                <span class="day">Saturday</span>
+                <span class="time">8:00 AM – 5:00 PM</span>
+              </div>
+              <div class="hours-row closed">
+                <span class="day">Sunday</span>
+                <span class="time">Closed</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-map-placeholder">
+            🗺️
+            <p>4853 Barnes Rd, Colorado Springs, CO 80917</p>
+            <a href="https://maps.google.com/?q=4853+Barnes+Rd+Colorado+Springs+CO+80917" target="_blank" rel="noopener" style="display:inline-block;margin-top:12px;" class="btn btn-green" style="font-size:0.85rem;padding:10px 20px;">
+              📍 Open in Maps
+            </a>
+          </div>
+        </div>
+
+        <!-- Form Column -->
+        <div class="contact-form-card reveal-right">
+          <h3>🐾 Request an Appointment</h3>
+          <p>Fill out the form below and we'll get back to you within a few hours to confirm your booking!</p>
+
+          <form id="appointmentForm" onsubmit="handleSubmit(event)" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="ownerName">Your Name <span>*</span></label>
+                <input type="text" id="ownerName" name="ownerName" placeholder="Jane Smith" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number <span>*</span></label>
+                <input type="tel" id="phone" name="phone" placeholder="(719) 555-0000" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="jane@email.com" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="petName">Pet's Name <span>*</span></label>
+                <input type="text" id="petName" name="petName" placeholder="Fluffy" required />
+              </div>
+              <div class="form-group">
+                <label for="petType">Pet Type <span>*</span></label>
+                <select id="petType" name="petType" required>
+                  <option value="" disabled selected>Select...</option>
+                  <option value="dog">🐶 Dog</option>
+                  <option value="cat">🐱 Cat</option>
+                  <option value="other">🐾 Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="service">Service Requested</label>
+                <select id="service" name="service">
+                  <option value="" disabled selected>Select service...</option>
+                  <option value="bath-brush">Bath &amp; Brush — $35+</option>
+                  <option value="full-groom">Full Groom — $55+</option>
+                  <option value="puppy">Puppy's First Groom — $40</option>
+                  <option value="nail-trim">Nail Trim — $15</option>
+                  <option value="teeth">Teeth Brushing — $10</option>
+                  <option value="deshed">De-Shedding Treatment — $45+</option>
+                  <option value="flea">Flea &amp; Tick Bath — $50+</option>
+                  <option value="cat">Cat Grooming — $65+</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="date">Preferred Date</label>
+                <input type="date" id="date" name="date" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="notes">Additional Notes</label>
+              <textarea id="notes" name="notes" placeholder="Tell us anything helpful — breed, coat type, allergies, anxiety, special requests..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-coral form-submit">
+              🐾 Send Appointment Request
+            </button>
+            <p class="form-note">We'll confirm your appointment within a few hours. No spam, ever!</p>
+          </form>
+
+          <div class="form-success" id="formSuccess">
+            🎉 Thank you! We received your request and will be in touch shortly to confirm your appointment. We can't wait to meet your furry friend!
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       FOOTER
+  ======================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">🐾 Annie's Pet Salon</div>
+          <p>Where every pet is family. Serving Colorado Springs and surrounding areas with professional, compassionate pet grooming since day one.</p>
+          <a href="tel:+17195551234" class="footer-phone-link">
+            📞 (719) 555-1234
+          </a>
+        </div>
+
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Our Services</a></li>
+            <li><a href="#why">Why Choose Us</a></li>
+            <li><a href="#testimonials">Customer Reviews</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Book an Appointment</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Bath &amp; Brush — $35+</a></li>
+            <li><a href="#services">Full Groom — $55+</a></li>
+            <li><a href="#services">Puppy's First Groom — $40</a></li>
+            <li><a href="#services">Nail Trim — $15</a></li>
+            <li><a href="#services">Cat Grooming — $65+</a></li>
+            <li><a href="#services">De-Shedding — $45+</a></li>
+          </ul>
+
+          <h4 style="margin-top:24px;">Visit Us</h4>
+          <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.65;">
+            4853 Barnes Rd<br />
+            Colorado Springs, CO 80917<br />
+            Mon–Sat: 8 AM – 5 PM<br />
+            Sunday: Closed
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2024 Annie's Pet Salon. All rights reserved. | 4853 Barnes Rd, Colorado Springs, CO 80917</p>
+        <p class="kinetic-credit">Website by <a href="#" rel="noopener">Kinetic Digital</a> 🚀</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ========================
+       JAVASCRIPT
+  ======================== -->
+  <script>
+    // ---- NAV: Hamburger ----
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    function closeMobile() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+
+    // ---- NAV: Shadow on scroll ----
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('nav');
+      if (window.scrollY > 40) {
+        nav.style.boxShadow = '0 4px 28px rgba(0,0,0,0.14)';
+      } else {
+        nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+      }
+    }, { passive: true });
+
+    // ---- SCROLL ANIMATIONS ----
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => revealObs.observe(el));
+
+    // ---- FAQ ACCORDION ----
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      // Open this one if it wasn't already
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // ---- FORM SUBMIT ----
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const name = form.ownerName.value.trim();
+      const phone = form.phone.value.trim();
+      const petName = form.petName.value.trim();
+      const petType = form.petType.value;
+
+      if (!name || !phone || !petName || !petType) {
+        alert('Please fill in all required fields (marked with *).');
+        return;
+      }
+
+      // Simulate submission
+      form.style.opacity = '0.5';
+      form.style.pointerEvents = 'none';
+      setTimeout(() => {
+        form.style.display = 'none';
+        document.getElementById('formSuccess').classList.add('show');
+      }, 800);
+    }
+
+    // ---- Animated stat counter ----
+    function animateCounters() {
+      const statNumbers = document.querySelectorAll('.stat-number, .hero-stat .number');
+      statNumbers.forEach(el => {
+        const text = el.textContent;
+        const match = text.match(/[\d.]+/);
+        if (!match) return;
+        const target = parseFloat(match[0]);
+        const suffix = text.replace(/[\d.]+/, '');
+        const isFloat = target % 1 !== 0;
+        let current = 0;
+        const increment = target / 50;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          el.textContent = (isFloat ? current.toFixed(1) : Math.floor(current)) + suffix;
+        }, 30);
+      });
+    }
+
+    // Trigger counter animation when stats section is visible
+    const statsObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          statsObs.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const whySection = document.getElementById('why');
+    if (whySection) statsObs.observe(whySection);
+
+    // ---- Set min date for date picker ----
+    const dateInput = document.getElementById('date');
+    if (dateInput) {
+      const today = new Date();
+      const tomorrow = new Date(today);
+      tomorrow.setDate(today.getDate() + 1);
+      dateInput.min = tomorrow.toISOString().split('T')[0];
+    }
+  </script>
+
+</body>
+</html>

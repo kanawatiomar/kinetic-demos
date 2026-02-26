@@ -1,0 +1,2117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Honest Accurate Auto Service | Colorado Springs, CO</title>
+  <meta name="description" content="Top-rated auto repair in Colorado Springs. Honest work, accurate results. ASE Certified mechanics. Oil changes, brakes, engine diagnostics & more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --asphalt:    #1C1C1C;
+      --asphalt-mid: #2A2A2A;
+      --asphalt-light: #333333;
+      --red:        #D32F2F;
+      --red-dark:   #B71C1C;
+      --red-light:  #EF5350;
+      --yellow:     #FFC107;
+      --yellow-dark:#F9A825;
+      --concrete:   #E0E0E0;
+      --concrete-mid: #BDBDBD;
+      --white:      #FFFFFF;
+      --text-muted: #9E9E9E;
+      --font-head:  'Barlow Condensed', sans-serif;
+      --font-body:  'Source Sans 3', sans-serif;
+      --radius:     4px;
+      --shadow-hard: 4px 4px 0px rgba(0,0,0,0.6);
+      --shadow-red:  0 0 30px rgba(211,47,47,0.3);
+      --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-body);
+      background: var(--asphalt);
+      color: var(--concrete);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ===== TEXTURE OVERLAY ===== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%231C1C1C'/%3E%3Crect width='1' height='1' x='0' y='0' fill='%23242424' opacity='0.5'/%3E%3Crect width='1' height='1' x='2' y='2' fill='%23222222' opacity='0.3'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+    body > * { position: relative; z-index: 1; }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.85);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+
+    /* ===== TYPOGRAPHY HELPERS ===== */
+    .section-label {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .section-label::before, .section-label::after {
+      content: '';
+      display: block;
+      height: 2px;
+      background: var(--yellow);
+    }
+    .section-label::before { width: 2rem; }
+    .section-label::after { width: 1rem; }
+
+    h2.section-title {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.0;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1.25rem;
+    }
+    h2.section-title span { color: var(--red); }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 580px;
+      line-height: 1.7;
+    }
+
+    /* ===== LAYOUT ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    section { padding: 6rem 0; }
+
+    /* ===== DIVIDER ===== */
+    .section-divider {
+      width: 100%;
+      height: 6px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--yellow) 0px, var(--yellow) 30px,
+        var(--asphalt) 30px, var(--asphalt) 40px,
+        var(--red) 40px, var(--red) 70px,
+        var(--asphalt) 70px, var(--asphalt) 80px
+      );
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.85rem 2rem;
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      box-shadow: var(--shadow-hard);
+    }
+    .btn-primary:hover {
+      background: var(--red-dark);
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
+    }
+    .btn-secondary {
+      background: var(--yellow);
+      color: var(--asphalt);
+      box-shadow: var(--shadow-hard);
+    }
+    .btn-secondary:hover {
+      background: var(--yellow-dark);
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid var(--white);
+    }
+    .btn-outline:hover {
+      background: var(--white);
+      color: var(--asphalt);
+      transform: translate(-2px, -2px);
+    }
+
+    /* ===== NAVIGATION ===== */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: var(--asphalt);
+      border-bottom: 3px solid var(--red);
+      transition: var(--transition);
+    }
+    #navbar.scrolled {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .nav-logo .logo-main {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      color: var(--white);
+      letter-spacing: 0.05em;
+    }
+    .nav-logo .logo-sub {
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: var(--yellow);
+      letter-spacing: 0.2em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.4rem 0.75rem;
+      color: var(--concrete-mid);
+      transition: var(--transition);
+      border-radius: var(--radius);
+    }
+    .nav-links a:hover {
+      color: var(--yellow);
+      background: rgba(255,193,7,0.08);
+    }
+    .nav-cta {
+      background: var(--red);
+      color: var(--white) !important;
+      padding: 0.45rem 1rem !important;
+    }
+    .nav-cta:hover {
+      background: var(--red-dark) !important;
+      color: var(--white) !important;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 0.5rem;
+      background: none;
+      border: 1px solid var(--asphalt-light);
+      border-radius: var(--radius);
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--concrete);
+      transition: var(--transition);
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0; right: 0;
+      background: var(--asphalt-mid);
+      border-top: 2px solid var(--red);
+      padding: 1rem 0;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a {
+      display: block;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--concrete);
+      padding: 0.75rem 1.5rem;
+      transition: var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--yellow); background: rgba(255,193,7,0.06); }
+    .mobile-menu .mobile-cta {
+      margin: 0.5rem 1.5rem 0;
+      background: var(--red);
+      color: var(--white) !important;
+      padding: 0.75rem 1.5rem !important;
+      border-radius: var(--radius);
+      text-align: center;
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 70px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 75% 50%, rgba(211,47,47,0.08) 0%, transparent 70%),
+        linear-gradient(180deg, var(--asphalt) 0%, #111 100%);
+    }
+    /* Gear pattern background */
+    .hero-pattern {
+      position: absolute;
+      right: -5%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 55%;
+      height: 110%;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='80' fill='none' stroke='%23fff' stroke-width='8'/%3E%3Ccircle cx='100' cy='100' r='50' fill='none' stroke='%23fff' stroke-width='5'/%3E%3Ccircle cx='100' cy='100' r='15' fill='%23fff'/%3E%3Crect x='94' y='10' width='12' height='30' rx='6' fill='%23fff'/%3E%3Crect x='94' y='160' width='12' height='30' rx='6' fill='%23fff'/%3E%3Crect x='10' y='94' width='30' height='12' rx='6' fill='%23fff'/%3E%3Crect x='160' y='94' width='30' height='12' rx='6' fill='%23fff'/%3E%3Crect x='33' y='33' width='12' height='30' rx='6' fill='%23fff' transform='rotate(45 33 33)'/%3E%3Crect x='157' y='33' width='12' height='30' rx='6' fill='%23fff' transform='rotate(-45 157 33)'/%3E%3Crect x='33' y='157' width='12' height='30' rx='6' fill='%23fff' transform='rotate(-45 33 157)'/%3E%3Crect x='157' y='157' width='12' height='30' rx='6' fill='%23fff' transform='rotate(45 157 157)'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    .hero-stripe {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      background: var(--red);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,193,7,0.12);
+      border: 1px solid rgba(255,193,7,0.3);
+      border-radius: 2px;
+      padding: 0.4rem 0.9rem;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--yellow);
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow svg { width: 14px; height: 14px; fill: var(--yellow); }
+    h1.hero-title {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: clamp(3.5rem, 9vw, 7.5rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    h1.hero-title .red { color: var(--red); }
+    h1.hero-title .yellow { color: var(--yellow); }
+    .hero-tagline {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--concrete-mid);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-tagline::before {
+      content: '';
+      display: block;
+      width: 3rem;
+      height: 3px;
+      background: var(--red);
+    }
+    .hero-location {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .hero-location svg { width: 14px; height: 14px; fill: var(--yellow); }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+    .call-number {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: var(--yellow);
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+    }
+    .call-number svg { width: 22px; height: 22px; fill: var(--yellow); }
+    .call-number:hover { color: var(--yellow-dark); transform: scale(1.03); }
+    .hero-badges {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-badge-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .hero-badge-item .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--yellow);
+      flex-shrink: 0;
+    }
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-family: var(--font-head);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    .scroll-indicator svg { width: 20px; height: 20px; stroke: var(--text-muted); }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ===== TRUST BAR ===== */
+    #trust-bar {
+      background: var(--asphalt-mid);
+      padding: 1.5rem 0;
+      border-top: 2px solid var(--red);
+      border-bottom: 2px solid var(--red);
+    }
+    .trust-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 2rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .trust-badge:last-child { border-right: none; }
+    .trust-badge-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--red);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-hard);
+    }
+    .trust-badge-text strong {
+      display: block;
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      line-height: 1.1;
+    }
+    .trust-badge-text span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== ABOUT ===== */
+    #about {
+      background: var(--asphalt);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-img-frame {
+      background: var(--asphalt-mid);
+      border: 2px solid var(--asphalt-light);
+      border-radius: var(--radius);
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-img-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(211,47,47,0.08) 0%, transparent 60%);
+    }
+    .about-img-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      color: var(--text-muted);
+    }
+    .about-img-placeholder svg {
+      width: 80px;
+      height: 80px;
+      stroke: var(--asphalt-light);
+      fill: none;
+    }
+    .about-img-placeholder span {
+      font-family: var(--font-head);
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    /* Corner accents */
+    .about-img-frame::after {
+      content: '';
+      position: absolute;
+      top: 1rem; left: 1rem;
+      width: 30px; height: 30px;
+      border-top: 3px solid var(--yellow);
+      border-left: 3px solid var(--yellow);
+    }
+    .corner-br {
+      position: absolute;
+      bottom: 1rem; right: 1rem;
+      width: 30px; height: 30px;
+      border-bottom: 3px solid var(--red);
+      border-right: 3px solid var(--red);
+    }
+    .about-stat-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--asphalt-light);
+      border: 1px solid var(--asphalt-light);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-top: 1.5rem;
+    }
+    .about-stat {
+      background: var(--asphalt-mid);
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .about-stat .num {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 2.2rem;
+      color: var(--yellow);
+      line-height: 1;
+      display: block;
+    }
+    .about-stat .lbl {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-family: var(--font-head);
+    }
+    .about-content .promises {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .promise-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.9rem 1rem;
+      background: var(--asphalt-mid);
+      border-left: 3px solid var(--red);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+    .promise-item .check {
+      width: 22px;
+      height: 22px;
+      background: var(--red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 0.7rem;
+      color: var(--white);
+      font-weight: 700;
+    }
+    .promise-item strong {
+      display: block;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      color: var(--white);
+      letter-spacing: 0.04em;
+    }
+    .promise-item p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    /* ===== SERVICES ===== */
+    #services {
+      background: #111111;
+      position: relative;
+      overflow: hidden;
+    }
+    #services::before {
+      content: 'SERVICES';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 18vw;
+      color: rgba(255,255,255,0.02);
+      text-transform: uppercase;
+      letter-spacing: -0.05em;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5px;
+      background: var(--asphalt-light);
+      border: 1.5px solid var(--asphalt-light);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .service-card {
+      background: var(--asphalt-mid);
+      padding: 2rem 1.5rem;
+      position: relative;
+      transition: var(--transition);
+      cursor: default;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--red);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: left;
+    }
+    .service-card:hover { background: var(--asphalt-light); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:hover .service-icon { background: var(--red); }
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(211,47,47,0.15);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 1.25rem;
+      transition: var(--transition);
+    }
+    .service-card h3 {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .service-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .service-num {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 2.5rem;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+    }
+
+    /* ===== WHY CHOOSE US ===== */
+    #why {
+      background: var(--red);
+      position: relative;
+      overflow: hidden;
+    }
+    #why::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 0 L60 0 L60 60 L0 60 Z' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3Cline x1='0' y1='30' x2='60' y2='30' stroke='rgba(255,255,255,0.04)' stroke-width='0.5'/%3E%3Cline x1='30' y1='0' x2='30' y2='60' stroke='rgba(255,255,255,0.04)' stroke-width='0.5'/%3E%3C/svg%3E");
+    }
+    .why-inner { position: relative; z-index: 2; }
+    .why-label {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 0.75rem;
+    }
+    .why-inner h2 {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.0;
+      margin-bottom: 3.5rem;
+    }
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(0,0,0,0.2);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 3.5rem;
+    }
+    .stat-box {
+      background: rgba(0,0,0,0.15);
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      transition: var(--transition);
+    }
+    .stat-box:hover { background: rgba(0,0,0,0.25); }
+    .stat-number {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      color: var(--yellow);
+      line-height: 1;
+      display: block;
+    }
+    .stat-label {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.7);
+      margin-top: 0.25rem;
+    }
+    .stat-sublabel {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 0.25rem;
+    }
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .reason-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .reason-num {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 2.5rem;
+      color: rgba(255,255,255,0.15);
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 2.5rem;
+    }
+    .reason-text strong {
+      display: block;
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      color: var(--white);
+      letter-spacing: 0.04em;
+    }
+    .reason-text p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.65);
+      margin-top: 0.25rem;
+      line-height: 1.5;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    #testimonials {
+      background: var(--asphalt);
+    }
+    .testimonials-header { margin-bottom: 3rem; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .testimonial-card {
+      background: var(--asphalt-mid);
+      border: 1px solid var(--asphalt-light);
+      border-radius: var(--radius);
+      padding: 2rem;
+      position: relative;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .testimonial-card:hover {
+      border-color: var(--red);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    }
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-family: var(--font-head);
+      font-size: 6rem;
+      font-weight: 900;
+      color: rgba(211,47,47,0.12);
+      line-height: 1;
+    }
+    .stars {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 1rem;
+    }
+    .star {
+      color: var(--yellow);
+      font-size: 1rem;
+    }
+    .yelp-tag {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-left: 0.5rem;
+      align-self: center;
+      background: rgba(255,255,255,0.05);
+      padding: 0.15rem 0.5rem;
+      border-radius: 2px;
+    }
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: var(--concrete-mid);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--asphalt-light);
+    }
+    .author-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 1.2rem;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .author-name {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .author-detail {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .yelp-source {
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+    .yelp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(211,47,47,0.12);
+      border: 1px solid rgba(211,47,47,0.3);
+      border-radius: 30px;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .yelp-badge strong { color: var(--red-light); }
+    .yelp-stars {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      color: var(--red-light);
+    }
+
+    /* ===== FAQ ===== */
+    #faq {
+      background: #111111;
+    }
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.8fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .faq-aside {
+      position: sticky;
+      top: 90px;
+    }
+    .faq-aside .section-label { justify-content: flex-start; }
+    .faq-aside h2 {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: clamp(2.4rem, 4vw, 3.5rem);
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1.0;
+      margin-bottom: 1.25rem;
+    }
+    .faq-aside h2 span { color: var(--red); }
+    .faq-aside p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .faq-cta-box {
+      background: var(--red);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-hard);
+    }
+    .faq-cta-box p {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+    .faq-cta-box .call-faq {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--yellow);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .accordion { display: flex; flex-direction: column; gap: 0.75rem; }
+    .faq-item {
+      background: var(--asphalt-mid);
+      border: 1px solid var(--asphalt-light);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+    .faq-item.open { border-color: var(--red); }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      text-align: left;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      transition: color 0.3s ease;
+      gap: 1rem;
+    }
+    .faq-item.open .faq-question { color: var(--yellow); }
+    .faq-toggle {
+      width: 28px;
+      height: 28px;
+      background: var(--asphalt-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: var(--transition);
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+    .faq-item.open .faq-toggle {
+      background: var(--red);
+      color: var(--white);
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .faq-answer-inner {
+      padding: 0 1.5rem 1.25rem;
+      font-size: 0.93rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; }
+
+    /* ===== CONTACT ===== */
+    #contact {
+      background: var(--asphalt);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-info { position: sticky; top: 90px; }
+    .hours-card {
+      background: var(--asphalt-mid);
+      border: 1px solid var(--asphalt-light);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+    .hours-header {
+      background: var(--red);
+      padding: 0.75rem 1.25rem;
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--white);
+    }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid var(--asphalt-light);
+      transition: background 0.2s;
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row:hover { background: var(--asphalt-light); }
+    .hours-day {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      color: var(--concrete);
+    }
+    .hours-time {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .hours-time.closed {
+      color: var(--red-light);
+      font-weight: 600;
+    }
+    .hours-time.open {
+      color: #66BB6A;
+    }
+    .contact-address {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    .contact-item svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--yellow);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .contact-item a { color: var(--yellow); transition: color 0.2s; }
+    .contact-item a:hover { color: var(--yellow-dark); }
+    /* Appointment Form */
+    .appt-form-wrap {
+      background: var(--asphalt-mid);
+      border: 1px solid var(--asphalt-light);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .appt-form-header {
+      background: linear-gradient(135deg, var(--asphalt-light), var(--asphalt-mid));
+      padding: 1.5rem 2rem;
+      border-bottom: 3px solid var(--red);
+    }
+    .appt-form-header h3 {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .appt-form-header p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+    .appt-form {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--concrete-mid);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--asphalt);
+      border: 1.5px solid var(--asphalt-light);
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.93rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      width: 100%;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--yellow);
+      box-shadow: 0 0 0 3px rgba(255,193,7,0.1);
+    }
+    .form-group select option { background: var(--asphalt-mid); }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+    .form-submit { margin-top: 0.5rem; }
+    .form-submit .btn { width: 100%; justify-content: center; font-size: 1.15rem; padding: 1rem; }
+    .form-disclaimer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0D0D0D;
+      border-top: 3px solid var(--asphalt-mid);
+      padding: 3rem 0 1.5rem;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--asphalt-light);
+    }
+    .footer-brand .logo-main {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1;
+    }
+    .footer-brand .logo-sub {
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--yellow);
+      margin-bottom: 1rem;
+    }
+    .footer-brand p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-top: 0.75rem;
+    }
+    .footer-col h4 {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--white);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--red);
+      display: inline-block;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.5rem; }
+    .footer-col ul li a {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--yellow); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .footer-bottom p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .footer-bottom a { color: var(--yellow); }
+    .footer-bottom a:hover { color: var(--yellow-dark); }
+    .kinetic-credit {
+      font-size: 0.82rem;
+      color: #555;
+    }
+    .kinetic-credit a { color: #888; transition: color 0.2s; }
+    .kinetic-credit a:hover { color: var(--yellow); }
+
+    /* ===== PHONE FLOAT ===== */
+    .phone-float {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 999;
+      display: none;
+    }
+    .phone-float a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 58px;
+      height: 58px;
+      background: var(--red);
+      border-radius: 50%;
+      box-shadow: 0 4px 20px rgba(211,47,47,0.5);
+      animation: pulse-phone 2s infinite;
+    }
+    .phone-float a svg { width: 26px; height: 26px; fill: var(--white); }
+    @keyframes pulse-phone {
+      0%, 100% { box-shadow: 0 4px 20px rgba(211,47,47,0.5); }
+      50% { box-shadow: 0 4px 35px rgba(211,47,47,0.8); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { gap: 3rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+    @media (max-width: 768px) {
+      section { padding: 4rem 0; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      h1.hero-title { font-size: clamp(3rem, 12vw, 5rem); }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { order: -1; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .stats-row { grid-template-columns: 1fr; }
+      .reasons-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .faq-layout { grid-template-columns: 1fr; }
+      .faq-aside { position: static; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-info { position: static; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-brand { grid-column: auto; }
+      .trust-badge { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .hero-badges { flex-wrap: wrap; gap: 1rem; }
+      .phone-float { display: block; }
+      .form-row { grid-template-columns: 1fr; }
+      .services-header { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .about-stat-strip { grid-template-columns: 1fr; }
+      .hero-ctas { flex-direction: column; align-items: flex-start; }
+      .trust-bar-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header id="navbar">
+    <div class="container">
+      <nav class="nav-inner">
+        <a href="#hero" class="nav-logo">
+          <span class="logo-main">Honest Accurate</span>
+          <span class="logo-sub">Auto Service · Colorado Springs</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact" class="nav-cta">Book Appointment</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#about" class="mobile-link">About</a>
+      <a href="#services" class="mobile-link">Services</a>
+      <a href="#why" class="mobile-link">Why Us</a>
+      <a href="#testimonials" class="mobile-link">Reviews</a>
+      <a href="#faq" class="mobile-link">FAQ</a>
+      <a href="#contact" class="mobile-link mobile-cta">📅 Book Appointment</a>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-stripe"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow reveal">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+          Top-Rated on Yelp · Colorado Springs
+        </div>
+        <h1 class="hero-title reveal delay-1">
+          <span>Honest</span><br>
+          <span class="red">Accurate</span><br>
+          <span>Auto</span>
+        </h1>
+        <div class="hero-tagline reveal delay-2">
+          Honest Work. Accurate Results.
+        </div>
+        <div class="hero-location reveal delay-2">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Colorado Springs, CO · Locally Owned & Operated
+        </div>
+        <div class="hero-ctas reveal delay-3">
+          <a href="tel:+17195550180" class="call-number">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            (719) 555-0180
+          </a>
+          <a href="#contact" class="btn btn-secondary">Book Appointment</a>
+          <a href="#services" class="btn btn-outline">Our Services</a>
+        </div>
+        <div class="hero-badges reveal delay-4">
+          <div class="hero-badge-item"><span class="dot"></span>ASE Certified Mechanics</div>
+          <div class="hero-badge-item"><span class="dot"></span>No Upselling — Ever</div>
+          <div class="hero-badge-item"><span class="dot"></span>12-Month Warranty</div>
+          <div class="hero-badge-item"><span class="dot"></span>Free Estimates</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- ===== TRUST BADGES ===== -->
+  <div id="trust-bar">
+    <div class="container">
+      <div class="trust-bar-inner">
+        <div class="trust-badge reveal">
+          <div class="trust-badge-icon">🔧</div>
+          <div class="trust-badge-text">
+            <strong>ASE Certified</strong>
+            <span>All Our Technicians</span>
+          </div>
+        </div>
+        <div class="trust-badge reveal delay-1">
+          <div class="trust-badge-icon">🏆</div>
+          <div class="trust-badge-text">
+            <strong>BBB Accredited</strong>
+            <span>A+ Rating</span>
+          </div>
+        </div>
+        <div class="trust-badge reveal delay-2">
+          <div class="trust-badge-icon">🛡️</div>
+          <div class="trust-badge-text">
+            <strong>12-Mo Warranty</strong>
+            <span>Parts & Labor Guaranteed</span>
+          </div>
+        </div>
+        <div class="trust-badge reveal delay-3">
+          <div class="trust-badge-icon">💰</div>
+          <div class="trust-badge-text">
+            <strong>Honest Pricing</strong>
+            <span>No Hidden Fees, Ever</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual reveal-left">
+          <div class="about-img-frame">
+            <div class="about-img-placeholder">
+              <svg viewBox="0 0 24 24" stroke-width="0.8">
+                <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>
+                <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/>
+                <path d="M5 17h-2v-6l2-5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5"/>
+              </svg>
+              <span>Your Local Shop Photo</span>
+            </div>
+            <div class="corner-br"></div>
+          </div>
+          <div class="about-stat-strip">
+            <div class="about-stat">
+              <span class="num">20+</span>
+              <span class="lbl">Years Serving COS</span>
+            </div>
+            <div class="about-stat">
+              <span class="num">5★</span>
+              <span class="lbl">Yelp Rating</span>
+            </div>
+            <div class="about-stat">
+              <span class="num">12k+</span>
+              <span class="lbl">Cars Serviced</span>
+            </div>
+            <div class="about-stat">
+              <span class="num">100%</span>
+              <span class="lbl">Transparent Pricing</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-content reveal-right">
+          <div class="section-label">About Us</div>
+          <h2 class="section-title">We're Your <span>Neighbors</span>, Not a Dealer</h2>
+          <p class="section-sub">Honest Accurate Auto Service has been a cornerstone of Colorado Springs since we opened our doors. We're a family-owned shop built on one simple principle: treat every customer the way we'd want our own family treated.</p>
+          <div class="promises">
+            <div class="promise-item">
+              <span class="check">✓</span>
+              <div>
+                <strong>Transparent Pricing — Always</strong>
+                <p>You'll see the full cost before we touch your car. No surprises, no add-ons, no games.</p>
+              </div>
+            </div>
+            <div class="promise-item">
+              <span class="check">✓</span>
+              <div>
+                <strong>Zero Upselling Policy</strong>
+                <p>We fix what's broken and only recommend what's genuinely needed. Your wallet is safe here.</p>
+              </div>
+            </div>
+            <div class="promise-item">
+              <span class="check">✓</span>
+              <div>
+                <strong>Locally Owned Since Day One</strong>
+                <p>We live in Colorado Springs. Our reputation is built on every car we service. It matters to us.</p>
+              </div>
+            </div>
+            <div class="promise-item">
+              <span class="check">✓</span>
+              <div>
+                <strong>Expert Mechanics You Can Trust</strong>
+                <p>ASE-certified technicians with decades of combined experience on all makes and models.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services">
+    <div class="container">
+      <div class="services-header">
+        <div>
+          <div class="section-label">What We Do</div>
+          <h2 class="section-title">Our <span>Services</span></h2>
+        </div>
+        <a href="#contact" class="btn btn-secondary reveal">Schedule Service →</a>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal delay-1">
+          <span class="service-num">01</span>
+          <div class="service-icon">🛢️</div>
+          <h3>Oil Changes</h3>
+          <p>Conventional, synthetic blend, and full synthetic. Quick, clean, done right — every time. We check filters and fluids while we're in there.</p>
+        </div>
+        <div class="service-card reveal delay-2">
+          <span class="service-num">02</span>
+          <div class="service-icon">🔴</div>
+          <h3>Brake Service</h3>
+          <p>Pads, rotors, calipers, and brake fluid flushes. Your safety is our priority. We'll tell you exactly what's worn and what's fine.</p>
+        </div>
+        <div class="service-card reveal delay-3">
+          <span class="service-num">03</span>
+          <div class="service-icon">🔍</div>
+          <h3>Engine Diagnostics</h3>
+          <p>Check engine light? We have state-of-the-art diagnostic equipment to pinpoint issues fast — and explain them in plain English.</p>
+        </div>
+        <div class="service-card reveal delay-4">
+          <span class="service-num">04</span>
+          <div class="service-icon">⚙️</div>
+          <h3>Transmission Repair</h3>
+          <p>Automatic and manual transmission service, fluid changes, and full rebuilds. One of our specialties — done to last.</p>
+        </div>
+        <div class="service-card reveal delay-1">
+          <span class="service-num">05</span>
+          <div class="service-icon">🔄</div>
+          <h3>Tire Service</h3>
+          <p>Rotation, balancing, flat repair, and new tire installation. We'll help you pick the right tire for Colorado conditions and your budget.</p>
+        </div>
+        <div class="service-card reveal delay-2">
+          <span class="service-num">06</span>
+          <div class="service-icon">❄️</div>
+          <h3>AC Repair</h3>
+          <p>Recharge, leak detection, compressor replacement. Colorado summers are no joke — we'll get your AC blowing cold again fast.</p>
+        </div>
+        <div class="service-card reveal delay-3">
+          <span class="service-num">07</span>
+          <div class="service-icon">⚡</div>
+          <h3>Electrical Systems</h3>
+          <p>Batteries, alternators, starters, wiring, and complex electrical diagnosis. Modern cars are computers — we know how to talk to them.</p>
+        </div>
+        <div class="service-card reveal delay-4">
+          <span class="service-num">08</span>
+          <div class="service-icon">📋</div>
+          <h3>State Inspections</h3>
+          <p>Colorado state emissions and safety inspections performed by certified inspectors. Fast turnaround — most done same day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY CHOOSE US ===== -->
+  <section id="why">
+    <div class="container">
+      <div class="why-inner">
+        <div class="why-label">Why Choose Us</div>
+        <h2 class="reveal">The Numbers<br>Don't Lie.</h2>
+        <div class="stats-row">
+          <div class="stat-box reveal delay-1">
+            <span class="stat-number" data-count="20">0</span>
+            <div class="stat-label">Years in Business</div>
+            <div class="stat-sublabel">Serving Colorado Springs</div>
+          </div>
+          <div class="stat-box reveal delay-2">
+            <span class="stat-number" data-count="12000" data-suffix="+">0</span>
+            <div class="stat-label">Cars Serviced</div>
+            <div class="stat-sublabel">And counting</div>
+          </div>
+          <div class="stat-box reveal delay-3">
+            <span class="stat-number" data-count="98" data-suffix="%">0</span>
+            <div class="stat-label">5-Star Reviews</div>
+            <div class="stat-sublabel">On Yelp &amp; Google</div>
+          </div>
+        </div>
+        <div class="reasons-grid">
+          <div class="reason-item reveal delay-1">
+            <div class="reason-num">01</div>
+            <div class="reason-text">
+              <strong>We Explain Everything</strong>
+              <p>No jargon. We show you the issue, explain the fix, and tell you the price before any work begins.</p>
+            </div>
+          </div>
+          <div class="reason-item reveal delay-2">
+            <div class="reason-num">02</div>
+            <div class="reason-text">
+              <strong>Same-Day Service</strong>
+              <p>Most repairs completed same day. We respect that your car is your livelihood, not a luxury.</p>
+            </div>
+          </div>
+          <div class="reason-item reveal delay-3">
+            <div class="reason-num">03</div>
+            <div class="reason-text">
+              <strong>Fair, Flat-Rate Pricing</strong>
+              <p>No inflated "shop rates." We charge what's fair — and we back every job with a 12-month warranty.</p>
+            </div>
+          </div>
+          <div class="reason-item reveal delay-1">
+            <div class="reason-num">04</div>
+            <div class="reason-text">
+              <strong>Family-Owned Values</strong>
+              <p>We built this shop on referrals. Happy customers are our best advertising — and our biggest motivation.</p>
+            </div>
+          </div>
+          <div class="reason-item reveal delay-2">
+            <div class="reason-num">05</div>
+            <div class="reason-text">
+              <strong>All Makes & Models</strong>
+              <p>Domestic, import, hybrid, diesel. If it has an engine, we can work on it.</p>
+            </div>
+          </div>
+          <div class="reason-item reveal delay-3">
+            <div class="reason-num">06</div>
+            <div class="reason-text">
+              <strong>Free Inspections with Service</strong>
+              <p>Every vehicle gets a complimentary multi-point inspection with any service appointment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="testimonials-header">
+        <div class="section-label reveal">Real Reviews</div>
+        <h2 class="section-title reveal delay-1">What Our <span>Customers</span> Say</h2>
+        <p class="section-sub reveal delay-2">Don't take our word for it. Here's what the people of Colorado Springs are saying about us on Yelp.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal delay-1">
+          <div class="stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <span class="yelp-tag">Yelp</span>
+          </div>
+          <p class="testimonial-text">"I've been burned by shops before — overcharged, unnecessary repairs, the whole song and dance. Honest Accurate is completely different. They looked at my brakes, told me only the front pads needed replacing, and didn't try to push the rear set (which was still fine). Total bill was less than half what the dealer quoted. I'm a customer for life."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: var(--red);">M</div>
+            <div>
+              <div class="author-name">Marcus T.</div>
+              <div class="author-detail">Colorado Springs · Toyota Tundra Owner</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal delay-2">
+          <div class="stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <span class="yelp-tag">Yelp</span>
+          </div>
+          <p class="testimonial-text">"Check engine light came on right before a road trip. I was panicking. Called these guys at 7:30 AM when they opened, dropped the car off, and they had it diagnosed and fixed by noon. It was a simple sensor — they could've easily told me it was something big and expensive, but they didn't. That kind of integrity is rare. Absolutely recommend."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: #1565C0;">S</div>
+            <div>
+              <div class="author-name">Sarah K.</div>
+              <div class="author-detail">Colorado Springs · Honda CR-V Owner</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal delay-3">
+          <div class="stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <span class="yelp-tag">Yelp</span>
+          </div>
+          <p class="testimonial-text">"My transmission was slipping and I was dreading the bill. They gave me an honest assessment — said it needed a fluid flush and a minor adjustment, not a full rebuild like another shop suggested. Saved me over $2,000. The car drives perfectly now. These guys are the real deal. I send everyone I know here."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: #2E7D32;">D</div>
+            <div>
+              <div class="author-name">Dave R.</div>
+              <div class="author-detail">Fountain, CO · Ford F-150 Owner</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="yelp-source reveal">
+        <div class="yelp-badge">
+          <div class="yelp-stars">★★★★★</div>
+          <span>Rated <strong>5.0 stars</strong> on Yelp · Top-rated auto repair in Colorado Springs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq">
+    <div class="container">
+      <div class="faq-layout">
+        <div class="faq-aside">
+          <div class="section-label">Common Questions</div>
+          <h2 class="reveal">Got <span>Questions?</span><br>We've Got Straight Answers.</h2>
+          <p class="reveal delay-1">No runaround. No mechanic-speak. Just honest answers to the questions we hear most.</p>
+          <div class="faq-cta-box reveal delay-2">
+            <p>Still have questions? Call us direct:</p>
+            <a href="tel:+17195550180" class="call-faq">
+              📞 (719) 555-0180
+            </a>
+          </div>
+        </div>
+        <div class="accordion reveal delay-1">
+          <div class="faq-item open">
+            <button class="faq-question">
+              How do I know if I really need a repair you recommend?
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Great question — and we love that you ask it. We will always show you the issue in person before any work begins. If you can't come in, we'll take photos or video of what we're seeing. You'll never be asked to approve a repair blind. And if something's borderline? We'll tell you it can wait and when to come back — because we'd rather have you trust us for 20 years than squeeze an extra $200 out of one visit.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              How long will my repair take?
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Most routine services (oil changes, brakes, tires) are done same day — often within a few hours. Larger jobs like transmission work or engine repairs may take 1–2 days depending on parts availability. We always give you an honest time estimate upfront and will call you if anything changes. We won't hold your car hostage.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              Do you work on all makes and models?
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes — we service all domestic and import vehicles including Toyota, Honda, Ford, Chevy, Dodge, Jeep, Subaru, BMW, Volkswagen, Kia, Hyundai, and more. We work on gas, diesel, and hybrid vehicles. The only thing we send elsewhere is major body work and frame damage — everything mechanical, we've got covered.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              What does your warranty cover?
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Every repair comes with a 12-month / 12,000-mile warranty on both parts and labor — whichever comes first. If anything we fixed fails within that window, we'll repair it at no charge. No fine print, no arguing. We stand behind our work because we take pride in it. Some specialty parts may carry manufacturer warranties that extend even longer.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">
+              How do I know your prices are fair?
+              <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Call around — we encourage it. Our prices are consistently 20–40% below dealership rates while using the same quality OEM or OEM-equivalent parts. We publish our most common service prices on request and will always give you a written estimate before starting work. We don't have "book rate" padding or artificial markups. You pay for the actual work done, period.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label reveal">Find Us & Book</div>
+      <h2 class="section-title reveal delay-1">Come See <span>Us</span></h2>
+      <div class="contact-grid" style="margin-top: 3rem;">
+        <div class="contact-info reveal-left">
+          <div class="contact-address">
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span>1234 Auto Center Drive<br>Colorado Springs, CO 80907</span>
+            </div>
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              <a href="tel:+17195550180">(719) 555-0180</a>
+            </div>
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <a href="mailto:info@honestaccurateauto.com">info@honestaccurateauto.com</a>
+            </div>
+          </div>
+          <div class="hours-card">
+            <div class="hours-header">📅 Business Hours</div>
+            <div class="hours-row">
+              <span class="hours-day">Monday – Friday</span>
+              <span class="hours-time open">7:30 AM – 5:30 PM</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Saturday</span>
+              <span class="hours-time open">8:00 AM – 1:00 PM</span>
+            </div>
+            <div class="hours-row">
+              <span class="hours-day">Sunday</span>
+              <span class="hours-time closed">Closed</span>
+            </div>
+          </div>
+          <div style="background: var(--asphalt-mid); border: 1px solid var(--asphalt-light); border-radius: var(--radius); overflow: hidden; height: 200px; display: flex; align-items: center; justify-content: center; position: relative;">
+            <div style="text-align: center; color: var(--text-muted);">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="var(--yellow)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <div style="margin-top: 0.5rem; font-family: var(--font-head); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;">1234 Auto Center Dr · Colorado Springs</div>
+              <a href="https://maps.google.com" target="_blank" style="color: var(--yellow); font-size: 0.8rem; margin-top: 0.5rem; display: block; font-family: var(--font-head); text-transform: uppercase; letter-spacing: 0.1em;">Get Directions →</a>
+            </div>
+          </div>
+        </div>
+        <div class="appt-form-wrap reveal-right">
+          <div class="appt-form-header">
+            <h3>📅 Request an Appointment</h3>
+            <p>We'll confirm within 1 business hour. No commitment until you hear from us.</p>
+          </div>
+          <form class="appt-form" onsubmit="handleFormSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">First Name *</label>
+                <input type="text" id="fname" name="fname" placeholder="John" required />
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name *</label>
+                <input type="text" id="lname" name="lname" placeholder="Smith" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone *</label>
+                <input type="tel" id="phone" name="phone" placeholder="(719) 555-0000" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="you@email.com" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="year">Vehicle Year</label>
+                <input type="text" id="year" name="year" placeholder="2019" />
+              </div>
+              <div class="form-group">
+                <label for="make">Make & Model</label>
+                <input type="text" id="make" name="make" placeholder="Toyota Camry" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="service">Service Needed *</label>
+              <select id="service" name="service" required>
+                <option value="" disabled selected>Select a service…</option>
+                <option>Oil Change</option>
+                <option>Brake Service</option>
+                <option>Engine Diagnostics</option>
+                <option>Transmission Repair</option>
+                <option>Tire Service</option>
+                <option>AC Repair</option>
+                <option>Electrical Systems</option>
+                <option>State Inspection</option>
+                <option>Other / Not Sure</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="date">Preferred Date</label>
+              <input type="date" id="date" name="date" />
+            </div>
+            <div class="form-group">
+              <label for="notes">Additional Notes</label>
+              <textarea id="notes" name="notes" placeholder="Describe the issue or any other details…"></textarea>
+            </div>
+            <div class="form-submit">
+              <button type="submit" class="btn btn-primary">Request Appointment →</button>
+            </div>
+            <p class="form-disclaimer">🔒 Your info stays private. No spam, ever. We'll call to confirm.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo-main">Honest Accurate Auto Service</div>
+          <div class="logo-sub">Colorado Springs, CO</div>
+          <p>Top-rated auto repair shop serving Colorado Springs and the surrounding Pikes Peak region. Locally owned, ASE certified, and committed to honest service every single time.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#services">Oil Changes</a></li>
+            <li><a href="#services">Brake Service</a></li>
+            <li><a href="#services">Engine Diagnostics</a></li>
+            <li><a href="#services">Transmission Repair</a></li>
+            <li><a href="#services">Tire Service</a></li>
+            <li><a href="#services">AC Repair</a></li>
+            <li><a href="#services">Electrical Systems</a></li>
+            <li><a href="#services">State Inspections</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+17195550180">(719) 555-0180</a></li>
+            <li><a href="mailto:info@honestaccurateauto.com">info@honestaccurateauto.com</a></li>
+            <li>1234 Auto Center Drive<br>Colorado Springs, CO 80907</li>
+            <li style="margin-top: 0.75rem; color: var(--text-muted); font-size: 0.85rem;">
+              Mon–Fri: 7:30 AM – 5:30 PM<br>
+              Sat: 8:00 AM – 1:00 PM<br>
+              Sun: Closed
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Honest Accurate Auto Service. All rights reserved.</p>
+        <p class="kinetic-credit">Website by <a href="#" rel="noopener">Kinetic Digital</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Phone float button (mobile) -->
+  <div class="phone-float">
+    <a href="tel:+17195550180" aria-label="Call us">
+      <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    </a>
+  </div>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // ── Navbar scroll effect ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // ── Hamburger menu ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // ── Scroll animations ──
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // ── Animated counters ──
+    function animateCounter(el, target, suffix = '', duration = 2000) {
+      let start = null;
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(eased * target);
+        if (target >= 1000) {
+          el.textContent = current >= 1000 ? (current / 1000).toFixed(current % 1000 === 0 ? 0 : 1) + 'k' + suffix : current + suffix;
+        } else {
+          el.textContent = current + suffix;
+        }
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target >= 1000 ? (target / 1000) + 'k' + suffix : target + suffix;
+      };
+      requestAnimationFrame(step);
+    }
+    const counters = document.querySelectorAll('[data-count]');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.count);
+          const suffix = el.dataset.suffix || '';
+          animateCounter(el, target, suffix);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(el => counterObserver.observe(el));
+
+    // ── FAQ accordion ──
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // ── Form submit handler ──
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = '✓ Request Received!';
+      btn.style.background = '#2E7D32';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Request Appointment →';
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 4000);
+    }
+
+    // ── Smooth scroll for all anchor links ──
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = 75;
+          window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

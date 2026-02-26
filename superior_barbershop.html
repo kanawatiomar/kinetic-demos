@@ -1,0 +1,2049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Superior Barbershop — Colorado Springs</title>
+  <meta name="description" content="Superior Barbershop at 3275 E Platte Ave, Colorado Springs. Premium cuts, skin fades, beard trims. Superior Cuts. Superior Style." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================
+       CSS CUSTOM PROPERTIES
+    ============================================ */
+    :root {
+      --bg:          #0D0D0D;
+      --bg-card:     #111111;
+      --gunmetal:    #2C2C2C;
+      --gunmetal-lt: #3A3A3A;
+      --white:       #FFFFFF;
+      --white-70:    rgba(255,255,255,0.70);
+      --white-40:    rgba(255,255,255,0.40);
+      --white-12:    rgba(255,255,255,0.12);
+      --white-06:    rgba(255,255,255,0.06);
+      --accent:      #00E676;
+      --accent-dim:  #00C060;
+      --accent-glow: rgba(0, 230, 118, 0.25);
+      --accent-glow-sm: rgba(0, 230, 118, 0.12);
+      --font-head:   'Space Grotesk', sans-serif;
+      --font-body:   'DM Sans', sans-serif;
+      --nav-h:       72px;
+      --radius:      12px;
+      --radius-lg:   20px;
+      --trans:       0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ============================================
+       RESET & BASE
+    ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: var(--font-body); }
+
+    /* ============================================
+       NOISE TEXTURE OVERLAY
+    ============================================ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.032;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ============================================
+       SCROLL ANIMATION CLASSES
+    ============================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    .delay-1 { transition-delay: 0.1s !important; }
+    .delay-2 { transition-delay: 0.2s !important; }
+    .delay-3 { transition-delay: 0.3s !important; }
+    .delay-4 { transition-delay: 0.4s !important; }
+    .delay-5 { transition-delay: 0.5s !important; }
+    .delay-6 { transition-delay: 0.6s !important; }
+
+    /* ============================================
+       UTILITY
+    ============================================ */
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section {
+      padding: 100px 0;
+      position: relative;
+      z-index: 1;
+    }
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-head);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .section-tag::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+    .section-title span { color: var(--accent); }
+    .section-sub {
+      margin-top: 16px;
+      font-size: 1.05rem;
+      color: var(--white-70);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    /* Accent line decoration */
+    .accent-line {
+      display: block;
+      width: 48px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 3px;
+      margin-top: 20px;
+    }
+
+    /* ============================================
+       BUTTONS
+    ============================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-head);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 15px 32px;
+      border-radius: var(--radius);
+      transition: var(--trans);
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: white;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .btn:hover::after { opacity: 0.06; }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+    .btn-primary:hover {
+      background: var(--accent-dim);
+      box-shadow: 0 0 32px var(--accent-glow), 0 8px 24px rgba(0,0,0,0.4);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid var(--white-40);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .btn-call {
+      background: var(--accent);
+      color: #000;
+      font-size: 1.05rem;
+      padding: 18px 40px;
+      border-radius: var(--radius);
+      box-shadow: 0 0 0 0 var(--accent-glow);
+      animation: pulse-call 2.4s ease-in-out infinite;
+    }
+    .btn-call:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 40px var(--accent-glow), 0 12px 32px rgba(0,0,0,0.5);
+      animation: none;
+    }
+    @keyframes pulse-call {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0,230,118,0.4); }
+      50% { box-shadow: 0 0 0 12px rgba(0,230,118,0); }
+    }
+
+    /* ============================================
+       NAVIGATION
+    ============================================ */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 1000;
+      transition: background var(--trans), backdrop-filter var(--trans), border-color var(--trans);
+    }
+    #nav.scrolled {
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--white-12);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--nav-h);
+    }
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      font-family: var(--font-head);
+    }
+    .nav-logo-main {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      color: var(--white);
+    }
+    .nav-logo-main span { color: var(--accent); }
+    .nav-logo-sub {
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--white-40);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+    .nav-links a {
+      font-family: var(--font-head);
+      font-size: 0.84rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: var(--white-70);
+      transition: color var(--trans);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1.5px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--trans);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta {
+      font-family: var(--font-head);
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #000;
+      background: var(--accent);
+      padding: 10px 22px;
+      border-radius: 8px;
+      transition: var(--trans);
+    }
+    .nav-cta:hover {
+      background: var(--accent-dim);
+      box-shadow: 0 0 20px var(--accent-glow);
+      transform: translateY(-1px);
+    }
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      cursor: pointer;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: var(--trans);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      top: var(--nav-h); left: 0; right: 0;
+      background: rgba(13,13,13,0.97);
+      backdrop-filter: blur(24px);
+      padding: 32px 24px 40px;
+      z-index: 999;
+      transform: translateY(-110%);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.4s;
+      border-bottom: 1px solid var(--white-12);
+    }
+    .mobile-menu.open { transform: translateY(0); opacity: 1; }
+    .mobile-menu a {
+      display: block;
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white-70);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--white-06);
+      transition: color var(--trans);
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+    .mobile-menu .mobile-cta {
+      display: block;
+      margin-top: 24px;
+      text-align: center;
+      background: var(--accent);
+      color: #000;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 16px;
+      border-radius: var(--radius);
+      border-bottom: none;
+    }
+
+    /* ============================================
+       HERO
+    ============================================ */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: var(--nav-h);
+    }
+
+    /* Grid background */
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+
+    /* Glow orb */
+    .hero-orb {
+      position: absolute;
+      top: -10%;
+      right: -15%;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,230,118,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-orb-2 {
+      position: absolute;
+      bottom: -20%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,230,118,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* Diagonal accent stripe */
+    .hero-stripe {
+      position: absolute;
+      top: 0; right: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+      opacity: 0.4;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 80px 0;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white-06);
+      border: 1px solid var(--white-12);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-family: var(--font-head);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+      animation: fadeDown 0.7s ease both;
+    }
+    .hero-eyebrow .dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: blink 2s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 700;
+      line-height: 1.03;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+    .hero-title .green { color: var(--accent); }
+    .hero-title .stroke {
+      -webkit-text-stroke: 1.5px var(--white-40);
+      color: transparent;
+    }
+
+    .hero-tagline {
+      margin-top: 24px;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--white-70);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      max-width: 480px;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+    .hero-tagline strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 44px;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .hero-phone-small {
+      margin-top: 32px;
+      font-size: 0.85rem;
+      color: var(--white-40);
+      letter-spacing: 0.04em;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+    .hero-phone-small a {
+      color: var(--white-70);
+      transition: color var(--trans);
+    }
+    .hero-phone-small a:hover { color: var(--accent); }
+
+    /* Hero stats row */
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 72px;
+      padding-top: 40px;
+      border-top: 1px solid var(--white-12);
+      animation: fadeUp 0.8s 0.5s ease both;
+      flex-wrap: wrap;
+    }
+    .hero-stat-val {
+      font-family: var(--font-head);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .hero-stat-lbl {
+      font-size: 0.78rem;
+      color: var(--white-40);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Scissor decoration */
+    .hero-scissor {
+      position: absolute;
+      right: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14rem;
+      opacity: 0.03;
+      pointer-events: none;
+      font-weight: 900;
+      font-family: var(--font-head);
+      letter-spacing: -0.05em;
+      color: var(--white);
+      user-select: none;
+      writing-mode: vertical-rl;
+    }
+
+    /* ============================================
+       ABOUT
+    ============================================ */
+    #about {
+      background: linear-gradient(180deg, var(--bg) 0%, #101010 100%);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-visual-box {
+      aspect-ratio: 4/5;
+      background: var(--gunmetal);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--white-12);
+    }
+    /* Abstract barber pole pattern */
+    .about-visual-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 24px,
+        rgba(0,230,118,0.05) 24px,
+        rgba(0,230,118,0.05) 26px
+      );
+    }
+    .about-visual-box-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .about-icon-ring {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+      box-shadow: 0 0 40px var(--accent-glow);
+    }
+    .about-badge {
+      position: absolute;
+      bottom: 28px; right: -20px;
+      background: var(--accent);
+      color: #000;
+      border-radius: var(--radius);
+      padding: 16px 24px;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.85rem;
+      line-height: 1.3;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    }
+    .about-badge span {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: 800;
+    }
+    .about-content {}
+    .about-features {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .about-feature {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px;
+      background: var(--white-06);
+      border: 1px solid var(--white-06);
+      border-radius: var(--radius);
+      transition: var(--trans);
+    }
+    .about-feature:hover {
+      background: var(--white-12);
+      border-color: var(--white-12);
+      transform: translateX(4px);
+    }
+    .about-feature-icon {
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      background: var(--accent-glow-sm);
+      border: 1px solid rgba(0,230,118,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .about-feature-text h4 {
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+    .about-feature-text p {
+      font-size: 0.84rem;
+      color: var(--white-40);
+    }
+
+    /* ============================================
+       SERVICES
+    ============================================ */
+    #services {
+      background: #101010;
+    }
+    .services-header {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto 60px;
+    }
+    .services-header .section-sub { margin: 16px auto 0; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--white-12);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--trans);
+      cursor: default;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s;
+    }
+    .service-card:hover {
+      border-color: rgba(0,230,118,0.3);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px var(--accent-glow-sm);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card.featured {
+      border-color: rgba(0,230,118,0.4);
+      background: linear-gradient(135deg, #111 0%, #141f17 100%);
+    }
+    .service-featured-badge {
+      position: absolute;
+      top: 16px; right: 16px;
+      background: var(--accent);
+      color: #000;
+      font-family: var(--font-head);
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .service-icon {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .service-name {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .service-desc {
+      font-size: 0.84rem;
+      color: var(--white-40);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .service-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .service-price {
+      font-family: var(--font-head);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+    .service-price-label {
+      font-size: 0.75rem;
+      color: var(--white-40);
+      letter-spacing: 0.06em;
+    }
+
+    /* ============================================
+       WHY CHOOSE US
+    ============================================ */
+    #why {
+      background: var(--bg);
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .why-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .why-stat {
+      background: var(--bg-card);
+      border: 1px solid var(--white-12);
+      padding: 36px 28px;
+      transition: var(--trans);
+    }
+    .why-stat:hover {
+      background: #161616;
+      border-color: rgba(0,230,118,0.2);
+    }
+    .why-stat-number {
+      font-family: var(--font-head);
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .why-stat-plus {
+      font-size: 1.8rem;
+      color: var(--accent);
+    }
+    .why-stat-label {
+      margin-top: 8px;
+      font-size: 0.82rem;
+      color: var(--white-40);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .why-points {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .why-point {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .why-point-num {
+      font-family: var(--font-head);
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--white-12);
+      line-height: 1;
+      min-width: 44px;
+      letter-spacing: -0.04em;
+    }
+    .why-point-body h3 {
+      font-family: var(--font-head);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .why-point-body p {
+      font-size: 0.88rem;
+      color: var(--white-40);
+      line-height: 1.6;
+    }
+
+    /* ============================================
+       TESTIMONIALS
+    ============================================ */
+    #testimonials {
+      background: #101010;
+      overflow: hidden;
+    }
+    .testimonials-header {
+      text-align: center;
+      max-width: 500px;
+      margin: 0 auto 60px;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: var(--bg-card);
+      border: 1px solid var(--white-12);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      position: relative;
+      transition: var(--trans);
+    }
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 24px; right: 28px;
+      font-family: var(--font-head);
+      font-size: 5rem;
+      font-weight: 800;
+      color: var(--accent);
+      opacity: 0.12;
+      line-height: 1;
+    }
+    .testimonial-card:hover {
+      border-color: rgba(0,230,118,0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 20px;
+    }
+    .star { color: var(--accent); font-size: 1.1rem; }
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: var(--white-70);
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .testimonial-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1rem;
+      color: #000;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .testimonial-name {
+      font-family: var(--font-head);
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--white);
+    }
+    .testimonial-meta {
+      font-size: 0.78rem;
+      color: var(--white-40);
+      margin-top: 2px;
+    }
+
+    /* ============================================
+       FAQ
+    ============================================ */
+    #faq {
+      background: var(--bg);
+    }
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--white-12);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color var(--trans);
+    }
+    .faq-item.open {
+      border-color: rgba(0,230,118,0.3);
+    }
+    .faq-question {
+      width: 100%;
+      padding: 22px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--white);
+      text-align: left;
+      transition: color var(--trans);
+    }
+    .faq-question:hover { color: var(--accent); }
+    .faq-item.open .faq-question { color: var(--accent); }
+    .faq-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid var(--white-12);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--white-40);
+      font-size: 1.1rem;
+      font-weight: 300;
+      transition: var(--trans);
+    }
+    .faq-item.open .faq-icon {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.4s;
+      padding: 0 24px;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+      padding: 0 24px 22px;
+    }
+    .faq-answer p {
+      font-size: 0.9rem;
+      color: var(--white-70);
+      line-height: 1.7;
+    }
+
+    /* ============================================
+       TRUST BADGES
+    ============================================ */
+    #trust {
+      background: #101010;
+      padding: 60px 0;
+    }
+    .trust-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 24px;
+      background: var(--white-06);
+      border: 1px solid var(--white-12);
+      border-radius: var(--radius);
+      transition: var(--trans);
+    }
+    .trust-badge:hover {
+      border-color: rgba(0,230,118,0.25);
+      background: var(--white-06);
+      transform: translateY(-2px);
+    }
+    .trust-badge-icon {
+      font-size: 1.5rem;
+    }
+    .trust-badge-text {
+      font-family: var(--font-head);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--white-70);
+      line-height: 1.3;
+    }
+    .trust-badge-text span {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 400;
+      color: var(--white-40);
+      letter-spacing: 0.05em;
+    }
+
+    /* ============================================
+       CONTACT
+    ============================================ */
+    #contact {
+      background: var(--bg);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .contact-info {}
+    .contact-blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .contact-block {
+      display: flex;
+      gap: 16px;
+      padding: 20px;
+      background: var(--white-06);
+      border: 1px solid var(--white-06);
+      border-radius: var(--radius);
+      transition: var(--trans);
+    }
+    .contact-block:hover {
+      border-color: rgba(0,230,118,0.2);
+      background: var(--white-12);
+    }
+    .contact-block-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: var(--accent-glow-sm);
+      border: 1px solid rgba(0,230,118,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .contact-block-content h4 {
+      font-family: var(--font-head);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .contact-block-content p, .contact-block-content a {
+      font-size: 0.9rem;
+      color: var(--white-70);
+      line-height: 1.6;
+    }
+    .contact-block-content a:hover { color: var(--accent); }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4px 24px;
+      margin-top: 8px;
+    }
+    .hours-day {
+      font-size: 0.88rem;
+      color: var(--white-40);
+    }
+    .hours-time {
+      font-size: 0.88rem;
+      color: var(--white-70);
+      font-weight: 500;
+    }
+    .hours-time.closed { color: rgba(255,80,80,0.8); }
+
+    /* Contact form */
+    .contact-form-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--white-12);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+    .form-title {
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .form-sub {
+      font-size: 0.88rem;
+      color: var(--white-40);
+      margin-bottom: 32px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-label {
+      font-family: var(--font-head);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white-40);
+    }
+    .form-input, .form-textarea, .form-select {
+      background: var(--white-06);
+      border: 1px solid var(--white-12);
+      border-radius: 8px;
+      padding: 14px 16px;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color var(--trans), box-shadow var(--trans);
+      width: 100%;
+    }
+    .form-select option { background: #1a1a1a; color: var(--white); }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--white-40); }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow-sm);
+    }
+    .form-textarea { resize: vertical; min-height: 110px; }
+    .btn-submit {
+      width: 100%;
+      margin-top: 8px;
+      justify-content: center;
+      background: var(--accent);
+      color: #000;
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 16px;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--trans);
+    }
+    .btn-submit:hover {
+      background: var(--accent-dim);
+      box-shadow: 0 0 32px var(--accent-glow);
+      transform: translateY(-2px);
+    }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    footer {
+      background: #080808;
+      border-top: 1px solid var(--white-12);
+      padding: 60px 0 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--white-06);
+    }
+    .footer-brand-name {
+      font-family: var(--font-head);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .footer-brand-name span { color: var(--accent); }
+    .footer-brand-desc {
+      font-size: 0.88rem;
+      color: var(--white-40);
+      line-height: 1.7;
+      max-width: 280px;
+    }
+    .footer-col-title {
+      font-family: var(--font-head);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white-40);
+      margin-bottom: 20px;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-links a {
+      font-size: 0.9rem;
+      color: var(--white-70);
+      transition: color var(--trans);
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      font-size: 0.82rem;
+      color: var(--white-40);
+    }
+    .footer-credit {
+      font-size: 0.82rem;
+      color: var(--white-40);
+    }
+    .footer-credit a {
+      color: var(--accent);
+      font-weight: 600;
+      transition: color var(--trans);
+    }
+    .footer-credit a:hover { color: var(--white); }
+
+    /* ============================================
+       SCROLL TO TOP
+    ============================================ */
+    #scrollTop {
+      position: fixed;
+      bottom: 32px; right: 32px;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #000;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      z-index: 500;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(16px);
+      transition: var(--trans);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      cursor: pointer;
+    }
+    #scrollTop.visible {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+    #scrollTop:hover {
+      box-shadow: 0 0 24px var(--accent-glow);
+      transform: translateY(-3px);
+    }
+
+    /* ============================================
+       DIVIDER
+    ============================================ */
+    .section-divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--white-12), transparent);
+      margin: 0;
+    }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .about-grid, .why-grid, .contact-grid, .faq-layout { grid-template-columns: 1fr; gap: 48px; }
+      .about-badge { right: 0; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .hero-stats { gap: 28px; }
+    }
+    @media (max-width: 640px) {
+      .section { padding: 72px 0; }
+      .footer-top { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+      .btn-call { width: 100%; justify-content: center; }
+      .btn-outline { width: 100%; justify-content: center; }
+      .trust-inner { gap: 16px; }
+      .trust-badge { width: 100%; justify-content: center; }
+      .why-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================
+       NAVIGATION
+  ============================================ -->
+  <nav id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo">
+          <span class="nav-logo-main"><span>✦</span> Superior</span>
+          <span class="nav-logo-sub">Barbershop · Colorado Springs</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="tel:+17192876599" class="nav-cta">📞 Call Now</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#why" class="mobile-link">Why Us</a>
+    <a href="#testimonials" class="mobile-link">Reviews</a>
+    <a href="#faq" class="mobile-link">FAQ</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+    <a href="tel:+17192876599" class="mobile-cta">📞 (719) 287-6599 — Call Now</a>
+  </div>
+
+  <!-- ============================================
+       HERO
+  ============================================ -->
+  <section id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-orb"></div>
+    <div class="hero-orb-2"></div>
+    <div class="hero-stripe"></div>
+    <div class="hero-scissor">CUTS</div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span class="dot"></span>
+          Colorado Springs, CO 80909
+        </div>
+        <h1 class="hero-title">
+          Superior<br />
+          <span class="green">Barber</span><span class="stroke">shop</span>
+        </h1>
+        <p class="hero-tagline">
+          <strong>Superior Cuts. Superior Style.</strong><br />
+          Precision fades, clean lines, and a cut that commands attention — right here in the Springs.
+        </p>
+        <div class="hero-actions">
+          <a href="tel:+17192876599" class="btn btn-call">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72c.128.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.572 2.81.7A2 2 0 0122 16.92z"/></svg>
+            (719) 287-6599
+          </a>
+          <a href="#services" class="btn btn-outline">
+            View Services
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <p class="hero-phone-small">Walk-ins welcome · <a href="https://maps.google.com/?q=3275+E+Platte+Ave+Ste+F+Colorado+Springs+CO+80909" target="_blank" rel="noopener">3275 E Platte Ave Ste F, Colorado Springs</a></p>
+
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-val">500<span style="color:var(--accent);font-size:1.2rem">+</span></div>
+            <div class="hero-stat-lbl">Happy Clients</div>
+          </div>
+          <div>
+            <div class="hero-stat-val">5★</div>
+            <div class="hero-stat-lbl">Rating</div>
+          </div>
+          <div>
+            <div class="hero-stat-val">$22</div>
+            <div class="hero-stat-lbl">Starting Price</div>
+          </div>
+          <div>
+            <div class="hero-stat-val">7</div>
+            <div class="hero-stat-lbl">Days Available</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ============================================
+       TRUST BADGES
+  ============================================ -->
+  <div id="trust">
+    <div class="container">
+      <div class="trust-inner">
+        <div class="trust-badge reveal">
+          <span class="trust-badge-icon">✂️</span>
+          <div class="trust-badge-text">
+            Expert Barbers
+            <span>Trained Professionals</span>
+          </div>
+        </div>
+        <div class="trust-badge reveal delay-1">
+          <span class="trust-badge-icon">⚡</span>
+          <div class="trust-badge-text">
+            Fast Service
+            <span>No Long Waits</span>
+          </div>
+        </div>
+        <div class="trust-badge reveal delay-2">
+          <span class="trust-badge-icon">💯</span>
+          <div class="trust-badge-text">
+            Satisfaction Guaranteed
+            <span>Every Single Cut</span>
+          </div>
+        </div>
+        <div class="trust-badge reveal delay-3">
+          <span class="trust-badge-icon">🧼</span>
+          <div class="trust-badge-text">
+            Clean & Sanitized
+            <span>Premium Hygiene Standards</span>
+          </div>
+        </div>
+        <div class="trust-badge reveal delay-4">
+          <span class="trust-badge-icon">🚶</span>
+          <div class="trust-badge-text">
+            Walk-ins Welcome
+            <span>No Appointment Needed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider" />
+
+  <!-- ============================================
+       ABOUT
+  ============================================ -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual reveal-left">
+          <div class="about-visual-box">
+            <div class="about-visual-box-inner">
+              <div class="about-icon-ring">✂️</div>
+              <div style="text-align:center;padding:0 32px;">
+                <div style="font-family:var(--font-head);font-size:1.2rem;font-weight:700;color:var(--white);">Superior Barbershop</div>
+                <div style="font-size:0.82rem;color:var(--white-40);margin-top:6px;">3275 E Platte Ave Ste F</div>
+                <div style="font-size:0.82rem;color:var(--white-40);">Colorado Springs, CO 80909</div>
+              </div>
+              <div style="margin-top:12px;display:flex;gap:8px;">
+                <div style="width:8px;height:8px;border-radius:50%;background:var(--accent);animation:blink 2s infinite;"></div>
+                <span style="font-size:0.78rem;color:var(--accent);font-family:var(--font-head);font-weight:600;letter-spacing:0.06em;">OPEN TODAY</span>
+              </div>
+            </div>
+          </div>
+          <div class="about-badge">
+            <span>500+</span>
+            Satisfied Clients
+          </div>
+        </div>
+        <div class="about-content">
+          <div class="reveal">
+            <span class="section-tag">About Us</span>
+            <h2 class="section-title">The <span>Craft</span> Behind Every Cut</h2>
+            <span class="accent-line"></span>
+            <p class="section-sub">
+              At Superior Barbershop, we believe a great haircut is more than just a trim — it's an expression of who you are. We're a Colorado Springs staple bringing precision, skill, and character to every single client that walks through our door.
+            </p>
+          </div>
+          <div class="about-features">
+            <div class="about-feature reveal delay-1">
+              <div class="about-feature-icon">✂️</div>
+              <div class="about-feature-text">
+                <h4>Precision Every Time</h4>
+                <p>Tight lines, clean fades, and sharp edges. We don't cut corners.</p>
+              </div>
+            </div>
+            <div class="about-feature reveal delay-2">
+              <div class="about-feature-icon">🎯</div>
+              <div class="about-feature-text">
+                <h4>All Ages, All Styles</h4>
+                <p>From classic gentleman cuts to modern skin fades and kids' first haircuts.</p>
+              </div>
+            </div>
+            <div class="about-feature reveal delay-3">
+              <div class="about-feature-icon">🏆</div>
+              <div class="about-feature-text">
+                <h4>Community First</h4>
+                <p>We're proud to serve the Colorado Springs community with fair prices and real results.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ============================================
+       SERVICES
+  ============================================ -->
+  <section id="services" class="section">
+    <div class="container">
+      <div class="services-header reveal">
+        <span class="section-tag">Our Services</span>
+        <h2 class="section-title">Premium Cuts, <span>Real Prices</span></h2>
+        <p class="section-sub">Every service is delivered with precision and care. Walk in, sit down, leave looking sharp.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal delay-1">
+          <span class="service-icon">✂️</span>
+          <div class="service-name">Men's Haircut</div>
+          <div class="service-desc">Classic to contemporary — a clean cut tailored to your style and head shape.</div>
+          <div class="service-price-row">
+            <span class="service-price">$22</span>
+            <span class="service-price-label">per service</span>
+          </div>
+        </div>
+        <div class="service-card featured reveal delay-2">
+          <span class="service-featured-badge">Popular</span>
+          <span class="service-icon">🪒</span>
+          <div class="service-name">Skin Fade</div>
+          <div class="service-desc">Surgical-level precision. Zero to full — the fade that turns heads on E Platte Ave.</div>
+          <div class="service-price-row">
+            <span class="service-price">$25</span>
+            <span class="service-price-label">per service</span>
+          </div>
+        </div>
+        <div class="service-card reveal delay-3">
+          <span class="service-icon">🧔</span>
+          <div class="service-name">Beard Trim</div>
+          <div class="service-desc">Shape, define, and clean up your beard to perfection. Look polished every day.</div>
+          <div class="service-price-row">
+            <span class="service-price">$15</span>
+            <span class="service-price-label">per service</span>
+          </div>
+        </div>
+        <div class="service-card reveal delay-1">
+          <span class="service-icon">👦</span>
+          <div class="service-name">Kids Cut</div>
+          <div class="service-desc">Gentle, patient, and fun. We make the little ones feel comfortable and leave looking great.</div>
+          <div class="service-price-row">
+            <span class="service-price">$16</span>
+            <span class="service-price-label">per service</span>
+          </div>
+        </div>
+        <div class="service-card reveal delay-2">
+          <span class="service-icon">📏</span>
+          <div class="service-name">Line Up</div>
+          <div class="service-desc">Crisp edges, sharp lines. The line up that keeps you fresh between full cuts.</div>
+          <div class="service-price-row">
+            <span class="service-price">$18</span>
+            <span class="service-price-label">per service</span>
+          </div>
+        </div>
+        <div class="service-card reveal delay-3">
+          <span class="service-icon">🔥</span>
+          <div class="service-name">Hot Towel Shave</div>
+          <div class="service-desc">The full luxury experience. Steam, lather, straight razor — pure relaxation and refinement.</div>
+          <div class="service-price-row">
+            <span class="service-price">$28</span>
+            <span class="service-price-label">per service</span>
+          </div>
+        </div>
+        <div class="service-card featured reveal delay-1" style="grid-column: span 1;">
+          <span class="service-featured-badge">Best Value</span>
+          <span class="service-icon">👑</span>
+          <div class="service-name">The Works</div>
+          <div class="service-desc">The complete package: haircut, fade, beard trim, hot towel, and line up. Walk out a new person.</div>
+          <div class="service-price-row">
+            <span class="service-price">$45</span>
+            <span class="service-price-label">full package</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ============================================
+       WHY CHOOSE US
+  ============================================ -->
+  <section id="why" class="section">
+    <div class="container">
+      <div class="why-grid">
+        <div>
+          <span class="section-tag reveal">Why Choose Us</span>
+          <h2 class="section-title reveal">Numbers That <span>Speak</span></h2>
+          <span class="accent-line reveal"></span>
+          <p class="section-sub reveal" style="margin-bottom:0;">
+            We let our work do the talking — but the numbers don't lie. Superior Barbershop delivers premium results at honest prices.
+          </p>
+          <div class="why-stats" style="margin-top:48px;">
+            <div class="why-stat reveal delay-1">
+              <div class="why-stat-number">500<span class="why-stat-plus">+</span></div>
+              <div class="why-stat-label">Clients Served</div>
+            </div>
+            <div class="why-stat reveal delay-2">
+              <div class="why-stat-number">5.0</div>
+              <div class="why-stat-label">Avg Rating</div>
+            </div>
+            <div class="why-stat reveal delay-3">
+              <div class="why-stat-number">7</div>
+              <div class="why-stat-label">Services Offered</div>
+            </div>
+            <div class="why-stat reveal delay-4">
+              <div class="why-stat-number">6</div>
+              <div class="why-stat-label">Days Open Weekly</div>
+            </div>
+          </div>
+        </div>
+        <div class="why-points">
+          <div class="why-point reveal delay-1">
+            <div class="why-point-num">01</div>
+            <div class="why-point-body">
+              <h3>Precision Over Speed</h3>
+              <p>Every cut is taken seriously. We take the time to get it right — clean fades, sharp lines, zero rush.</p>
+            </div>
+          </div>
+          <div class="why-point reveal delay-2">
+            <div class="why-point-num">02</div>
+            <div class="why-point-body">
+              <h3>Affordable Premium Quality</h3>
+              <p>High-end results without the high-end price tag. Quality haircuts should be accessible to everyone.</p>
+            </div>
+          </div>
+          <div class="why-point reveal delay-3">
+            <div class="why-point-num">03</div>
+            <div class="why-point-body">
+              <h3>Walk-In Friendly</h3>
+              <p>No app required. Come in when it works for you — we're here Mon–Sat ready to take care of you.</p>
+            </div>
+          </div>
+          <div class="why-point reveal delay-4">
+            <div class="why-point-num">04</div>
+            <div class="why-point-body">
+              <h3>Family & Community Focused</h3>
+              <p>From kids' first cuts to senior regulars — we serve all ages with respect and care in Colorado Springs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ============================================
+       TESTIMONIALS
+  ============================================ -->
+  <section id="testimonials" class="section">
+    <div class="container">
+      <div class="testimonials-header reveal">
+        <span class="section-tag">Reviews</span>
+        <h2 class="section-title">What <span>Clients</span> Say</h2>
+        <p class="section-sub" style="margin:16px auto 0;">Real people, real results. Don't take our word for it.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal delay-1">
+          <div class="testimonial-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-text">"Best skin fade in Colorado Springs, hands down. I've been to a dozen shops and nothing comes close. The attention to detail is incredible — you can tell they actually care about the craft."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <div class="testimonial-name">Marcus D.</div>
+              <div class="testimonial-meta">Regular Client · Colorado Springs</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal delay-2">
+          <div class="testimonial-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-text">"Took my son here for his first real haircut and they were so patient and kind with him. He left grinning ear to ear. We're customers for life — this place is the real deal."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">T</div>
+            <div>
+              <div class="testimonial-name">Tony R.</div>
+              <div class="testimonial-meta">Father of Two · Colorado Springs</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal delay-3">
+          <div class="testimonial-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-text">"Got 'The Works' before my job interview and walked in looking like a million bucks. Got the job. Coincidence? I don't think so. Great vibe, great barbers, great prices. 10/10."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">J</div>
+            <div>
+              <div class="testimonial-name">Jordan K.</div>
+              <div class="testimonial-meta">New Client · Colorado Springs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ============================================
+       FAQ
+  ============================================ -->
+  <section id="faq" class="section">
+    <div class="container">
+      <div class="faq-layout">
+        <div>
+          <span class="section-tag reveal">FAQ</span>
+          <h2 class="section-title reveal">Got <span>Questions?</span></h2>
+          <span class="accent-line reveal"></span>
+          <p class="section-sub reveal">Everything you need to know before your visit. Still curious? Just give us a call.</p>
+          <div style="margin-top:40px;" class="reveal">
+            <a href="tel:+17192876599" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72c.128.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.572 2.81.7A2 2 0 0122 16.92z"/></svg>
+              Call (719) 287-6599
+            </a>
+          </div>
+        </div>
+        <div class="faq-list reveal">
+          <div class="faq-item" data-faq>
+            <button class="faq-question">
+              Do I need an appointment or can I walk in?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Walk-ins are always welcome! We operate on a first-come, first-served basis Monday through Saturday. If you want to minimize wait time, calling ahead is a great option. We'll do our best to get you in and out looking sharp.</p>
+            </div>
+          </div>
+          <div class="faq-item" data-faq>
+            <button class="faq-question">
+              What are your hours of operation?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>We're open Monday through Friday from 10:00 AM to 7:00 PM, and Saturday from 10:00 AM to 5:00 PM. We are closed on Sundays. Stop by during those hours — no appointment needed.</p>
+            </div>
+          </div>
+          <div class="faq-item" data-faq>
+            <button class="faq-question">
+              How much does a haircut cost at Superior Barbershop?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Our prices start at $15 for a beard trim and go up to $45 for "The Works" full package. Men's cuts start at $22, skin fades at $25, kids cuts at $16, and line ups at $18. Excellent value for premium results.</p>
+            </div>
+          </div>
+          <div class="faq-item" data-faq>
+            <button class="faq-question">
+              Do you cut kids' hair?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Absolutely! Kids' cuts are one of our specialties. We're patient, gentle, and make sure your little one has a positive and fun experience every time. Kids' cuts are just $16.</p>
+            </div>
+          </div>
+          <div class="faq-item" data-faq>
+            <button class="faq-question">
+              Where exactly are you located?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>We're located at 3275 E Platte Ave, Suite F, Colorado Springs, CO 80909. Easy to find on E Platte Avenue — look for Suite F. You can call us at (719) 287-6599 if you need directions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- ============================================
+       CONTACT
+  ============================================ -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div style="text-align:center;max-width:560px;margin:0 auto 60px;" class="reveal">
+        <span class="section-tag">Contact Us</span>
+        <h2 class="section-title">Visit Us or <span>Reach Out</span></h2>
+        <p class="section-sub" style="margin:16px auto 0;">We'd love to see you. Stop by the shop or send us a message below.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-blocks">
+            <div class="contact-block reveal delay-1">
+              <div class="contact-block-icon">📍</div>
+              <div class="contact-block-content">
+                <h4>Address</h4>
+                <p><a href="https://maps.google.com/?q=3275+E+Platte+Ave+Ste+F+Colorado+Springs+CO+80909" target="_blank" rel="noopener">3275 E Platte Ave Ste F<br />Colorado Springs, CO 80909</a></p>
+              </div>
+            </div>
+            <div class="contact-block reveal delay-2">
+              <div class="contact-block-icon">📞</div>
+              <div class="contact-block-content">
+                <h4>Phone</h4>
+                <p><a href="tel:+17192876599">(719) 287-6599</a></p>
+              </div>
+            </div>
+            <div class="contact-block reveal delay-3">
+              <div class="contact-block-icon">🕐</div>
+              <div class="contact-block-content">
+                <h4>Hours</h4>
+                <div class="hours-grid">
+                  <span class="hours-day">Mon – Fri</span>
+                  <span class="hours-time">10:00 AM – 7:00 PM</span>
+                  <span class="hours-day">Saturday</span>
+                  <span class="hours-time">10:00 AM – 5:00 PM</span>
+                  <span class="hours-day">Sunday</span>
+                  <span class="hours-time closed">Closed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap reveal delay-2">
+          <div class="form-title">Send a Message</div>
+          <div class="form-sub">Questions, feedback, or just want to say hey — we're all ears.</div>
+          <form onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-input" placeholder="John" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-input" placeholder="Doe" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" class="form-input" placeholder="(719) 000-0000" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Service Interest</label>
+              <select class="form-select">
+                <option value="">Select a service...</option>
+                <option>Men's Haircut ($22)</option>
+                <option>Skin Fade ($25)</option>
+                <option>Beard Trim ($15)</option>
+                <option>Kids Cut ($16)</option>
+                <option>Line Up ($18)</option>
+                <option>Hot Towel Shave ($28)</option>
+                <option>The Works ($45)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea class="form-textarea" placeholder="Questions, preferred times, anything you'd like to know..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+  ============================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name"><span>✦</span> Superior Barbershop</div>
+          <p class="footer-brand-desc">Premium cuts at real prices in Colorado Springs. Your neighborhood barbershop delivering superior quality since day one.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services & Prices</a></li>
+            <li><a href="#why">Why Choose Us</a></li>
+            <li><a href="#testimonials">Client Reviews</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Visit</div>
+          <ul class="footer-links">
+            <li><a href="https://maps.google.com/?q=3275+E+Platte+Ave+Ste+F+Colorado+Springs+CO+80909" target="_blank" rel="noopener">3275 E Platte Ave Ste F</a></li>
+            <li><a href="https://maps.google.com/?q=3275+E+Platte+Ave+Ste+F+Colorado+Springs+CO+80909" target="_blank" rel="noopener">Colorado Springs, CO 80909</a></li>
+            <li><a href="tel:+17192876599">(719) 287-6599</a></li>
+            <li style="color:var(--white-40);font-size:0.88rem;">Mon–Fri: 10AM – 7PM</li>
+            <li style="color:var(--white-40);font-size:0.88rem;">Sat: 10AM – 5PM · Sun: Closed</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2024 Superior Barbershop. All rights reserved.</div>
+        <div class="footer-credit">Website by <a href="#" rel="noopener">Kinetic Digital</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to top -->
+  <button id="scrollTop" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <!-- ============================================
+       JAVASCRIPT
+  ============================================ -->
+  <script>
+    // ---- Nav scroll behavior ----
+    const nav = document.getElementById('nav');
+    const scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
+    }, { passive: true });
+
+    // ---- Hamburger menu ----
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    document.querySelectorAll('.mobile-link, .mobile-cta').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // ---- Scroll reveal ----
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // ---- FAQ accordion ----
+    document.querySelectorAll('[data-faq]').forEach(item => {
+      const btn = item.querySelector('.faq-question');
+      btn.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('[data-faq].open').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // ---- Contact form ----
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.btn-submit');
+      btn.innerHTML = '✓ Message Sent! We\'ll be in touch.';
+      btn.style.background = '#00c060';
+      setTimeout(() => {
+        btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message`;
+        btn.style.background = '';
+        e.target.reset();
+      }, 3500);
+    }
+
+    // ---- Active nav link highlight ----
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.style.color = link.getAttribute('href') === `#${entry.target.id}` ? 'var(--accent)' : '';
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => sectionObserver.observe(s));
+  </script>
+</body>
+</html>
