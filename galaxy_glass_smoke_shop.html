@@ -1,0 +1,2791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galaxy Glass Smoke Shop | Colorado Springs</title>
+  <meta name="description" content="Galaxy Glass Smoke Shop - Your Universe of Premium Glass & Smoke. Located at 578 S Academy Blvd, Colorado Springs, CO 80910. Premium glass pipes, bongs, vaporizers, CBD, and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════
+       CSS CUSTOM PROPERTIES — COSMIC PALETTE
+    ═══════════════════════════════════════════ */
+    :root {
+      --space-black: #0a0a14;
+      --space-dark: #0d0d1f;
+      --space-deeper: #070710;
+      --electric-purple: #7C4DFF;
+      --electric-purple-dim: #5e35cc;
+      --nebula-blue: #2979FF;
+      --cosmic-pink: #FF4081;
+      --star-white: #e8eaf6;
+      --glass-white: rgba(255,255,255,0.07);
+      --glass-border: rgba(124,77,255,0.25);
+      --glass-border-bright: rgba(124,77,255,0.6);
+      --text-primary: #e8eaf6;
+      --text-muted: #9fa8c7;
+      --glow-purple: 0 0 20px rgba(124,77,255,0.5), 0 0 60px rgba(124,77,255,0.2);
+      --glow-blue: 0 0 20px rgba(41,121,255,0.5), 0 0 60px rgba(41,121,255,0.2);
+      --glow-pink: 0 0 20px rgba(255,64,129,0.5), 0 0 60px rgba(255,64,129,0.2);
+      --glow-text-purple: 0 0 10px rgba(124,77,255,0.8), 0 0 30px rgba(124,77,255,0.4);
+      --glow-text-pink: 0 0 10px rgba(255,64,129,0.8), 0 0 30px rgba(255,64,129,0.4);
+      --nav-height: 72px;
+      --section-pad: clamp(60px, 8vw, 120px);
+    }
+
+    /* ═══════════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Exo 2', sans-serif;
+      background: var(--space-black);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    ::selection { background: rgba(124,77,255,0.4); color: #fff; }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ═══════════════════════════════════════════
+       SCROLLBAR
+    ═══════════════════════════════════════════ */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--space-black); }
+    ::-webkit-scrollbar-thumb { background: var(--electric-purple); border-radius: 3px; }
+
+    /* ═══════════════════════════════════════════
+       STARS BACKGROUND (CSS-only particles)
+    ═══════════════════════════════════════════ */
+    .stars-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .stars-layer::before,
+    .stars-layer::after {
+      content: '';
+      position: absolute;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
+      background-image:
+        radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 35%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 40% 8%, rgba(200,180,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 22%, rgba(255,255,255,0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 42%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 85% 18%, rgba(180,200,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 15% 55%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 72%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(2px 2px at 45% 65%, rgba(200,180,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 80%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 58%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 90% 75%, rgba(180,200,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 5% 88%, rgba(255,255,255,0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 20% 92%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 35% 85%, rgba(200,180,255,0.7) 0%, transparent 100%),
+        radial-gradient(2px 2px at 50% 95%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 65% 90%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 88%, rgba(180,200,255,0.7) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 95% 92%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 12% 45%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 28% 18%, rgba(200,180,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 58% 48%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 72% 28%, rgba(255,255,255,0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 88% 38%, rgba(180,200,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 3% 62%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 48% 52%, rgba(200,180,255,0.5) 0%, transparent 100%),
+        radial-gradient(2px 2px at 92% 52%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 18% 78%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 38% 62%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 68% 12%, rgba(200,180,255,0.9) 0%, transparent 100%);
+      animation: twinkle 8s ease-in-out infinite alternate;
+    }
+
+    .stars-layer::after {
+      background-image:
+        radial-gradient(1px 1px at 7% 25%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 22% 48%, rgba(255,200,255,0.6) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 37% 30%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 52% 12%, rgba(200,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 67% 55%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 82% 32%, rgba(255,200,255,0.7) 0%, transparent 100%),
+        radial-gradient(2px 2px at 97% 65%, rgba(255,255,255,0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 14% 70%, rgba(200,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 29% 83%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 44% 75%, rgba(255,200,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 59% 35%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 74% 68%, rgba(200,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 89% 82%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(2px 2px at 4% 40%, rgba(255,200,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 19% 5%, rgba(255,255,255,0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 34% 52%, rgba(200,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 49% 42%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 64% 22%, rgba(255,200,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 79% 48%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 94% 15%, rgba(200,255,255,0.7) 0%, transparent 100%);
+      animation: twinkle 12s ease-in-out infinite alternate-reverse;
+      animation-delay: -4s;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.02); }
+      100% { opacity: 0.6; transform: scale(0.98); }
+    }
+
+    /* Nebula blobs */
+    .nebula-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .nebula-bg::before {
+      content: '';
+      position: absolute;
+      width: 800px;
+      height: 600px;
+      top: -200px;
+      left: -200px;
+      background: radial-gradient(ellipse, rgba(124,77,255,0.12) 0%, rgba(41,121,255,0.06) 40%, transparent 70%);
+      border-radius: 50%;
+      animation: nebula-drift 20s ease-in-out infinite alternate;
+    }
+
+    .nebula-bg::after {
+      content: '';
+      position: absolute;
+      width: 700px;
+      height: 500px;
+      bottom: 0;
+      right: -150px;
+      background: radial-gradient(ellipse, rgba(255,64,129,0.08) 0%, rgba(124,77,255,0.05) 40%, transparent 70%);
+      border-radius: 50%;
+      animation: nebula-drift 25s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes nebula-drift {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(60px, 40px) scale(1.1); }
+    }
+
+    /* ═══════════════════════════════════════════
+       LAYOUT UTILITY
+    ═══════════════════════════════════════════ */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 clamp(16px, 4vw, 48px);
+    }
+
+    section {
+      position: relative;
+      z-index: 1;
+      padding: var(--section-pad) 0;
+    }
+
+    .section-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--electric-purple);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      color: var(--star-white);
+    }
+
+    .section-subtitle {
+      font-size: clamp(15px, 1.8vw, 18px);
+      color: var(--text-muted);
+      max-width: 580px;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--electric-purple) 0%, var(--nebula-blue) 50%, var(--cosmic-pink) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ═══════════════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════════════ */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      transition: background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+    }
+
+    #navbar.scrolled {
+      background: rgba(10, 10, 20, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 rgba(124,77,255,0.3), 0 4px 40px rgba(0,0,0,0.6);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo-icon {
+      width: 38px;
+      height: 38px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-icon svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 0 8px rgba(124,77,255,0.7));
+    }
+
+    .nav-logo-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, var(--electric-purple), var(--nebula-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Exo 2', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color 0.25s, text-shadow 0.25s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--electric-purple);
+      transition: width 0.3s ease;
+      box-shadow: 0 0 6px var(--electric-purple);
+    }
+
+    .nav-links a:hover {
+      color: var(--star-white);
+      text-shadow: 0 0 12px rgba(124,77,255,0.6);
+    }
+
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      padding: 10px 22px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--electric-purple), var(--nebula-blue));
+      color: #fff !important;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 20px rgba(124,77,255,0.35);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--glow-purple) !important;
+    }
+
+    .nav-cta::after { display: none !important; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--star-white);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      transform-origin: center;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile nav */
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(7, 7, 16, 0.97);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .nav-mobile.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .nav-mobile a {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(18px, 5vw, 28px);
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      transition: color 0.2s, text-shadow 0.2s;
+    }
+
+    .nav-mobile a:hover {
+      color: var(--star-white);
+      text-shadow: var(--glow-text-purple);
+    }
+
+    @media (max-width: 880px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-mobile { display: flex; }
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════ */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: var(--nav-height) 0 0;
+    }
+
+    /* Hero star field - dense animated particles */
+    .hero-stars {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-stars::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 5% 10%, white 0%, transparent 100%),
+        radial-gradient(1px 1px at 12% 22%, white 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 18% 5%, rgba(200,200,255,0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 23% 38%, white 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 18%, white 0%, transparent 100%),
+        radial-gradient(2px 2px at 35% 45%, rgba(180,150,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 42% 8%, white 0%, transparent 100%),
+        radial-gradient(1px 1px at 48% 30%, white 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 15%, rgba(200,220,255,0.9) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 60% 48%, white 0%, transparent 100%),
+        radial-gradient(1px 1px at 67% 25%, white 0%, transparent 100%),
+        radial-gradient(1px 1px at 73% 38%, rgba(200,180,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 78% 12%, white 0%, transparent 100%),
+        radial-gradient(2px 2px at 83% 42%, white 0%, transparent 100%),
+        radial-gradient(1px 1px at 89% 20%, rgba(180,200,255,0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 95% 35%, white 0%, transparent 100%),
+        radial-gradient(1px 1px at 8% 55%, white 0%, transparent 100%),
+        radial-gradient(1px 1px at 15% 68%, rgba(200,200,255,0.7) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 22% 75%, white 0%, transparent 100%),
+        radial-gradient(1px 1px at 28% 58%, white 0%, transparent 100%),
+        radial-gradient(1px 1px at 38% 72%, rgba(180,150,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 45% 62%, white 0%, transparent 100%),
+        radial-gradient(1px 1px at 52% 78%, white 0%, transparent 100%),
+        radial-gradient(2px 2px at 58% 90%, rgba(200,220,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 65% 65%, white 0%, transparent 100%),
+        radial-gradient(1px 1px at 72% 82%, white 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 58%, rgba(200,180,255,0.9) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 87% 72%, white 0%, transparent 100%),
+        radial-gradient(1px 1px at 93% 88%, white 0%, transparent 100%),
+        radial-gradient(1px 1px at 97% 55%, rgba(180,200,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 3% 82%, white 0%, transparent 100%),
+        radial-gradient(1px 1px at 10% 90%, rgba(200,200,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 32% 88%, white 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 50% 95%, rgba(180,150,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 95%, white 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 97%, rgba(200,220,255,0.9) 0%, transparent 100%);
+      animation: hero-star-pulse 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes hero-star-pulse {
+      from { opacity: 0.5; }
+      to { opacity: 1; }
+    }
+
+    /* Shooting stars */
+    .shooting-star {
+      position: absolute;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 50%, rgba(124,77,255,0) 100%);
+      border-radius: 50%;
+      animation: shoot linear infinite;
+      opacity: 0;
+    }
+
+    .shooting-star:nth-child(1) { top: 15%; left: -200px; width: 200px; animation-duration: 4s; animation-delay: 1s; }
+    .shooting-star:nth-child(2) { top: 35%; left: -300px; width: 280px; animation-duration: 5s; animation-delay: 3s; }
+    .shooting-star:nth-child(3) { top: 55%; left: -150px; width: 180px; animation-duration: 3.5s; animation-delay: 6s; }
+    .shooting-star:nth-child(4) { top: 25%; left: -250px; width: 240px; animation-duration: 4.5s; animation-delay: 9s; }
+
+    @keyframes shoot {
+      0% { transform: translateX(0) rotate(-15deg); opacity: 0; }
+      10% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { transform: translateX(calc(100vw + 400px)) rotate(-15deg); opacity: 0; }
+    }
+
+    /* Hero gradient orbs */
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(80px);
+    }
+
+    .hero-orb-1 {
+      width: 600px;
+      height: 600px;
+      top: -150px;
+      left: -150px;
+      background: radial-gradient(circle, rgba(124,77,255,0.2) 0%, transparent 70%);
+      animation: orb-float 15s ease-in-out infinite alternate;
+    }
+
+    .hero-orb-2 {
+      width: 500px;
+      height: 500px;
+      bottom: -100px;
+      right: -100px;
+      background: radial-gradient(circle, rgba(255,64,129,0.15) 0%, rgba(41,121,255,0.1) 50%, transparent 70%);
+      animation: orb-float 18s ease-in-out infinite alternate-reverse;
+    }
+
+    .hero-orb-3 {
+      width: 300px;
+      height: 300px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(41,121,255,0.12) 0%, transparent 70%);
+      animation: orb-pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes orb-float {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 30px); }
+    }
+
+    @keyframes orb-pulse {
+      0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
+    }
+
+    /* Planet ring decoration */
+    .hero-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotateX(75deg);
+      width: 900px;
+      height: 900px;
+      border-radius: 50%;
+      border: 1px solid rgba(124,77,255,0.08);
+      pointer-events: none;
+      animation: ring-rotate 30s linear infinite;
+    }
+
+    .hero-ring::after {
+      content: '';
+      position: absolute;
+      inset: 60px;
+      border-radius: 50%;
+      border: 1px solid rgba(41,121,255,0.06);
+    }
+
+    @keyframes ring-rotate {
+      from { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(0deg); }
+      to { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(360deg); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 80px 16px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--electric-purple);
+      border: 1px solid rgba(124,77,255,0.4);
+      border-radius: 100px;
+      padding: 8px 20px;
+      margin-bottom: 32px;
+      background: rgba(124,77,255,0.08);
+      box-shadow: 0 0 20px rgba(124,77,255,0.15), inset 0 0 20px rgba(124,77,255,0.05);
+      animation: badge-glow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes badge-glow {
+      from { box-shadow: 0 0 15px rgba(124,77,255,0.15), inset 0 0 15px rgba(124,77,255,0.05); }
+      to { box-shadow: 0 0 30px rgba(124,77,255,0.35), inset 0 0 20px rgba(124,77,255,0.1); }
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--electric-purple);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--electric-purple);
+      animation: dot-pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes dot-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.5); opacity: 0.7; }
+    }
+
+    .hero-shop-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(52px, 9vw, 110px);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #fff 0%, var(--electric-purple) 40%, var(--nebula-blue) 70%, var(--cosmic-pink) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 40px rgba(124,77,255,0.4));
+      animation: hero-name-shimmer 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes hero-name-shimmer {
+      from { filter: drop-shadow(0 0 30px rgba(124,77,255,0.3)); }
+      to { filter: drop-shadow(0 0 60px rgba(124,77,255,0.6)); }
+    }
+
+    .hero-sub {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(14px, 2.5vw, 22px);
+      font-weight: 500;
+      letter-spacing: 3px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .hero-tagline {
+      font-family: 'Exo 2', sans-serif;
+      font-size: clamp(18px, 3vw, 28px);
+      font-weight: 300;
+      color: var(--star-white);
+      margin-bottom: 48px;
+      line-height: 1.4;
+      opacity: 0.9;
+    }
+
+    .hero-tagline em {
+      font-style: normal;
+      color: var(--cosmic-pink);
+      text-shadow: 0 0 20px rgba(255,64,129,0.5);
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 18px 40px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--electric-purple) 0%, var(--nebula-blue) 100%);
+      color: #fff;
+      transition: transform 0.25s, box-shadow 0.25s;
+      box-shadow: 0 0 30px rgba(124,77,255,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 40px rgba(124,77,255,0.6), 0 0 80px rgba(124,77,255,0.2);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 17px 36px;
+      border-radius: 4px;
+      border: 1px solid rgba(124,77,255,0.5);
+      color: var(--star-white);
+      background: rgba(124,77,255,0.08);
+      transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      background: rgba(124,77,255,0.18);
+      box-shadow: 0 0 30px rgba(124,77,255,0.3);
+      border-color: rgba(124,77,255,0.8);
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      z-index: 2;
+      animation: scroll-hint-float 2s ease-in-out infinite;
+    }
+
+    .scroll-mouse {
+      width: 22px;
+      height: 36px;
+      border: 1px solid rgba(124,77,255,0.5);
+      border-radius: 11px;
+      display: flex;
+      justify-content: center;
+      padding-top: 6px;
+    }
+
+    .scroll-mouse::before {
+      content: '';
+      width: 3px;
+      height: 8px;
+      background: var(--electric-purple);
+      border-radius: 2px;
+      animation: scroll-wheel 1.8s ease-in-out infinite;
+    }
+
+    @keyframes scroll-wheel {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(12px); opacity: 0; }
+    }
+
+    @keyframes scroll-hint-float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ═══════════════════════════════════════════
+       TRUST BADGES BAR
+    ═══════════════════════════════════════════ */
+    #trust {
+      padding: 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .trust-bar {
+      border-top: 1px solid rgba(124,77,255,0.2);
+      border-bottom: 1px solid rgba(124,77,255,0.2);
+      background: rgba(10, 10, 20, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 28px 0;
+    }
+
+    .trust-badges {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(24px, 4vw, 72px);
+      flex-wrap: wrap;
+    }
+
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+
+    .trust-badge:hover { opacity: 1; }
+
+    .trust-badge-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .trust-badge-icon.purple { background: rgba(124,77,255,0.15); border: 1px solid rgba(124,77,255,0.3); }
+    .trust-badge-icon.blue { background: rgba(41,121,255,0.15); border: 1px solid rgba(41,121,255,0.3); }
+    .trust-badge-icon.pink { background: rgba(255,64,129,0.15); border: 1px solid rgba(255,64,129,0.3); }
+    .trust-badge-icon.teal { background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.25); }
+
+    .trust-badge-text strong {
+      display: block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--star-white);
+      letter-spacing: 1px;
+    }
+
+    .trust-badge-text span {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* ═══════════════════════════════════════════
+       ABOUT SECTION
+    ═══════════════════════════════════════════ */
+    #about {
+      overflow: hidden;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 100px);
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-orb-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .about-ring-outer {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(124,77,255,0.2);
+      animation: spin-slow 20s linear infinite;
+    }
+
+    .about-ring-outer::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      background: var(--electric-purple);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 12px var(--electric-purple);
+    }
+
+    .about-ring-mid {
+      position: absolute;
+      inset: 30px;
+      border-radius: 50%;
+      border: 1px solid rgba(41,121,255,0.15);
+      animation: spin-slow 14s linear infinite reverse;
+    }
+
+    .about-ring-mid::before {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      right: 20%;
+      width: 5px;
+      height: 5px;
+      background: var(--nebula-blue);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--nebula-blue);
+    }
+
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .about-core {
+      position: absolute;
+      inset: 60px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 35%, rgba(124,77,255,0.2) 0%, rgba(41,121,255,0.1) 40%, rgba(10,10,20,0.8) 80%);
+      border: 1px solid rgba(124,77,255,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .about-core-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--electric-purple), var(--nebula-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+      line-height: 1.1;
+      filter: drop-shadow(0 0 20px rgba(124,77,255,0.5));
+    }
+
+    .about-stat-orbs {
+      position: absolute;
+      inset: 0;
+    }
+
+    .stat-orb {
+      position: absolute;
+      background: rgba(10,10,20,0.9);
+      border: 1px solid rgba(124,77,255,0.3);
+      border-radius: 12px;
+      padding: 12px 16px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .stat-orb:nth-child(1) { top: 10%; right: -20px; }
+    .stat-orb:nth-child(2) { bottom: 18%; left: -20px; }
+    .stat-orb:nth-child(3) { bottom: 5%; right: 10%; }
+
+    .stat-orb-number {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--electric-purple);
+      text-shadow: var(--glow-text-purple);
+      display: block;
+    }
+
+    .stat-orb-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .about-text-col {}
+
+    .about-features {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .about-feature {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-white);
+      backdrop-filter: blur(10px);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .about-feature:hover {
+      border-color: rgba(124,77,255,0.5);
+      transform: translateX(6px);
+    }
+
+    .about-feature-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(124,77,255,0.12);
+      border-radius: 8px;
+      border: 1px solid rgba(124,77,255,0.2);
+    }
+
+    .about-feature h4 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--star-white);
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .about-feature p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { max-width: 320px; margin: 0 auto 40px; }
+    }
+
+    /* ═══════════════════════════════════════════
+       PRODUCTS SECTION
+    ═══════════════════════════════════════════ */
+    #products {
+      background: linear-gradient(180deg, transparent 0%, rgba(7,7,16,0.6) 30%, rgba(7,7,16,0.6) 70%, transparent 100%);
+    }
+
+    .products-header {
+      text-align: center;
+      margin-bottom: clamp(40px, 6vw, 72px);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(124,77,255,0.15);
+      border-radius: 12px;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+      cursor: default;
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(124,77,255,0.06) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(124,77,255,0.5);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 30px rgba(124,77,255,0.15);
+    }
+
+    .product-card:hover::before { opacity: 1; }
+
+    /* Accent color variants */
+    .product-card:nth-child(2) { border-color: rgba(41,121,255,0.15); }
+    .product-card:nth-child(2):hover { border-color: rgba(41,121,255,0.5); box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 30px rgba(41,121,255,0.15); }
+    .product-card:nth-child(3) { border-color: rgba(255,64,129,0.15); }
+    .product-card:nth-child(3):hover { border-color: rgba(255,64,129,0.5); box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 30px rgba(255,64,129,0.15); }
+    .product-card:nth-child(4):hover { border-color: rgba(124,77,255,0.5); }
+    .product-card:nth-child(5) { border-color: rgba(0,229,255,0.12); }
+    .product-card:nth-child(5):hover { border-color: rgba(0,229,255,0.4); box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 30px rgba(0,229,255,0.12); }
+    .product-card:nth-child(6) { border-color: rgba(255,64,129,0.12); }
+    .product-card:nth-child(7) { border-color: rgba(41,121,255,0.12); }
+    .product-card:nth-child(8) { border-color: rgba(124,77,255,0.12); }
+
+    .product-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+      display: block;
+      filter: drop-shadow(0 0 8px rgba(124,77,255,0.4));
+    }
+
+    .product-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--star-white);
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .product-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .product-glow-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--electric-purple), transparent);
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+
+    .product-card:nth-child(2) .product-glow-line { background: linear-gradient(90deg, transparent, var(--nebula-blue), transparent); }
+    .product-card:nth-child(3) .product-glow-line { background: linear-gradient(90deg, transparent, var(--cosmic-pink), transparent); }
+    .product-card:nth-child(5) .product-glow-line { background: linear-gradient(90deg, transparent, #00e5ff, transparent); }
+
+    .product-card:hover .product-glow-line { opacity: 1; }
+
+    /* ═══════════════════════════════════════════
+       WHY CHOOSE US
+    ═══════════════════════════════════════════ */
+    #why {
+      position: relative;
+    }
+
+    .why-bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(124,77,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124,77,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 80%);
+    }
+
+    .why-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 100px);
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .why-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .why-stat {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: clamp(20px, 3vw, 32px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .why-stat::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--electric-purple), transparent);
+    }
+
+    .why-stat:nth-child(2)::before { background: linear-gradient(90deg, transparent, var(--nebula-blue), transparent); }
+    .why-stat:nth-child(3)::before { background: linear-gradient(90deg, transparent, var(--cosmic-pink), transparent); }
+    .why-stat:nth-child(4)::before { background: linear-gradient(90deg, transparent, #00e5ff, transparent); }
+
+    .why-stat:hover {
+      border-color: rgba(124,77,255,0.4);
+      transform: scale(1.03);
+    }
+
+    .why-stat-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--electric-purple), var(--nebula-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 12px rgba(124,77,255,0.4));
+    }
+
+    .why-stat:nth-child(2) .why-stat-num {
+      background: linear-gradient(135deg, var(--nebula-blue), #00e5ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .why-stat:nth-child(3) .why-stat-num {
+      background: linear-gradient(135deg, var(--cosmic-pink), var(--electric-purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .why-stat:nth-child(4) .why-stat-num {
+      background: linear-gradient(135deg, #00e5ff, var(--nebula-blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .why-stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .why-features {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .why-feature {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .why-feature-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--electric-purple);
+      text-shadow: var(--glow-text-purple);
+      flex-shrink: 0;
+      width: 32px;
+      line-height: 1.6;
+    }
+
+    .why-feature h4 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--star-white);
+      margin-bottom: 4px;
+    }
+
+    .why-feature p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 768px) {
+      .why-inner { grid-template-columns: 1fr; }
+    }
+
+    /* ═══════════════════════════════════════════
+       TESTIMONIALS
+    ═══════════════════════════════════════════ */
+    #testimonials {
+      overflow: hidden;
+    }
+
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: clamp(40px, 6vw, 72px);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s, border-color 0.35s, box-shadow 0.35s;
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      right: 24px;
+      font-size: 120px;
+      font-family: Georgia, serif;
+      color: rgba(124,77,255,0.08);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .testimonial-card:nth-child(2) {
+      border-color: rgba(41,121,255,0.2);
+    }
+
+    .testimonial-card:nth-child(3) {
+      border-color: rgba(255,64,129,0.2);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(124,77,255,0.5);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(124,77,255,0.12);
+    }
+
+    .testimonial-card:nth-child(2):hover { border-color: rgba(41,121,255,0.5); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(41,121,255,0.12); }
+    .testimonial-card:nth-child(3):hover { border-color: rgba(255,64,129,0.5); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(255,64,129,0.12); }
+
+    .stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+
+    .star { color: #FFD54F; font-size: 16px; text-shadow: 0 0 8px rgba(255,213,79,0.5); }
+
+    .testimonial-text {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .avatar-1 { background: linear-gradient(135deg, var(--electric-purple), var(--nebula-blue)); }
+    .avatar-2 { background: linear-gradient(135deg, var(--nebula-blue), #00e5ff); }
+    .avatar-3 { background: linear-gradient(135deg, var(--cosmic-pink), var(--electric-purple)); }
+
+    .author-info strong {
+      display: block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--star-white);
+      letter-spacing: 0.5px;
+    }
+
+    .author-info span {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ═══════════════════════════════════════════
+       FAQ ACCORDION
+    ═══════════════════════════════════════════ */
+    #faq {
+      background: linear-gradient(180deg, transparent 0%, rgba(7,7,16,0.5) 30%, rgba(7,7,16,0.5) 70%, transparent 100%);
+    }
+
+    .faq-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: clamp(40px, 6vw, 100px);
+      align-items: start;
+    }
+
+    .faq-sidebar {
+      position: sticky;
+      top: calc(var(--nav-height) + 24px);
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.02);
+      transition: border-color 0.3s;
+    }
+
+    .faq-item.active {
+      border-color: rgba(124,77,255,0.5);
+      box-shadow: 0 0 20px rgba(124,77,255,0.1);
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 24px;
+      text-align: left;
+      background: none;
+      color: var(--star-white);
+      font-family: 'Exo 2', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.5;
+      transition: color 0.25s;
+    }
+
+    .faq-question:hover { color: var(--electric-purple); }
+    .faq-item.active .faq-question { color: var(--electric-purple); }
+
+    .faq-chevron {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid rgba(124,77,255,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      transition: transform 0.35s ease, background 0.25s, border-color 0.25s;
+      color: var(--electric-purple);
+    }
+
+    .faq-item.active .faq-chevron {
+      transform: rotate(180deg);
+      background: rgba(124,77,255,0.15);
+      border-color: rgba(124,77,255,0.6);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .faq-item.active .faq-answer { max-height: 500px; }
+
+    .faq-answer-inner {
+      padding: 0 24px 20px;
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      border-top: 1px solid rgba(124,77,255,0.12);
+      padding-top: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .faq-inner { grid-template-columns: 1fr; }
+      .faq-sidebar { position: static; }
+    }
+
+    /* ═══════════════════════════════════════════
+       CONTACT SECTION
+    ═══════════════════════════════════════════ */
+    #contact {
+      position: relative;
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .contact-detail {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .contact-detail-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      border: 1px solid rgba(124,77,255,0.3);
+      background: rgba(124,77,255,0.08);
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+    }
+
+    .contact-detail:hover .contact-detail-icon {
+      border-color: rgba(124,77,255,0.7);
+      background: rgba(124,77,255,0.15);
+      transform: scale(1.08);
+    }
+
+    .contact-detail h4 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--electric-purple);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .contact-detail p, .contact-detail a {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      transition: color 0.2s;
+    }
+
+    .contact-detail a:hover { color: var(--star-white); }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 20px;
+    }
+
+    .hour-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+
+    .hour-day { color: var(--text-muted); }
+    .hour-time { color: var(--star-white); font-weight: 500; }
+
+    /* Form */
+    .contact-form-wrap {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: clamp(24px, 4vw, 48px);
+      backdrop-filter: blur(10px);
+    }
+
+    .form-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--star-white);
+      margin-bottom: 8px;
+    }
+
+    .form-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(124,77,255,0.2);
+      border-radius: 8px;
+      padding: 14px 18px;
+      color: var(--star-white);
+      font-family: 'Exo 2', sans-serif;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      -webkit-appearance: none;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(159,168,199,0.4);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--electric-purple);
+      box-shadow: 0 0 0 3px rgba(124,77,255,0.12), 0 0 20px rgba(124,77,255,0.1);
+    }
+
+    .form-group textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 18px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      background: linear-gradient(135deg, var(--electric-purple) 0%, var(--nebula-blue) 100%);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s;
+      box-shadow: 0 0 30px rgba(124,77,255,0.3);
+      margin-top: 8px;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 40px rgba(124,77,255,0.5);
+    }
+
+    @media (max-width: 768px) {
+      .contact-inner { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════ */
+    footer {
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid rgba(124,77,255,0.15);
+      padding: 48px 0 32px;
+      background: rgba(7,7,16,0.8);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 24px;
+    }
+
+    .footer-logo-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--electric-purple), var(--nebula-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .footer-tagline {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      justify-content: center;
+      list-style: none;
+    }
+
+    .footer-nav a {
+      font-size: 13px;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    .footer-nav a:hover { color: var(--electric-purple); }
+
+    .footer-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(124,77,255,0.2), transparent);
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-credit {
+      font-size: 12px;
+      color: rgba(159,168,199,0.5);
+      letter-spacing: 0.5px;
+    }
+
+    .footer-credit a {
+      color: var(--electric-purple);
+      transition: text-shadow 0.2s;
+    }
+
+    .footer-credit a:hover { text-shadow: var(--glow-text-purple); }
+
+    .footer-age {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      border: 1px solid rgba(124,77,255,0.2);
+      border-radius: 100px;
+      font-size: 12px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--electric-purple);
+      background: rgba(124,77,255,0.05);
+    }
+
+    /* ═══════════════════════════════════════════
+       SCROLL REVEAL ANIMATIONS
+    ═══════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Staggered children */
+    .stagger > * {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .stagger.visible > *:nth-child(1) { transition-delay: 0ms; }
+    .stagger.visible > *:nth-child(2) { transition-delay: 80ms; }
+    .stagger.visible > *:nth-child(3) { transition-delay: 160ms; }
+    .stagger.visible > *:nth-child(4) { transition-delay: 240ms; }
+    .stagger.visible > *:nth-child(5) { transition-delay: 320ms; }
+    .stagger.visible > *:nth-child(6) { transition-delay: 400ms; }
+    .stagger.visible > *:nth-child(7) { transition-delay: 480ms; }
+    .stagger.visible > *:nth-child(8) { transition-delay: 560ms; }
+
+    .stagger.visible > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION SEPARATORS
+    ═══════════════════════════════════════════ */
+    .section-sep {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--electric-purple), var(--nebula-blue));
+      border-radius: 2px;
+      margin-bottom: 32px;
+      box-shadow: 0 0 12px rgba(124,77,255,0.4);
+    }
+
+    .section-sep.center { margin-left: auto; margin-right: auto; }
+
+    /* ═══════════════════════════════════════════
+       PHONE LINK STYLE
+    ═══════════════════════════════════════════ */
+    a.phone-link {
+      color: var(--cosmic-pink);
+      font-weight: 700;
+      text-shadow: 0 0 12px rgba(255,64,129,0.3);
+      transition: text-shadow 0.2s;
+    }
+
+    a.phone-link:hover {
+      text-shadow: var(--glow-text-pink);
+    }
+
+    /* ═══════════════════════════════════════════
+       GLOW DIVIDERS
+    ═══════════════════════════════════════════ */
+    .glow-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(124,77,255,0.4) 30%, rgba(41,121,255,0.4) 60%, transparent 100%);
+      margin: 0;
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE TWEAKS
+    ═══════════════════════════════════════════ */
+    @media (max-width: 640px) {
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .products-grid { grid-template-columns: 1fr 1fr; }
+      .why-stats { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .hours-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .about-stat-orbs .stat-orb { display: none; }
+    }
+
+    @media (max-width: 400px) {
+      .products-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ═══════════════════════════════════════════
+       NOTIFICATION / TOAST
+    ═══════════════════════════════════════════ */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: rgba(10,10,20,0.95);
+      border: 1px solid rgba(124,77,255,0.5);
+      border-radius: 12px;
+      padding: 16px 28px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--star-white);
+      box-shadow: 0 0 40px rgba(124,77,255,0.25), 0 20px 60px rgba(0,0,0,0.5);
+      z-index: 9999;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
+      opacity: 0;
+      pointer-events: none;
+      text-align: center;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background layers -->
+  <div class="stars-layer"></div>
+  <div class="nebula-bg"></div>
+
+  <!-- ═══════════ NAVIGATION ═══════════ -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo" aria-label="Galaxy Glass Home">
+          <div class="nav-logo-icon">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="18" stroke="#7C4DFF" stroke-width="1" opacity="0.5"/>
+              <circle cx="20" cy="20" r="12" stroke="#2979FF" stroke-width="1" opacity="0.4"/>
+              <ellipse cx="20" cy="20" rx="19" ry="6" stroke="#7C4DFF" stroke-width="1" opacity="0.3"/>
+              <circle cx="20" cy="20" r="5" fill="url(#planet-grad)"/>
+              <circle cx="26" cy="13" r="2" fill="#FF4081" opacity="0.8"/>
+              <circle cx="8" cy="28" r="1.5" fill="#7C4DFF" opacity="0.6"/>
+              <circle cx="32" cy="30" r="1" fill="#2979FF" opacity="0.7"/>
+              <defs>
+                <radialGradient id="planet-grad" cx="40%" cy="35%">
+                  <stop offset="0%" stop-color="#9c72ff"/>
+                  <stop offset="100%" stop-color="#4527a0"/>
+                </radialGradient>
+              </defs>
+            </svg>
+          </div>
+          <span class="nav-logo-text">GALAXY GLASS</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact" class="nav-cta">Visit Us</a></li>
+        </ul>
+
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile nav overlay -->
+  <div class="nav-mobile" id="nav-mobile" role="dialog" aria-label="Mobile menu">
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#products" class="mobile-link">Products</a>
+    <a href="#why" class="mobile-link">Why Us</a>
+    <a href="#testimonials" class="mobile-link">Reviews</a>
+    <a href="#faq" class="mobile-link">FAQ</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+  </div>
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section id="hero">
+    <div class="hero-stars">
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star"></div>
+    </div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-ring"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Colorado Springs · Est. in the Cosmos
+        </div>
+
+        <h1 class="hero-shop-name">GALAXY GLASS</h1>
+        <p class="hero-sub">Smoke Shop</p>
+        <p class="hero-tagline">Your Universe of <em>Premium Glass</em> &amp; Smoke</p>
+
+        <div class="hero-ctas">
+          <a href="tel:+17195551234" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            Call Now
+          </a>
+          <a href="#products" class="btn-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+            Explore Products
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <div class="scroll-mouse"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- ═══════════ TRUST BADGES ═══════════ -->
+  <div id="trust">
+    <div class="trust-bar">
+      <div class="container">
+        <div class="trust-badges stagger">
+          <div class="trust-badge">
+            <div class="trust-badge-icon purple">🏠</div>
+            <div class="trust-badge-text">
+              <strong>Locally Owned</strong>
+              <span>Colorado Springs Proud</span>
+            </div>
+          </div>
+          <div class="trust-badge">
+            <div class="trust-badge-icon blue">⭐</div>
+            <div class="trust-badge-text">
+              <strong>Premium Brands</strong>
+              <span>Top Quality Only</span>
+            </div>
+          </div>
+          <div class="trust-badge">
+            <div class="trust-badge-icon pink">💰</div>
+            <div class="trust-badge-text">
+              <strong>Best Prices</strong>
+              <span>Competitive &amp; Fair</span>
+            </div>
+          </div>
+          <div class="trust-badge">
+            <div class="trust-badge-icon teal">🔞</div>
+            <div class="trust-badge-text">
+              <strong>21+ Welcome</strong>
+              <span>Valid ID Required</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="glow-divider"></div>
+
+  <!-- ═══════════ ABOUT ═══════════ -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual reveal-left">
+          <div class="about-orb-frame">
+            <div class="about-ring-outer"></div>
+            <div class="about-ring-mid"></div>
+            <div class="about-core">
+              <div class="about-core-text">GG</div>
+            </div>
+            <div class="about-stat-orbs">
+              <div class="stat-orb">
+                <span class="stat-orb-number">500+</span>
+                <span class="stat-orb-label">Products</span>
+              </div>
+              <div class="stat-orb">
+                <span class="stat-orb-number">5★</span>
+                <span class="stat-orb-label">Rated</span>
+              </div>
+              <div class="stat-orb">
+                <span class="stat-orb-number">21+</span>
+                <span class="stat-orb-label">Only</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-text-col reveal-right">
+          <p class="section-label">Our Story</p>
+          <div class="section-sep"></div>
+          <h2 class="section-title">
+            Locally Rooted,<br>
+            <span class="gradient-text">Cosmically Curated</span>
+          </h2>
+          <p class="section-subtitle">
+            Galaxy Glass is Colorado Springs' premier locally-owned smoke shop — a destination for enthusiasts who demand quality without compromise. We're not just a shop; we're a community, a knowledge hub, and your trusted guide through the universe of premium glass and smoke.
+          </p>
+
+          <div class="about-features">
+            <div class="about-feature">
+              <div class="about-feature-icon">🔭</div>
+              <div>
+                <h4>Locally Owned &amp; Operated</h4>
+                <p>Proudly rooted in Colorado Springs since day one. We know our community because we're part of it — real people serving real neighbors.</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">🧠</div>
+              <div>
+                <h4>Knowledgeable, Friendly Staff</h4>
+                <p>Our team lives and breathes this stuff. Whether you're a first-timer or a seasoned collector, we'll find exactly what you need.</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">💎</div>
+              <div>
+                <h4>Premium Selection, Every Time</h4>
+                <p>We handpick every product on our shelves. Only the finest glass, most trusted brands, and highest quality items make the cut.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="glow-divider"></div>
+
+  <!-- ═══════════ PRODUCTS ═══════════ -->
+  <section id="products">
+    <div class="container">
+      <div class="products-header reveal">
+        <p class="section-label">What We Carry</p>
+        <div class="section-sep center"></div>
+        <h2 class="section-title">Explore Our <span class="gradient-text">Galaxy</span></h2>
+        <p class="section-subtitle" style="margin: 0 auto;">From premium hand-blown glass to top-shelf accessories — we carry everything your universe needs.</p>
+      </div>
+
+      <div class="products-grid stagger">
+        <div class="product-card">
+          <span class="product-icon">🔮</span>
+          <h3 class="product-name">Premium Glass Pipes</h3>
+          <p class="product-desc">Hand-blown artisan pieces, one-hitters, spoons, and chillums from top glass artists. Every pipe is a work of art.</p>
+          <div class="product-glow-line"></div>
+        </div>
+
+        <div class="product-card">
+          <span class="product-icon">🌊</span>
+          <h3 class="product-name">Water Pipes &amp; Bongs</h3>
+          <p class="product-desc">Scientific glass, beakers, percolators, recyclers, and bubblers. Every size, style, and diffusion type in stock.</p>
+          <div class="product-glow-line"></div>
+        </div>
+
+        <div class="product-card">
+          <span class="product-icon">📜</span>
+          <h3 class="product-name">Rolling Papers &amp; Wraps</h3>
+          <p class="product-desc">Raw, Zig-Zag, Juicy, Elements, Backwoods, King Palm — every paper, every size, every flavor you're looking for.</p>
+          <div class="product-glow-line"></div>
+        </div>
+
+        <div class="product-card">
+          <span class="product-icon">⚡</span>
+          <h3 class="product-name">Vaporizers &amp; E-Cigs</h3>
+          <p class="product-desc">Portable vaporizers, desktop units, e-cigarettes, and pod systems. Top brands, full accessories, and expert guidance.</p>
+          <div class="product-glow-line"></div>
+        </div>
+
+        <div class="product-card">
+          <span class="product-icon">🌿</span>
+          <h3 class="product-name">CBD Products</h3>
+          <p class="product-desc">Tinctures, gummies, topicals, and flower from trusted hemp brands. Natural wellness, Colorado-approved.</p>
+          <div class="product-glow-line"></div>
+        </div>
+
+        <div class="product-card">
+          <span class="product-icon">🪄</span>
+          <h3 class="product-name">Hookah &amp; Shisha</h3>
+          <p class="product-desc">Traditional and modern hookahs, premium shisha tobacco in hundreds of flavors, coals, and all the accessories to go with them.</p>
+          <div class="product-glow-line"></div>
+        </div>
+
+        <div class="product-card">
+          <span class="product-icon">⚙️</span>
+          <h3 class="product-name">Grinders &amp; Accessories</h3>
+          <p class="product-desc">Aerospace aluminum grinders, roach clips, storage jars, dab tools, torches, and every must-have accessory in the cosmos.</p>
+          <div class="product-glow-line"></div>
+        </div>
+
+        <div class="product-card">
+          <span class="product-icon">🕯️</span>
+          <h3 class="product-name">Incense &amp; Candles</h3>
+          <p class="product-desc">Nag champa, Satya, Hem, and premium candles to set the perfect atmosphere. Scents from around the universe.</p>
+          <div class="product-glow-line"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="glow-divider"></div>
+
+  <!-- ═══════════ WHY CHOOSE US ═══════════ -->
+  <section id="why">
+    <div class="why-bg-grid"></div>
+    <div class="container">
+      <div class="why-inner">
+        <div class="reveal-left">
+          <p class="section-label">Why Galaxy Glass</p>
+          <div class="section-sep"></div>
+          <h2 class="section-title">The <span class="gradient-text">Cosmic</span><br>Difference</h2>
+          <p class="section-subtitle">We're not your average smoke shop. We're a destination where quality, knowledge, and community collide.</p>
+
+          <div class="why-features" style="margin-top: 40px;">
+            <div class="why-feature">
+              <span class="why-feature-num">01</span>
+              <div>
+                <h4>Massive Selection</h4>
+                <p>500+ products across every category. If it exists in the smoke shop universe, we carry it — or we'll find it for you.</p>
+              </div>
+            </div>
+            <div class="why-feature">
+              <span class="why-feature-num">02</span>
+              <div>
+                <h4>Unbeatable Prices</h4>
+                <p>Locally owned means lower overhead — and we pass those savings directly to you. Premium quality at honest prices.</p>
+              </div>
+            </div>
+            <div class="why-feature">
+              <span class="why-feature-num">03</span>
+              <div>
+                <h4>Zero Judgment Staff</h4>
+                <p>Our team creates a welcoming atmosphere for everyone. New to it all? A seasoned vet? You're equally welcome here.</p>
+              </div>
+            </div>
+            <div class="why-feature">
+              <span class="why-feature-num">04</span>
+              <div>
+                <h4>Expert Guidance</h4>
+                <p>Real knowledge from people who actually use and understand these products. We'll help you find exactly what's right for you.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-stats reveal-right">
+          <div class="why-stat">
+            <div class="why-stat-num">500+</div>
+            <div class="why-stat-label">Products in Stock</div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num">5.0★</div>
+            <div class="why-stat-label">Average Rating</div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num">100%</div>
+            <div class="why-stat-label">Locally Owned</div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num">7</div>
+            <div class="why-stat-label">Days a Week Open</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="glow-divider"></div>
+
+  <!-- ═══════════ TESTIMONIALS ═══════════ -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="testimonials-header reveal">
+        <p class="section-label">Customer Reviews</p>
+        <div class="section-sep center"></div>
+        <h2 class="section-title">What the <span class="gradient-text">Galaxy</span> Says</h2>
+        <p class="section-subtitle" style="margin: 0 auto;">Real words from real customers — because the best review is a satisfied explorer.</p>
+      </div>
+
+      <div class="testimonials-grid stagger">
+        <div class="testimonial-card">
+          <div class="stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-text">"Best smoke shop in Colorado Springs, hands down. The staff knew exactly what I was looking for and had me sorted in minutes. Amazing selection of glass — I ended up spending way too long browsing. Will absolutely be back."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar avatar-1">J</div>
+            <div class="author-info">
+              <strong>Jason M.</strong>
+              <span>Colorado Springs, CO</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-text">"I walked in not knowing anything about bongs and walked out with the perfect piece at a price I couldn't believe. The staff was super chill, zero pressure, and genuinely helpful. This is my shop now. No contest."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar avatar-2">S</div>
+            <div class="author-info">
+              <strong>Sarah K.</strong>
+              <span>Colorado Springs, CO</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-text">"Galaxy Glass has everything I need and more. CBD selection is top-notch, the hookah options are incredible, and the prices are way better than the other shops on Academy. Friendly vibes every single time."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar avatar-3">R</div>
+            <div class="author-info">
+              <strong>Ryan T.</strong>
+              <span>Colorado Springs, CO</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="glow-divider"></div>
+
+  <!-- ═══════════ FAQ ═══════════ -->
+  <section id="faq">
+    <div class="container">
+      <div class="faq-inner">
+        <div class="faq-sidebar reveal-left">
+          <p class="section-label">Knowledge Base</p>
+          <div class="section-sep"></div>
+          <h2 class="section-title">Questions<br><span class="gradient-text">Answered</span></h2>
+          <p class="section-subtitle">Everything you need to know before you visit. Still got questions? Come in and ask us in person — we love to talk shop.</p>
+          <div style="margin-top: 40px;">
+            <a href="tel:+17195551234" class="btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+              Ask Us Anything
+            </a>
+          </div>
+        </div>
+
+        <div class="faq-list reveal-right" id="faq-list">
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What is the age requirement to shop at Galaxy Glass?
+              <span class="faq-chevron">▾</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                You must be <strong>21 years of age or older</strong> to enter and shop at Galaxy Glass. We strictly enforce this policy and require a valid, government-issued photo ID (driver's license, passport, or state ID) upon entry. No exceptions — this is Colorado law and we take it seriously.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What brands do you carry?
+              <span class="faq-chevron">▾</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                We carry a wide range of premium, trusted brands. For papers and wraps: <strong>RAW, Zig-Zag, Elements, Juicy Jay's, Backwoods, King Palm</strong>. For glass: top artisan brands and scientific glass makers. For vaporizers: <strong>PAX, Storz &amp; Bickel, Arizer, DaVinci</strong>, and more. We're always updating our selection — stop in to see what's new!
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Do you do custom orders or special requests?
+              <span class="faq-chevron">▾</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Absolutely! If you're looking for a specific piece, brand, or product we don't currently stock, talk to our staff. We work with a network of suppliers and artists and can often source or order items not on our regular shelves. Come in or call us to discuss what you're looking for.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What are your payment options?
+              <span class="faq-chevron">▾</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                We accept <strong>cash</strong> and most major <strong>debit/credit cards</strong>. There is an ATM on-site for your convenience. Some promotions or discounts may be cash-only — our staff will always let you know upfront.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Do you offer any discounts or loyalty programs?
+              <span class="faq-chevron">▾</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Yes! We offer special discounts for <strong>veterans, first responders, and medical patients</strong> with valid ID. We also run regular in-store promotions and sales — ask our staff about current deals when you visit. Repeat customers become part of the Galaxy Glass family, and we take care of our family.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="glow-divider"></div>
+
+  <!-- ═══════════ CONTACT ═══════════ -->
+  <section id="contact">
+    <div class="container">
+      <div class="reveal" style="text-align: center; margin-bottom: clamp(40px, 6vw, 72px);">
+        <p class="section-label">Find Us</p>
+        <div class="section-sep center"></div>
+        <h2 class="section-title">Come Visit the <span class="gradient-text">Galaxy</span></h2>
+        <p class="section-subtitle" style="margin: 0 auto;">We're conveniently located on South Academy Blvd. Easy parking, great vibes, and your next favorite piece waiting inside.</p>
+      </div>
+
+      <div class="contact-inner">
+        <div class="contact-info reveal-left">
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">📍</div>
+            <div>
+              <h4>Address</h4>
+              <p>578 S Academy Blvd<br>Colorado Springs, CO 80910</p>
+              <a href="https://maps.google.com/?q=578+S+Academy+Blvd+Colorado+Springs+CO+80910" target="_blank" rel="noopener" style="color: var(--electric-purple); font-size: 13px; margin-top: 6px; display: inline-block; transition: text-shadow 0.2s;" onmouseover="this.style.textShadow='0 0 10px rgba(124,77,255,0.6)'" onmouseout="this.style.textShadow='none'">
+                Get Directions →
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">📞</div>
+            <div>
+              <h4>Phone</h4>
+              <a href="tel:+17195551234" class="phone-link" style="font-size: 22px;">(719) 555-1234</a>
+              <p style="font-size: 13px; margin-top: 4px;">Call or stop in anytime during business hours</p>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">🕐</div>
+            <div>
+              <h4>Store Hours</h4>
+              <div class="hours-grid" style="margin-top: 10px;">
+                <div class="hour-row">
+                  <span class="hour-day">Monday</span>
+                  <span class="hour-time">9AM – 9PM</span>
+                </div>
+                <div class="hour-row">
+                  <span class="hour-day">Tuesday</span>
+                  <span class="hour-time">9AM – 9PM</span>
+                </div>
+                <div class="hour-row">
+                  <span class="hour-day">Wednesday</span>
+                  <span class="hour-time">9AM – 9PM</span>
+                </div>
+                <div class="hour-row">
+                  <span class="hour-day">Thursday</span>
+                  <span class="hour-time">9AM – 9PM</span>
+                </div>
+                <div class="hour-row">
+                  <span class="hour-day">Friday</span>
+                  <span class="hour-time">9AM – 9PM</span>
+                </div>
+                <div class="hour-row">
+                  <span class="hour-day">Saturday</span>
+                  <span class="hour-time">9AM – 9PM</span>
+                </div>
+                <div class="hour-row">
+                  <span class="hour-day">Sunday</span>
+                  <span class="hour-time">10AM – 7PM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding: 20px; background: rgba(124,77,255,0.08); border: 1px solid rgba(124,77,255,0.2); border-radius: 12px;">
+            <p style="font-family: 'Orbitron', sans-serif; font-size: 11px; letter-spacing: 2px; color: var(--electric-purple); margin-bottom: 6px; text-transform: uppercase;">🔞 Age Requirement</p>
+            <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">Must be <strong style="color: var(--star-white);">21 or older</strong> with valid government-issued photo ID. This is strictly enforced. No exceptions.</p>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap reveal-right">
+          <h3 class="form-title">Send Us a Message</h3>
+          <p class="form-subtitle">Questions? Special requests? Reach out and we'll get back to you.</p>
+
+          <form id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="fname" placeholder="Your name" required>
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lname" placeholder="Last name">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone (Optional)</label>
+              <input type="tel" id="phone" name="phone" placeholder="(719) 000-0000">
+            </div>
+
+            <div class="form-group">
+              <label for="topic">Topic</label>
+              <select id="topic" name="topic">
+                <option value="" disabled selected>Select a topic...</option>
+                <option value="product">Product Inquiry</option>
+                <option value="order">Custom Order</option>
+                <option value="hours">Hours & Location</option>
+                <option value="wholesale">Wholesale</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us what's on your mind..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">
+              🚀 Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo-text">GALAXY GLASS</div>
+          <p class="footer-tagline">Your Universe of Premium Glass &amp; Smoke</p>
+        </div>
+
+        <ul class="footer-nav">
+          <li><a href="#about">About</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#why">Why Us</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="footer-age">🔞 21+ Only · Valid ID Required</div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+          <p class="footer-copy">© 2025 Galaxy Glass Smoke Shop · 578 S Academy Blvd, Colorado Springs, CO 80910</p>
+          <p class="footer-credit">Website by <a href="#" onclick="return false;">Kinetic Digital</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+  <!-- ═══════════ SCRIPTS ═══════════ -->
+  <script>
+    /* ─── Navbar scroll behavior ─── */
+    const navbar = document.getElementById('navbar');
+    const scrollHandler = () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    };
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    scrollHandler();
+
+    /* ─── Hamburger / mobile nav ─── */
+    const hamburger = document.getElementById('hamburger');
+    const navMobile = document.getElementById('nav-mobile');
+
+    const toggleMenu = (open) => {
+      hamburger.classList.toggle('open', open);
+      navMobile.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+
+    hamburger.addEventListener('click', () => toggleMenu(!hamburger.classList.contains('open')));
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => toggleMenu(false));
+    });
+
+    navMobile.addEventListener('click', (e) => {
+      if (e.target === navMobile) toggleMenu(false);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && hamburger.classList.contains('open')) toggleMenu(false);
+    });
+
+    /* ─── Smooth scroll for nav links ─── */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    /* ─── Scroll reveal with Intersection Observer ─── */
+    const observerOptions = { threshold: 0.12, rootMargin: '0px 0px -40px 0px' };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    /* ─── Trust badges instant visibility (above fold) ─── */
+    const trustBadges = document.querySelector('.trust-badges');
+    if (trustBadges) {
+      setTimeout(() => trustBadges.classList.add('visible'), 600);
+    }
+
+    /* ─── FAQ Accordion ─── */
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const btn = item.querySelector('.faq-question');
+      btn.addEventListener('click', () => {
+        const isOpen = item.classList.contains('active');
+
+        // Close all
+        faqItems.forEach(i => {
+          i.classList.remove('active');
+          i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+
+        // Toggle clicked
+        if (!isOpen) {
+          item.classList.add('active');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    /* ─── Contact Form ─── */
+    const contactForm = document.getElementById('contact-form');
+    const toast = document.getElementById('toast');
+
+    function showToast(message, duration = 4000) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), duration);
+    }
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const fname = document.getElementById('fname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!fname || !email || !message) {
+        showToast('⚠️ Please fill in all required fields.');
+        return;
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showToast('⚠️ Please enter a valid email address.');
+        return;
+      }
+
+      // Simulate send
+      const btn = contactForm.querySelector('.btn-submit');
+      btn.textContent = '✓ Message Sent!';
+      btn.style.background = 'linear-gradient(135deg, #1a9b5a, #00c875)';
+      btn.disabled = true;
+
+      showToast('🚀 Your message has been launched into the galaxy! We\'ll respond soon.', 5000);
+
+      setTimeout(() => {
+        contactForm.reset();
+        btn.textContent = '🚀 Send Message';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    });
+
+    /* ─── Animated stat counter (Why Choose Us) ─── */
+    const statNums = document.querySelectorAll('.why-stat-num');
+    let statsAnimated = false;
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !statsAnimated) {
+          statsAnimated = true;
+          statNums.forEach(el => {
+            const text = el.textContent;
+            const match = text.match(/(\d+)/);
+            if (!match) return;
+            const target = parseInt(match[1]);
+            const prefix = text.slice(0, match.index);
+            const suffix = text.slice(match.index + match[0].length);
+            let current = 0;
+            const step = Math.ceil(target / 40);
+            const interval = setInterval(() => {
+              current = Math.min(current + step, target);
+              el.textContent = prefix + current + suffix;
+              if (current >= target) clearInterval(interval);
+            }, 40);
+          });
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const whySection = document.querySelector('#why');
+    if (whySection) statsObserver.observe(whySection);
+
+    /* ─── Product card glow on hover cursor ─── */
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--mx', x + '%');
+        card.style.setProperty('--my', y + '%');
+      });
+    });
+
+    /* ─── Parallax orbs on scroll ─── */
+    const orb1 = document.querySelector('.hero-orb-1');
+    const orb2 = document.querySelector('.hero-orb-2');
+
+    window.addEventListener('scroll', () => {
+      const sy = window.scrollY;
+      if (orb1) orb1.style.transform = `translateY(${sy * 0.15}px)`;
+      if (orb2) orb2.style.transform = `translateY(${sy * 0.1}px)`;
+    }, { passive: true });
+
+    /* ─── Active nav highlight on scroll ─── */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(link => {
+            link.style.color = link.getAttribute('href') === '#' + id
+              ? 'var(--star-white)'
+              : '';
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -40% 0px' });
+
+    sections.forEach(section => sectionObserver.observe(section));
+  </script>
+</body>
+</html>

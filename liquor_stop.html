@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liquor Stop – Your Neighborhood Spirits Destination | Colorado Springs</title>
+  <meta name="description" content="Liquor Stop at 6525 Fountain Mesa Rd, Colorado Springs. Premium spirits, wine, craft beer, cigars & more. Locally owned, expertly curated." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Libre+Franklin:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ───────────────────────────────────────────
+       CSS VARIABLES & RESET
+    ─────────────────────────────────────────── */
+    :root {
+      --black:     #0a0a0a;
+      --black-mid: #141414;
+      --black-soft:#1c1c1c;
+      --amber:     #D4870E;
+      --amber-lt:  #f0a030;
+      --amber-dk:  #a86008;
+      --red:       #8B0000;
+      --red-lt:    #b00000;
+      --cream:     #F5E6C8;
+      --cream-dk:  #e0cba8;
+      --white:     #ffffff;
+      --text-muted:#9a8a72;
+      --nav-h:     72px;
+      --radius:    6px;
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: 'Libre Franklin', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ───────────────────────────────────────────
+       TYPOGRAPHY
+    ─────────────────────────────────────────── */
+    h1, h2, h3, h4 {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    h1 { font-size: clamp(3.2rem, 10vw, 8rem); }
+    h2 { font-size: clamp(2rem, 5vw, 3.4rem); }
+    h3 { font-size: clamp(1.3rem, 3vw, 1.9rem); }
+    h4 { font-size: 1.1rem; font-weight: 500; }
+
+    .section-label {
+      font-family: 'Libre Franklin', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--amber);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ───────────────────────────────────────────
+       UTILITY
+    ─────────────────────────────────────────── */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.2rem;
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--amber);
+      color: var(--black);
+    }
+    .btn-primary:hover {
+      background: var(--amber-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(212,135,14,0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--cream);
+      border: 2px solid rgba(245,230,200,0.4);
+    }
+    .btn-outline:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+      transform: translateY(-2px);
+    }
+
+    .divider {
+      width: 64px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--amber), var(--red));
+      margin: 1.2rem 0 2rem;
+      border-radius: 2px;
+    }
+    .divider.center { margin-left: auto; margin-right: auto; }
+
+    /* ───────────────────────────────────────────
+       SCROLL ANIMATIONS
+    ─────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ───────────────────────────────────────────
+       NAV
+    ─────────────────────────────────────────── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      padding: 0 5%;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    #nav.scrolled {
+      background: rgba(10,10,10,0.97);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.7);
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .nav-logo-top {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      line-height: 1;
+    }
+    .nav-logo-top span { color: var(--amber); }
+    .nav-logo-sub {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.2rem;
+    }
+    .nav-links a {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cream);
+      font-weight: 500;
+      position: relative;
+      transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 100%;
+      height: 2px;
+      background: var(--amber);
+      transition: right var(--transition);
+    }
+    .nav-links a:hover { color: var(--amber); }
+    .nav-links a:hover::after { right: 0; }
+
+    .nav-cta {
+      background: var(--amber);
+      color: var(--black) !important;
+      padding: 0.5rem 1.4rem;
+      border-radius: var(--radius);
+      font-weight: 700 !important;
+      transition: background var(--transition), transform var(--transition) !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover {
+      background: var(--amber-lt) !important;
+      transform: translateY(-1px) !important;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      z-index: 1001;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--cream);
+      transition: var(--transition);
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(10,10,10,0.98);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.4rem;
+      opacity: 0;
+      transform: translateX(100%);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .mobile-menu a {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream);
+      transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--amber); }
+    .mobile-menu .mobile-cta {
+      background: var(--amber);
+      color: var(--black);
+      padding: 0.8rem 2.5rem;
+      border-radius: var(--radius);
+      font-size: 1.3rem;
+    }
+
+    /* ───────────────────────────────────────────
+       HERO
+    ─────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 70% 40%, rgba(212,135,14,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 50% at 20% 80%, rgba(139,0,0,0.22) 0%, transparent 60%),
+        linear-gradient(160deg, #0a0a0a 0%, #141414 40%, #0e0a04 100%);
+    }
+
+    /* Decorative amber lines */
+    .hero-lines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-lines::before {
+      content: '';
+      position: absolute;
+      top: -10%; right: -5%;
+      width: 55%;
+      height: 120%;
+      background: repeating-linear-gradient(
+        -20deg,
+        transparent,
+        transparent 38px,
+        rgba(212,135,14,0.045) 38px,
+        rgba(212,135,14,0.045) 40px
+      );
+    }
+
+    /* Glowing orb */
+    .hero-orb {
+      position: absolute;
+      right: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: min(500px, 48vw);
+      height: min(500px, 48vw);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,135,14,0.22) 0%, rgba(139,0,0,0.14) 45%, transparent 70%);
+      filter: blur(40px);
+      pointer-events: none;
+    }
+
+    /* Decorative bottle silhouette using CSS */
+    .hero-bottle-wrap {
+      position: absolute;
+      right: 12%;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      opacity: 0.08;
+    }
+    .hero-bottle {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(180px, 22vw, 320px);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--amber);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      opacity: 0.6;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding-top: var(--nav-h);
+      max-width: 700px;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow-line {
+      width: 48px;
+      height: 2px;
+      background: var(--amber);
+    }
+    .hero-eyebrow-text {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--amber);
+    }
+
+    .hero-title {
+      color: var(--cream);
+      margin-bottom: 0.15em;
+    }
+    .hero-title .accent { color: var(--amber); }
+
+    .hero-tagline {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .btn-call {
+      background: var(--red);
+      color: var(--cream);
+      font-size: 1.1rem;
+      padding: 1rem 2.4rem;
+      border-radius: var(--radius);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: var(--transition);
+    }
+    .btn-call:hover {
+      background: var(--red-lt);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(139,0,0,0.5);
+    }
+    .btn-call svg { flex-shrink: 0; }
+
+    .hero-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .hero-info-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .hero-info-item svg { color: var(--amber); flex-shrink: 0; }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-muted);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--amber), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 1; transform: scaleY(1); }
+      50% { opacity: 0.3; transform: scaleY(0.5); }
+    }
+
+    /* ───────────────────────────────────────────
+       TRUST BADGES STRIP
+    ─────────────────────────────────────────── */
+    #trust {
+      background: var(--amber);
+      padding: 0;
+      overflow: hidden;
+    }
+    .trust-inner {
+      display: flex;
+      align-items: stretch;
+    }
+    .trust-badge {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      padding: 1.1rem 1.5rem;
+      border-right: 1px solid rgba(0,0,0,0.15);
+      transition: background var(--transition);
+    }
+    .trust-badge:last-child { border-right: none; }
+    .trust-badge:hover { background: rgba(255,255,255,0.1); }
+    .trust-badge-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+    .trust-badge-text {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+
+    /* ───────────────────────────────────────────
+       ABOUT
+    ─────────────────────────────────────────── */
+    #about {
+      padding: 8rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-bg-text {
+      position: absolute;
+      top: 50%;
+      left: -2%;
+      transform: translateY(-50%);
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(80px, 15vw, 200px);
+      font-weight: 700;
+      text-transform: uppercase;
+      color: rgba(212,135,14,0.04);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 0;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-image-box {
+      position: relative;
+      width: 100%;
+      padding-bottom: 120%;
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+    .about-image-inner {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(212,135,14,0.35) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 20%, rgba(139,0,0,0.25) 0%, transparent 50%),
+        linear-gradient(135deg, #1c1008 0%, #0e0a04 50%, #1a0500 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-bottle-icon {
+      font-size: clamp(120px, 16vw, 200px);
+      opacity: 0.7;
+      user-select: none;
+      filter: drop-shadow(0 0 40px rgba(212,135,14,0.6));
+      animation: bottleFloat 4s ease-in-out infinite;
+    }
+    @keyframes bottleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    .about-corner-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      width: 120px;
+      height: 120px;
+      background: var(--amber);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .about-corner-badge-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1;
+    }
+    .about-corner-badge-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      opacity: 0.75;
+    }
+
+    .about-content {}
+    .about-features {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+    .about-feature {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+    }
+    .about-feature-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(212,135,14,0.12);
+      border: 1px solid rgba(212,135,14,0.25);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.2rem;
+    }
+    .about-feature-text h4 {
+      color: var(--cream);
+      margin-bottom: 0.25rem;
+    }
+    .about-feature-text p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ───────────────────────────────────────────
+       PRODUCTS
+    ─────────────────────────────────────────── */
+    #products {
+      padding: 8rem 0;
+      background: var(--black-mid);
+      position: relative;
+    }
+    .products-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .product-card {
+      background: var(--black-soft);
+      border: 1px solid rgba(245,230,200,0.06);
+      border-radius: var(--radius);
+      padding: 2rem 1.6rem;
+      text-align: center;
+      transition: var(--transition);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--amber), var(--red));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+    .product-card:hover {
+      border-color: rgba(212,135,14,0.3);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 40px rgba(212,135,14,0.08);
+    }
+    .product-card:hover::before { transform: scaleX(1); }
+    .product-card:hover .product-emoji { transform: scale(1.15) rotate(-5deg); }
+
+    .product-emoji {
+      font-size: 2.8rem;
+      display: block;
+      margin-bottom: 1.2rem;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .product-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+    .product-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ───────────────────────────────────────────
+       WHY CHOOSE US
+    ─────────────────────────────────────────── */
+    #why {
+      padding: 8rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .why-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 15% 50%, rgba(139,0,0,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 70% at 85% 30%, rgba(212,135,14,0.08) 0%, transparent 60%);
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .why-content {}
+    .why-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .stat-card {
+      background: rgba(212,135,14,0.06);
+      border: 1px solid rgba(212,135,14,0.15);
+      border-radius: var(--radius);
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .stat-card:hover {
+      background: rgba(212,135,14,0.1);
+      border-color: rgba(212,135,14,0.3);
+      transform: translateY(-3px);
+    }
+    .stat-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--amber);
+      line-height: 1;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream-dk);
+    }
+
+    .why-reasons {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+    .reason {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      padding: 1.8rem;
+      background: var(--black-soft);
+      border: 1px solid rgba(245,230,200,0.06);
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+    .reason:hover {
+      border-color: rgba(212,135,14,0.25);
+      transform: translateX(6px);
+    }
+    .reason-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: rgba(212,135,14,0.25);
+      line-height: 1;
+      min-width: 2.5rem;
+    }
+    .reason-body h4 {
+      color: var(--cream);
+      margin-bottom: 0.4rem;
+    }
+    .reason-body p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ───────────────────────────────────────────
+       TESTIMONIALS
+    ─────────────────────────────────────────── */
+    #testimonials {
+      padding: 8rem 0;
+      background: var(--black-mid);
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .testimonial-card {
+      background: var(--black-soft);
+      border: 1px solid rgba(245,230,200,0.07);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: var(--transition);
+    }
+    .testimonial-card:hover {
+      border-color: rgba(212,135,14,0.25);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+    .testimonial-quote {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: 5rem;
+      color: rgba(212,135,14,0.12);
+      line-height: 1;
+      font-weight: 700;
+    }
+    .stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 1.2rem;
+    }
+    .star { color: var(--amber); font-size: 1.1rem; }
+    .testimonial-text {
+      font-size: 0.95rem;
+      color: var(--cream-dk);
+      line-height: 1.75;
+      margin-bottom: 1.8rem;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+    .author-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--amber), var(--red));
+      color: var(--cream);
+      flex-shrink: 0;
+    }
+    .author-info .name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+    .author-info .role {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ───────────────────────────────────────────
+       FAQ
+    ─────────────────────────────────────────── */
+    #faq {
+      padding: 8rem 0;
+      position: relative;
+    }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .faq-header {}
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(245,230,200,0.1);
+    }
+    .faq-item:first-child { border-top: 1px solid rgba(245,230,200,0.1); }
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 0;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--cream);
+      transition: color var(--transition);
+      gap: 1rem;
+    }
+    .faq-question:hover { color: var(--amber); }
+    .faq-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,135,14,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: var(--transition);
+      font-size: 1.2rem;
+      color: var(--amber);
+    }
+    .faq-item.active .faq-question { color: var(--amber); }
+    .faq-item.active .faq-icon {
+      background: var(--amber);
+      color: var(--black);
+      border-color: var(--amber);
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s ease;
+    }
+    .faq-item.active .faq-answer { max-height: 300px; padding-bottom: 1.4rem; }
+    .faq-answer p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* ───────────────────────────────────────────
+       CONTACT
+    ─────────────────────────────────────────── */
+    #contact {
+      padding: 8rem 0;
+      background: var(--black-mid);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 0% 50%, rgba(139,0,0,0.1) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 50% at 100% 70%, rgba(212,135,14,0.07) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .contact-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      position: relative;
+      z-index: 1;
+    }
+    .contact-info {}
+    .contact-info-block {
+      margin-bottom: 2.5rem;
+    }
+    .contact-info-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .contact-info-value {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--cream);
+      letter-spacing: 0.03em;
+    }
+    .contact-info-value a:hover { color: var(--amber); }
+
+    .hours-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .hour-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(245,230,200,0.07);
+    }
+    .hour-row:last-child { border-bottom: none; }
+    .hour-day { color: var(--cream-dk); font-weight: 500; }
+    .hour-time { color: var(--amber); font-weight: 600; font-family: 'Oswald', sans-serif; letter-spacing: 0.05em; }
+
+    .contact-map-placeholder {
+      margin-top: 2rem;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(212,135,14,0.2);
+    }
+    .map-inner {
+      background: linear-gradient(135deg, #1a1006, #0e0805);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .map-pin { font-size: 2rem; margin-bottom: 0.5rem; }
+    .map-addr {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      color: var(--cream);
+      font-weight: 500;
+    }
+    .map-city { font-size: 0.85rem; color: var(--text-muted); }
+    .map-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      transition: color var(--transition);
+    }
+    .map-link:hover { color: var(--amber-lt); }
+
+    /* Contact Form */
+    .contact-form {}
+    .form-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 1.8rem;
+    }
+    .form-group {
+      margin-bottom: 1.4rem;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      background: rgba(245,230,200,0.04);
+      border: 1px solid rgba(245,230,200,0.12);
+      border-radius: var(--radius);
+      padding: 0.85rem 1.1rem;
+      color: var(--cream);
+      font-family: 'Libre Franklin', sans-serif;
+      font-size: 0.92rem;
+      transition: border-color var(--transition), background var(--transition);
+      outline: none;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: var(--amber);
+      background: rgba(212,135,14,0.05);
+    }
+    .form-textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+    .form-select option { background: var(--black-mid); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, var(--amber), var(--amber-dk));
+      color: var(--black);
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .form-submit:hover {
+      background: linear-gradient(135deg, var(--amber-lt), var(--amber));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(212,135,14,0.35);
+    }
+
+    /* ───────────────────────────────────────────
+       FOOTER
+    ─────────────────────────────────────────── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(245,230,200,0.08);
+      padding: 3rem 0 2rem;
+    }
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    .footer-logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+    .footer-logo span { color: var(--amber); }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem 2.5rem;
+    }
+    .footer-links a {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--amber); }
+    .footer-bottom {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      border-top: 1px solid rgba(245,230,200,0.06);
+      padding-top: 2rem;
+      width: 100%;
+    }
+    .footer-bottom a {
+      color: var(--amber);
+      font-weight: 600;
+    }
+    .footer-bottom a:hover { color: var(--amber-lt); }
+    .footer-disclaimer {
+      margin-top: 0.5rem;
+      font-size: 0.7rem;
+      opacity: 0.5;
+    }
+
+    /* ───────────────────────────────────────────
+       RESPONSIVE
+    ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); }
+      .about-grid { gap: 4rem; }
+      .why-grid { gap: 3rem; }
+    }
+
+    @media (max-width: 900px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-visual { display: none; }
+      .why-grid { grid-template-columns: 1fr; }
+      .why-stats { order: -1; }
+      .testimonials-grid { grid-template-columns: 1fr 1fr; }
+      .faq-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .trust-inner { flex-wrap: wrap; }
+      .trust-badge { min-width: 50%; border-bottom: 1px solid rgba(0,0,0,0.15); }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: flex; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      h2 { font-size: 2rem; }
+      #about, #products, #why, #testimonials, #faq, #contact { padding: 5rem 0; }
+      .hero-bottle-wrap { display: none; }
+      .hero-orb { right: 0; width: 60vw; }
+    }
+
+    @media (max-width: 480px) {
+      .products-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+      .product-card { padding: 1.5rem 1rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .trust-badge { min-width: 100%; }
+      .why-stats { grid-template-columns: 1fr 1fr; }
+      .hero-ctas { flex-direction: column; }
+    }
+
+    /* ── Age Gate ──────────────────────────────── */
+    #age-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(10,10,10,0.98);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+    }
+    .age-gate-box {
+      background: var(--black-soft);
+      border: 1px solid rgba(212,135,14,0.3);
+      border-radius: calc(var(--radius) * 2);
+      padding: 3.5rem 3rem;
+      max-width: 460px;
+      width: 100%;
+      text-align: center;
+    }
+    .age-gate-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .age-gate-box h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .age-gate-box p { color: var(--text-muted); font-size: 0.9rem; margin: 1rem 0 2rem; line-height: 1.7; }
+    .age-gate-btns { display: flex; gap: 1rem; justify-content: center; }
+    .age-yes {
+      background: var(--amber);
+      color: var(--black);
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.85rem 2rem;
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+    .age-yes:hover { background: var(--amber-lt); transform: translateY(-2px); }
+    .age-no {
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.85rem 2rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(245,230,200,0.15);
+      transition: var(--transition);
+    }
+    .age-no:hover { border-color: rgba(245,230,200,0.3); color: var(--cream); }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── AGE GATE ──────────────────────────────── -->
+  <div id="age-gate">
+    <div class="age-gate-box">
+      <div class="age-gate-icon">🥃</div>
+      <h2>Are You 21+?</h2>
+      <p>You must be of legal drinking age to enter this website. By entering, you confirm that you are 21 years of age or older.</p>
+      <div class="age-gate-btns">
+        <button class="age-yes" id="age-yes">Yes, I'm 21+</button>
+        <button class="age-no" onclick="window.location.href='https://www.responsibility.org'">No, Exit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── NAV ───────────────────────────────────── -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <span class="nav-logo-top">Liquor <span>Stop</span></span>
+        <span class="nav-logo-sub">Colorado Springs</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#products">Products</a>
+        <a href="#why">Why Us</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="nav-cta">📞 Call Now</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#products" class="mobile-link">Products</a>
+    <a href="#why" class="mobile-link">Why Us</a>
+    <a href="#testimonials" class="mobile-link">Reviews</a>
+    <a href="#faq" class="mobile-link">FAQ</a>
+    <a href="#contact" class="mobile-link mobile-cta">📞 Call Now</a>
+  </div>
+
+  <!-- ── HERO ──────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-orb"></div>
+    <div class="hero-bottle-wrap">
+      <div class="hero-bottle">Spirits</div>
+    </div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-line"></div>
+          <span class="hero-eyebrow-text">Colorado Springs · Est. Locally Owned</span>
+        </div>
+        <h1 class="hero-title">
+          Liquor<br><span class="accent">Stop</span>
+        </h1>
+        <p class="hero-tagline">Your Neighborhood Spirits Destination</p>
+        <div class="hero-ctas">
+          <a href="tel:+1719XXXXXXX" class="btn-call">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+            Call Us Now
+          </a>
+          <a href="#products" class="btn btn-outline">Browse Products</a>
+        </div>
+        <div class="hero-info">
+          <div class="hero-info-item">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            6525 Fountain Mesa Rd, Colorado Springs
+          </div>
+          <div class="hero-info-item">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/>
+            </svg>
+            Mon–Thu 9AM–10PM &nbsp;|&nbsp; Fri–Sat 9AM–11PM &nbsp;|&nbsp; Sun 10AM–8PM
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ── TRUST BADGES ───────────────────────────── -->
+  <section id="trust">
+    <div class="trust-inner">
+      <div class="trust-badge reveal">
+        <span class="trust-badge-icon">🏘️</span>
+        <span class="trust-badge-text">Locally Owned</span>
+      </div>
+      <div class="trust-badge reveal">
+        <span class="trust-badge-icon">🍾</span>
+        <span class="trust-badge-text">Huge Selection</span>
+      </div>
+      <div class="trust-badge reveal">
+        <span class="trust-badge-icon">💰</span>
+        <span class="trust-badge-text">Best Prices</span>
+      </div>
+      <div class="trust-badge reveal">
+        <span class="trust-badge-icon">🍺</span>
+        <span class="trust-badge-text">Cold Beer Always</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ─────────────────────────────────── -->
+  <section id="about">
+    <div class="about-bg-text">Spirits</div>
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual reveal-left">
+          <div class="about-image-box">
+            <div class="about-image-inner">
+              <span class="about-bottle-icon">🥃</span>
+            </div>
+          </div>
+          <div class="about-corner-badge">
+            <span class="about-corner-badge-num">100%</span>
+            <span class="about-corner-badge-label">Locally<br>Owned</span>
+          </div>
+        </div>
+        <div class="about-content reveal-right">
+          <span class="section-label">About Us</span>
+          <h2>More Than Just a Liquor Store</h2>
+          <div class="divider"></div>
+          <p style="color: var(--cream-dk); margin-bottom: 1rem;">
+            At Liquor Stop, we're your neighbors first and retailers second. Nestled right here in Colorado Springs, we've built our store around one simple belief — everyone deserves access to a world-class selection without driving across town or paying inflated prices.
+          </p>
+          <p style="color: var(--text-muted);">
+            From rare single-malt Scotches and small-batch bourbons to natural wines and cold-craft beers, our shelves are curated with care. Whether you're celebrating a milestone, stocking up for the weekend, or searching for that perfect gift — we've got you covered.
+          </p>
+          <div class="about-features">
+            <div class="about-feature">
+              <div class="about-feature-icon">🏅</div>
+              <div class="about-feature-text">
+                <h4>Locally Owned & Operated</h4>
+                <p>Colorado Springs is home — we're invested in this community and proud to serve our neighbors.</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">🍷</div>
+              <div class="about-feature-text">
+                <h4>Curated Selection</h4>
+                <p>Hand-picked spirits, wines, and craft beers from around the world. Quality over quantity — every bottle tells a story.</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">🤝</div>
+              <div class="about-feature-text">
+                <h4>Knowledgeable & Friendly Staff</h4>
+                <p>Our team genuinely loves what they do. Come in for a recommendation — leave with something you'll love.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRODUCTS ───────────────────────────────── -->
+  <section id="products">
+    <div class="container">
+      <div class="products-header reveal">
+        <span class="section-label">What We Carry</span>
+        <h2>Our Full Selection</h2>
+        <div class="divider center"></div>
+        <p style="max-width: 560px; margin: 0 auto; color: var(--text-muted);">
+          From everyday essentials to rare finds — we stock an impressive range so you never have to settle.
+        </p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card reveal">
+          <span class="product-emoji">🥃</span>
+          <div class="product-name">Craft & Premium Spirits</div>
+          <p class="product-desc">Bourbon, Scotch, whiskey, vodka, gin, rum, tequila — including rare and limited-release bottles.</p>
+        </div>
+        <div class="product-card reveal">
+          <span class="product-emoji">🍷</span>
+          <div class="product-name">Wine Selection</div>
+          <p class="product-desc">Red, white, rosé, and natural wines from classic regions and exciting emerging producers.</p>
+        </div>
+        <div class="product-card reveal">
+          <span class="product-emoji">🍺</span>
+          <div class="product-name">Craft Beer & Imports</div>
+          <p class="product-desc">Colorado craft, domestic favorites, and imported brews — always cold, always fresh.</p>
+        </div>
+        <div class="product-card reveal">
+          <span class="product-emoji">🍹</span>
+          <div class="product-name">Mixers & Accessories</div>
+          <p class="product-desc">Premium mixers, bitters, garnishes, barware, and everything you need to craft the perfect cocktail.</p>
+        </div>
+        <div class="product-card reveal">
+          <span class="product-emoji">🍾</span>
+          <div class="product-name">Champagne & Sparkling</div>
+          <p class="product-desc">Champagne, Prosecco, Cava, and sparkling wines for every occasion and every budget.</p>
+        </div>
+        <div class="product-card reveal">
+          <span class="product-emoji">🚬</span>
+          <div class="product-name">Cigars</div>
+          <p class="product-desc">A thoughtfully selected range of premium cigars — from smooth everyday smokes to celebratory premium sticks.</p>
+        </div>
+        <div class="product-card reveal">
+          <span class="product-emoji">🎉</span>
+          <div class="product-name">Kegs & Party Supplies</div>
+          <p class="product-desc">Half barrels, quarter kegs, pony kegs, and party taps — we handle the heavy lifting for your event.</p>
+        </div>
+        <div class="product-card reveal">
+          <span class="product-emoji">🎁</span>
+          <div class="product-name">Gift Sets & Bundles</div>
+          <p class="product-desc">Beautifully curated gift sets for birthdays, holidays, and corporate gifting — always impressive.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHY CHOOSE US ──────────────────────────── -->
+  <section id="why">
+    <div class="why-bg"></div>
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-content">
+          <span class="section-label">Why Choose Us</span>
+          <h2>The Liquor Stop Difference</h2>
+          <div class="divider"></div>
+          <p style="color: var(--cream-dk); margin-bottom: 1rem;">
+            We're not just a store — we're your local spirits authority. Here's what sets us apart from the rest.
+          </p>
+          <div class="why-stats reveal">
+            <div class="stat-card">
+              <span class="stat-num">1,000+</span>
+              <span class="stat-label">Products in Stock</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">★ 4.8</span>
+              <span class="stat-label">Customer Rating</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">100%</span>
+              <span class="stat-label">Locally Owned</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">7</span>
+              <span class="stat-label">Days a Week</span>
+            </div>
+          </div>
+        </div>
+        <div class="why-reasons">
+          <div class="reason reveal">
+            <span class="reason-num">01</span>
+            <div class="reason-body">
+              <h4>Unmatched Selection</h4>
+              <p>Over a thousand products across spirits, wine, beer, and beyond — from everyday staples to rare collector's items you won't find elsewhere.</p>
+            </div>
+          </div>
+          <div class="reason reveal">
+            <span class="reason-num">02</span>
+            <div class="reason-body">
+              <h4>Competitive Prices</h4>
+              <p>We work hard to keep our prices fair. No gimmicks, no markups on popular items — just honest pricing because we want your repeat business.</p>
+            </div>
+          </div>
+          <div class="reason reveal">
+            <span class="reason-num">03</span>
+            <div class="reason-body">
+              <h4>Expert, Friendly Staff</h4>
+              <p>Our team lives and breathes this stuff. Ask anything — we'll steer you to exactly what you're looking for or something even better.</p>
+            </div>
+          </div>
+          <div class="reason reveal">
+            <span class="reason-num">04</span>
+            <div class="reason-body">
+              <h4>Convenient Location</h4>
+              <p>Right here on Fountain Mesa Rd — easy in, easy out. Plenty of parking, quick service, and we're open late so you're never stuck.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ───────────────────────────── -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="testimonials-header reveal">
+        <span class="section-label">Customer Reviews</span>
+        <h2>What Our Community Says</h2>
+        <div class="divider center"></div>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <span class="testimonial-quote">"</span>
+          <div class="stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-text">
+            Honestly the best liquor store in the Springs. The selection is massive and the staff actually knows their stuff — asked about a Japanese whisky and got a five-minute education I didn't know I needed. Love this place.
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">JR</div>
+            <div class="author-info">
+              <div class="name">Jason R.</div>
+              <div class="role">Colorado Springs, CO</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <span class="testimonial-quote">"</span>
+          <div class="stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-text">
+            I ordered a keg for my daughter's graduation party and they handled everything perfectly. Reasonable price, ice cold, and they even helped load it. Will absolutely be back for every event. Highly recommend!
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">ML</div>
+            <div class="author-info">
+              <div class="name">Maria L.</div>
+              <div class="role">Fountain, CO</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <span class="testimonial-quote">"</span>
+          <div class="stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-text">
+            Found a bottle of Pappy Van Winkle here — I nearly fell over. They also helped me put together a whiskey gift set for my boss that looked like it cost twice what I paid. This is my store. Period.
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">DK</div>
+            <div class="author-info">
+              <div class="name">Derek K.</div>
+              <div class="role">Colorado Springs, CO</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ───────────────────────────────────── -->
+  <section id="faq">
+    <div class="container">
+      <div class="faq-grid">
+        <div class="faq-header reveal-left">
+          <span class="section-label">Got Questions?</span>
+          <h2>Frequently Asked</h2>
+          <div class="divider"></div>
+          <p style="color: var(--text-muted); line-height: 1.8;">
+            We get asked a lot of great questions. Here are the ones we hear most often — but don't hesitate to call or stop by if you need more.
+          </p>
+          <div style="margin-top: 2.5rem;">
+            <a href="#contact" class="btn btn-primary">Get in Touch</a>
+          </div>
+        </div>
+        <div class="faq-list reveal-right">
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Do you offer delivery?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>We partner with local delivery platforms for select delivery options. Give us a call or check with third-party apps like DoorDash or Instacart to see if delivery is available in your area. Hours and availability may vary.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Can you place special orders for products you don't carry?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Absolutely! If there's a specific bottle you've been searching for, we can often place a special order. Stop by or call us with the details — brand, vintage, and any other specifics — and we'll do our best to track it down for you.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Do you host tasting events?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes! We periodically host in-store tasting events featuring local distilleries, wineries, and craft breweries. Follow our social pages or ask in-store to stay up to date on upcoming events. They're always free and a lot of fun.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              How does keg ordering work?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Keg ordering is easy — we stock half barrels, quarter kegs, and pony kegs in a variety of popular brands. We recommend calling ahead for availability and to reserve your keg, especially around major holidays and events. We'll have it cold and ready for pickup.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              What are your store hours?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>We're open Monday through Thursday 9AM to 10PM, Friday and Saturday 9AM to 11PM, and Sunday 10AM to 8PM. We're open on most holidays — call ahead to confirm on major holidays like Christmas and New Year's.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ────────────────────────────────── -->
+  <section id="contact">
+    <div class="contact-bg"></div>
+    <div class="container">
+      <div class="contact-header reveal">
+        <span class="section-label">Visit or Reach Out</span>
+        <h2>Find Us & Get in Touch</h2>
+        <div class="divider center"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info reveal-left">
+
+          <div class="contact-info-block">
+            <span class="contact-info-label">📍 Address</span>
+            <div class="contact-info-value">6525 Fountain Mesa Rd<br>Colorado Springs, CO 80911</div>
+          </div>
+
+          <div class="contact-info-block">
+            <span class="contact-info-label">⏰ Store Hours</span>
+            <div class="hours-grid">
+              <div class="hour-row">
+                <span class="hour-day">Monday – Thursday</span>
+                <span class="hour-time">9AM – 10PM</span>
+              </div>
+              <div class="hour-row">
+                <span class="hour-day">Friday – Saturday</span>
+                <span class="hour-time">9AM – 11PM</span>
+              </div>
+              <div class="hour-row">
+                <span class="hour-day">Sunday</span>
+                <span class="hour-time">10AM – 8PM</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-map-placeholder">
+            <div class="map-inner">
+              <div class="map-pin">📌</div>
+              <div class="map-addr">6525 Fountain Mesa Rd</div>
+              <div class="map-city">Colorado Springs, CO 80911</div>
+              <a href="https://maps.google.com/?q=6525+Fountain+Mesa+Rd+Colorado+Springs+CO+80911" target="_blank" rel="noopener" class="map-link">
+                Open in Google Maps →
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="contact-form reveal-right">
+          <div class="form-title">Send Us a Message</div>
+          <form onsubmit="handleFormSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-input" placeholder="John" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-input" placeholder="Doe" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-input" placeholder="john@example.com" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" class="form-input" placeholder="(719) 555-0100" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">What Can We Help With?</label>
+              <select class="form-select form-input">
+                <option value="">Select a topic...</option>
+                <option>Special Order Inquiry</option>
+                <option>Keg / Party Order</option>
+                <option>Product Availability</option>
+                <option>Tasting Event Info</option>
+                <option>Gift Set Assistance</option>
+                <option>General Question</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea class="form-textarea" placeholder="Tell us what you're looking for..."></textarea>
+            </div>
+            <button type="submit" class="form-submit">
+              Send Message
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">Liquor <span>Stop</span></div>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#products">Products</a>
+          <a href="#why">Why Us</a>
+          <a href="#testimonials">Reviews</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2024 Liquor Stop · 6525 Fountain Mesa Rd, Colorado Springs, CO 80911</p>
+          <p>Website by <a href="#" rel="noopener">Kinetic Digital</a></p>
+          <p class="footer-disclaimer">Must be 21+ to purchase alcohol. Please drink responsibly. Don't drink and drive.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─────────────────────────────────────────────
+       JAVASCRIPT
+  ───────────────────────────────────────────── -->
+  <script>
+    // Age Gate
+    document.getElementById('age-yes').addEventListener('click', () => {
+      const gate = document.getElementById('age-gate');
+      gate.style.opacity = '0';
+      gate.style.transition = 'opacity 0.5s ease';
+      setTimeout(() => gate.remove(), 500);
+      sessionStorage.setItem('ageVerified', 'true');
+    });
+    if (sessionStorage.getItem('ageVerified') === 'true') {
+      document.getElementById('age-gate').remove();
+    }
+
+    // Sticky Nav
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Hamburger / Mobile Menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Scroll Animations (Intersection Observer)
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // Stagger siblings slightly
+          const siblings = Array.from(entry.target.parentElement.children);
+          const idx = siblings.indexOf(entry.target);
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, idx * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!wasActive) item.classList.add('active');
+      });
+    });
+
+    // Contact Form
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      const original = btn.innerHTML;
+      btn.innerHTML = '✅ Message Sent!';
+      btn.style.background = 'linear-gradient(135deg, #2e7d32, #1b5e20)';
+      btn.style.color = '#fff';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3500);
+    }
+
+    // Smooth active nav link highlight on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    const scrollSpy = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => a.style.color = '');
+          const activeLink = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+          if (activeLink && !activeLink.classList.contains('nav-cta')) {
+            activeLink.style.color = 'var(--amber)';
+          }
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => scrollSpy.observe(s));
+
+    // Counter animation for stats
+    function animateCount(el, target, duration = 1800, suffix = '') {
+      const start = performance.now();
+      const isFloat = target % 1 !== 0;
+      const update = (time) => {
+        const progress = Math.min((time - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = isFloat ? (eased * target).toFixed(1) : Math.round(eased * target);
+        el.textContent = (suffix === '+' ? current.toLocaleString() + '+' : suffix + current);
+        if (progress < 1) requestAnimationFrame(update);
+      };
+      requestAnimationFrame(update);
+    }
+
+    const statNums = document.querySelectorAll('.stat-num');
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const text = el.textContent;
+          if (text.includes('1,000')) animateCount(el, 1000, 2000, '+');
+          else if (text.includes('4.8')) {
+            let s = 0;
+            const iv = setInterval(() => {
+              s += 0.1;
+              el.textContent = '★ ' + Math.min(s, 4.8).toFixed(1);
+              if (s >= 4.8) clearInterval(iv);
+            }, 40);
+          }
+          else if (text.includes('100')) {
+            let s = 0;
+            const iv = setInterval(() => {
+              s += 2;
+              el.textContent = Math.min(s, 100) + '%';
+              if (s >= 100) clearInterval(iv);
+            }, 30);
+          }
+          else if (text === '7') {
+            let s = 0;
+            const iv = setInterval(() => {
+              s++;
+              el.textContent = s;
+              if (s >= 7) clearInterval(iv);
+            }, 200);
+          }
+          statObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    statNums.forEach(el => statObserver.observe(el));
+  </script>
+
+</body>
+</html>
